@@ -6,7 +6,11 @@
 #include <string.h>
 #include "get_next_line.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 # define MAXDIR 300
+=======
+# define MAXDIR 50
+>>>>>>> 005ac1499ffd0b4619093b44c2a7d243ef7b3dac
 =======
 # define MAXDIR 50
 >>>>>>> 005ac1499ffd0b4619093b44c2a7d243ef7b3dac
