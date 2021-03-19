@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../includes/get_next_line.h
+stdlib.h
+-
+fcntl.h
+-
+unistd.h
+-
+
+../includes/minishell.h
+fcntl.h
+-
+unistd.h
+-
+stdlib.h
+-
+math.h
+-
+pthread.h
+-
+errno.h
+-
+stdio.h
+-
+
+/Users/mmaryjan/projects/minishell/srcs/main.c
+stdio.h
+-
+unistd.h
+-
+minishell.h
+/Users/mmaryjan/projects/minishell/srcs/minishell.h
+string.h
+-
+get_next_line.h
+/Users/mmaryjan/projects/minishell/srcs/get_next_line.h
+
