@@ -22,7 +22,6 @@ typedef struct	s_main_struct
 {
 	t_list	*lstcomands;
 	t_list	*lstenvp;
-
 }				t_main_struct;
 
 typedef struct		s_lstobj
@@ -34,9 +33,14 @@ typedef struct		s_lstobj
 }					t_lstobj;
 
 /* parsing:      */
+t_main_struct	*parse_main(char **copyenvp);
+t_main_struct	*new_base(char **envp);
+
 
 /* utils:        */
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strtrim(char const *s1, char const *set);
+
 /* gnl:          */
 # define BUFFER_SIZE 1
 int		get_next_line(int fd, char **line);
@@ -51,6 +55,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 /* main:        */
 void	print_errors(int ernum);
 
+
+/* free:        */
+void	free_and_null(void **ptr);
 
 
 #endif
