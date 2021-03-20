@@ -14,10 +14,18 @@
 
 void	print_errors(int ernum, char *line)
 {
-	//исправить описание ошибок
 	if (ernum == -1)
-		printf("minishell: %s: command not found", line);
+	{
+		write(STDERR_FILENO, "minishell: ", 11);
+		ft_putstr_fd(line, STDERR_FILENO);
+		write(STDERR_FILENO, ": command not found", 19);
+	}
+	if (ernum == -6)
+		write(STDERR_FILENO, "Error\nMalloc error", 18);
+
+	//printf("minishell: %s: command not found", line); выводит не в поток ошибок
 	/*
+	//исправить описание ошибок
 	ernum == -3 ? write(STDERR_FILENO, "Error\nThe second argument is invalid",
 36) : 0;
 	ernum == -4 ? write(STDERR_FILENO, "Error\nCouldn't open the file",

@@ -42,6 +42,7 @@ t_main_struct	*new_base(char **envp);
 /* utils:        */
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);
+void	ft_putstr_fd(char *s, int fd);
 
 /* gnl:          */
 # define BUFFER_SIZE 1
