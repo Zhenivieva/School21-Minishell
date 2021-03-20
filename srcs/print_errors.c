@@ -12,11 +12,12 @@
 
 #include "minishell.h"
 
-void	print_errors(int ernum)
+void	print_errors(int ernum, char *line)
 {
 	//исправить описание ошибок
-	ernum == -1 ? write(STDERR_FILENO, "Error\nWrong number of arguments",
-31) : 0;
+	if (ernum == -1)
+		printf("minishell: %s: command not found", line);
+	/*
 	ernum == -3 ? write(STDERR_FILENO, "Error\nThe second argument is invalid",
 36) : 0;
 	ernum == -4 ? write(STDERR_FILENO, "Error\nCouldn't open the file",
@@ -24,5 +25,6 @@ void	print_errors(int ernum)
 	ernum == -6 ? write(STDERR_FILENO, "Error\nMalloc error", 18) : 0;
 	ernum == -7 ? write(STDERR_FILENO, "Error\nCouldn't create file",
 26) : 0;
+	 */
 	exit(ernum);
 }

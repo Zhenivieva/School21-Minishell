@@ -33,13 +33,13 @@ void		check_end_of_str(char **stroka)
 	}
 }
  */
-
-int		parse_string(t_main_struct **base, char *line)
+//1234
+int				parse_string(t_main_struct **base, char *line)
 {
 	if (line[0] == '\0')
 		return (0);
-//	else if (line[0] == 'p')
-//		return (parse_pwd(base, line));
+	else if (line[0] == 'p')
+		return (parse_pwd(base, line));
 //	else if (line[0] == 'c')
 //		return (parse_cd(base, line));
 //	else if (line[0] == 'u')
@@ -52,8 +52,11 @@ int		parse_string(t_main_struct **base, char *line)
 //		return (parse_export(base, line));
 //	else if (line[0] == 'e' && line[1] == 'x' && line[1] == 'i')
 //		return (parse_exit(base, line));
+//	else if (команды для execve)
+//		return (parse_execve_coms(base, line));
 	else
-		return (-1);
+		print_errors(-1, line);
+	return (-1);
 }
 
 t_main_struct	*parse_main(char **copyenvp)

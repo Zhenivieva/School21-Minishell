@@ -22,6 +22,8 @@ typedef struct	s_main_struct
 {
 	t_list	*lstcomands;
 	t_list	*lstenvp;
+	int 	flag_cov2;
+	int 	flag_cov1;
 }				t_main_struct;
 
 typedef struct		s_lstobj
@@ -53,11 +55,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 
 /* main:        */
-void	print_errors(int ernum);
+void	print_errors(int ernum, char *line);
 
 
 /* free:        */
 void	free_and_null(void **ptr);
-
 
 #endif
