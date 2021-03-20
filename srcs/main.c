@@ -1,11 +1,4 @@
-
-
-#include <stdio.h>
-#include <unistd.h>
 #include "minishell.h"
-#include <string.h>
-#include "get_next_line.h"
-
 
 # define MAXDIR 200
 
@@ -29,7 +22,7 @@ int main(int argc, char **argv, char **envp)
 		i = get_next_line(fd, &line);
 //		parsing(line, copyenvp);
 //		printf("%s\n", line);
-		if (!(strncmp(line, "pwd", 4)))
+		if (!(ft_strncmp(line, "pwd", 4)))
 		{
 			getcwd(dir, MAXDIR);
 			printf("%s\n", dir);

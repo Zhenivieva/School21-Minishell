@@ -16,11 +16,10 @@ t_lstobj	*new_obj(void *object, int type, float reflective)
 {
 	t_lstobj *objs;
 
-//	if (!(objs = malloc(sizeof(t_lstobj))))
-//		print_errors(-6);
+if (!(objs = malloc(sizeof(t_lstobj))))
+		print_errors(-6); //
 	objs->obj = object;
 	objs->type = type;
-	objs->reflective = reflective;
 	objs->next = NULL;
 	return (objs);
 }

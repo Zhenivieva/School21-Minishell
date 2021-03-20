@@ -1,9 +1,6 @@
-//
-// Created by Marleen Maryjane on 3/19/21.
-//
 
-#ifndef MINISHELL_MINISHELL_H
-#define MINISHELL_MINISHELL_H
+#ifndef MINISHELL_H
+#define MINISHELL_H
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -12,6 +9,7 @@
 # include <pthread.h>
 # include <errno.h>
 # include <stdio.h>
+#include <string.h> // убрать, заменить ф-циями из libft
 
 
 typedef struct		s_list
@@ -23,7 +21,7 @@ typedef struct		s_list
 typedef struct	s_main_struct
 {
 	t_list	*lstcomands;
-	t_list *lststrings;
+	t_list	*lstenvp;
 
 }				t_main_struct;
 
@@ -31,8 +29,28 @@ typedef struct		s_lstobj
 {
 	int				type;
 	void			*obj;
-	float			reflective;
 	void			*prev;
 	void			*next;
 }					t_lstobj;
-#endif //MINISHELL_MINISHELL_H
+
+/* parsing:      */
+
+/* utils:        */
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+/* gnl:          */
+# define BUFFER_SIZE 1
+int		get_next_line(int fd, char **line);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s1);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *str);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+
+/* main:        */
+void	print_errors(int ernum);
+
+
+
+#endif
