@@ -35,4 +35,14 @@ typedef struct		s_lstobj
 	void			*prev;
 	void			*next;
 }					t_lstobj;
+
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *s1);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+
+
+
+
 #endif //MINISHELL_MINISHELL_H
