@@ -63,6 +63,8 @@ int		ft_exit(char **envp);
 int ft_error(int n);
 void	ft_putstr_fd(char *s, int fd);
 int ft_getdollar(char *dollar, t_com *com, int *b, int *a);
+char	*ft_getpath(t_com *com);
+void 	ft_relabsbin(t_com *com);
 
 
 

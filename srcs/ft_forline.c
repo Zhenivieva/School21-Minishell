@@ -195,7 +195,8 @@ int ft_forexecve(t_com *com, char **envp)
 	int pid;
 
 	if (ft_slash(com->komand))
-		com->komand = ft_strjoin("/bin/", com->komand); //вместо /bin/ функция по поиску этой функции
+		ft_relabsbin(com);
+//		com->komand = ft_strjoin("/bin/", com->komand); //вместо /bin/ функция по поиску этой функции
 	pid = fork();
 //	printf("pid=%d\n", pid);
 	if (pid != 0)
