@@ -4,7 +4,7 @@
 
 #ifndef MINISHELL_MINISHELL_H
 #define MINISHELL_MINISHELL_H
-
+# define BUFFER_SIZE 1
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -36,11 +36,22 @@ typedef struct		s_lstobj
 	void			*next;
 }					t_lstobj;
 
+typedef struct s_com
+{
+	char *komand;
+	char **args;
+}				t_com;
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char		**ft_split(char const *s, char c);
+void	ft_forsplit(char *line, char k);
+char	*ft_strtrim(char const *s1, char const *set);
+void ft_pipim(char *command, char **envp);
+
 
 
 

@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/mmaryjan/projects/minishell
+CMAKE_SOURCE_DIR = /Users/mflor/Desktop/minishell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/mmaryjan/projects/minishell/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/mflor/Desktop/minishell/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles /Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mflor/Desktop/minishell/cmake-build-debug/CMakeFiles /Users/mflor/Desktop/minishell/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mflor/Desktop/minishell/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -131,17 +131,125 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named miniRT
+# Target rules for targets named minishell
 
 # Build rule for target.
-miniRT: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 miniRT
-.PHONY : miniRT
+minishell: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 minishell
+.PHONY : minishell
 
 # fast build rule for target.
-miniRT/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/build
-.PHONY : miniRT/fast
+minishell/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/build
+.PHONY : minishell/fast
+
+srcs/ft_forline.o: srcs/ft_forline.c.o
+
+.PHONY : srcs/ft_forline.o
+
+# target to build an object file
+srcs/ft_forline.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_forline.c.o
+.PHONY : srcs/ft_forline.c.o
+
+srcs/ft_forline.i: srcs/ft_forline.c.i
+
+.PHONY : srcs/ft_forline.i
+
+# target to preprocess a source file
+srcs/ft_forline.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_forline.c.i
+.PHONY : srcs/ft_forline.c.i
+
+srcs/ft_forline.s: srcs/ft_forline.c.s
+
+.PHONY : srcs/ft_forline.s
+
+# target to generate assembly for a file
+srcs/ft_forline.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_forline.c.s
+.PHONY : srcs/ft_forline.c.s
+
+srcs/ft_split.o: srcs/ft_split.c.o
+
+.PHONY : srcs/ft_split.o
+
+# target to build an object file
+srcs/ft_split.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_split.c.o
+.PHONY : srcs/ft_split.c.o
+
+srcs/ft_split.i: srcs/ft_split.c.i
+
+.PHONY : srcs/ft_split.i
+
+# target to preprocess a source file
+srcs/ft_split.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_split.c.i
+.PHONY : srcs/ft_split.c.i
+
+srcs/ft_split.s: srcs/ft_split.c.s
+
+.PHONY : srcs/ft_split.s
+
+# target to generate assembly for a file
+srcs/ft_split.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_split.c.s
+.PHONY : srcs/ft_split.c.s
+
+srcs/ft_strncmp.o: srcs/ft_strncmp.c.o
+
+.PHONY : srcs/ft_strncmp.o
+
+# target to build an object file
+srcs/ft_strncmp.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_strncmp.c.o
+.PHONY : srcs/ft_strncmp.c.o
+
+srcs/ft_strncmp.i: srcs/ft_strncmp.c.i
+
+.PHONY : srcs/ft_strncmp.i
+
+# target to preprocess a source file
+srcs/ft_strncmp.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_strncmp.c.i
+.PHONY : srcs/ft_strncmp.c.i
+
+srcs/ft_strncmp.s: srcs/ft_strncmp.c.s
+
+.PHONY : srcs/ft_strncmp.s
+
+# target to generate assembly for a file
+srcs/ft_strncmp.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_strncmp.c.s
+.PHONY : srcs/ft_strncmp.c.s
+
+srcs/ft_strtrim.o: srcs/ft_strtrim.c.o
+
+.PHONY : srcs/ft_strtrim.o
+
+# target to build an object file
+srcs/ft_strtrim.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_strtrim.c.o
+.PHONY : srcs/ft_strtrim.c.o
+
+srcs/ft_strtrim.i: srcs/ft_strtrim.c.i
+
+.PHONY : srcs/ft_strtrim.i
+
+# target to preprocess a source file
+srcs/ft_strtrim.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_strtrim.c.i
+.PHONY : srcs/ft_strtrim.c.i
+
+srcs/ft_strtrim.s: srcs/ft_strtrim.c.s
+
+.PHONY : srcs/ft_strtrim.s
+
+# target to generate assembly for a file
+srcs/ft_strtrim.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_strtrim.c.s
+.PHONY : srcs/ft_strtrim.c.s
 
 srcs/get_next_line.o: srcs/get_next_line.c.o
 
@@ -149,7 +257,7 @@ srcs/get_next_line.o: srcs/get_next_line.c.o
 
 # target to build an object file
 srcs/get_next_line.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/get_next_line.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line.c.o
 .PHONY : srcs/get_next_line.c.o
 
 srcs/get_next_line.i: srcs/get_next_line.c.i
@@ -158,7 +266,7 @@ srcs/get_next_line.i: srcs/get_next_line.c.i
 
 # target to preprocess a source file
 srcs/get_next_line.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/get_next_line.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line.c.i
 .PHONY : srcs/get_next_line.c.i
 
 srcs/get_next_line.s: srcs/get_next_line.c.s
@@ -167,7 +275,7 @@ srcs/get_next_line.s: srcs/get_next_line.c.s
 
 # target to generate assembly for a file
 srcs/get_next_line.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/get_next_line.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line.c.s
 .PHONY : srcs/get_next_line.c.s
 
 srcs/get_next_line_utils.o: srcs/get_next_line_utils.c.o
@@ -176,7 +284,7 @@ srcs/get_next_line_utils.o: srcs/get_next_line_utils.c.o
 
 # target to build an object file
 srcs/get_next_line_utils.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/get_next_line_utils.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.o
 .PHONY : srcs/get_next_line_utils.c.o
 
 srcs/get_next_line_utils.i: srcs/get_next_line_utils.c.i
@@ -185,7 +293,7 @@ srcs/get_next_line_utils.i: srcs/get_next_line_utils.c.i
 
 # target to preprocess a source file
 srcs/get_next_line_utils.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/get_next_line_utils.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.i
 .PHONY : srcs/get_next_line_utils.c.i
 
 srcs/get_next_line_utils.s: srcs/get_next_line_utils.c.s
@@ -194,7 +302,7 @@ srcs/get_next_line_utils.s: srcs/get_next_line_utils.c.s
 
 # target to generate assembly for a file
 srcs/get_next_line_utils.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/get_next_line_utils.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.s
 .PHONY : srcs/get_next_line_utils.c.s
 
 srcs/lstadd_back.o: srcs/lstadd_back.c.o
@@ -203,7 +311,7 @@ srcs/lstadd_back.o: srcs/lstadd_back.c.o
 
 # target to build an object file
 srcs/lstadd_back.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/lstadd_back.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/lstadd_back.c.o
 .PHONY : srcs/lstadd_back.c.o
 
 srcs/lstadd_back.i: srcs/lstadd_back.c.i
@@ -212,7 +320,7 @@ srcs/lstadd_back.i: srcs/lstadd_back.c.i
 
 # target to preprocess a source file
 srcs/lstadd_back.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/lstadd_back.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/lstadd_back.c.i
 .PHONY : srcs/lstadd_back.c.i
 
 srcs/lstadd_back.s: srcs/lstadd_back.c.s
@@ -221,7 +329,7 @@ srcs/lstadd_back.s: srcs/lstadd_back.c.s
 
 # target to generate assembly for a file
 srcs/lstadd_back.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/lstadd_back.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/lstadd_back.c.s
 .PHONY : srcs/lstadd_back.c.s
 
 srcs/main.o: srcs/main.c.o
@@ -230,7 +338,7 @@ srcs/main.o: srcs/main.c.o
 
 # target to build an object file
 srcs/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/main.c.o
 .PHONY : srcs/main.c.o
 
 srcs/main.i: srcs/main.c.i
@@ -239,7 +347,7 @@ srcs/main.i: srcs/main.c.i
 
 # target to preprocess a source file
 srcs/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/main.c.i
 .PHONY : srcs/main.c.i
 
 srcs/main.s: srcs/main.c.s
@@ -248,7 +356,7 @@ srcs/main.s: srcs/main.c.s
 
 # target to generate assembly for a file
 srcs/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/srcs/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/main.c.s
 .PHONY : srcs/main.c.s
 
 # Help Target
@@ -259,7 +367,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... miniRT"
+	@echo "... minishell"
+	@echo "... srcs/ft_forline.o"
+	@echo "... srcs/ft_forline.i"
+	@echo "... srcs/ft_forline.s"
+	@echo "... srcs/ft_split.o"
+	@echo "... srcs/ft_split.i"
+	@echo "... srcs/ft_split.s"
+	@echo "... srcs/ft_strncmp.o"
+	@echo "... srcs/ft_strncmp.i"
+	@echo "... srcs/ft_strncmp.s"
+	@echo "... srcs/ft_strtrim.o"
+	@echo "... srcs/ft_strtrim.i"
+	@echo "... srcs/ft_strtrim.s"
 	@echo "... srcs/get_next_line.o"
 	@echo "... srcs/get_next_line.i"
 	@echo "... srcs/get_next_line.s"

@@ -15,6 +15,6 @@ set(SOURCE_FILES ${MY_SRCS} includes/minishell.h)
 LINK_DIRECTORIES(./)
 
 # Add executable target with source files listed in SOURCE_FILES variable
-add_executable(miniRT ${SOURCE_FILES})
+add_executable(minishell ${SOURCE_FILES})
 
 #target_link_libraries(miniRT libmlx.a)

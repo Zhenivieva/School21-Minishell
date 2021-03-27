@@ -8,43 +8,43 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/mmaryjan/projects/minishell/cmake-build-debug"/>
+				<Option working_dir="/Users/mflor/Desktop/minishell/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/mmaryjan/projects/minishell/cmake-build-debug"/>
+				<Option working_dir="/Users/mflor/Desktop/minishell/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/mmaryjan/projects/minishell/cmake-build-debug"/>
+				<Option working_dir="/Users/mflor/Desktop/minishell/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="miniRT">
-				<Option output="/Users/mmaryjan/projects/minishell/cmake-build-debug/miniRT" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/mmaryjan/projects/minishell/cmake-build-debug"/>
+			<Target title="minishell">
+				<Option output="/Users/mflor/Desktop/minishell/cmake-build-debug/minishell" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mflor/Desktop/minishell/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/mmaryjan/projects/minishell/./includes"/>
+					<Add directory="/Users/mflor/Desktop/minishell/./includes"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
@@ -53,20 +53,20 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 miniRT"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 minishell"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="miniRT/fast">
-				<Option output="/Users/mmaryjan/projects/minishell/cmake-build-debug/miniRT" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/mmaryjan/projects/minishell/cmake-build-debug"/>
+			<Target title="minishell/fast">
+				<Option output="/Users/mflor/Desktop/minishell/cmake-build-debug/minishell" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mflor/Desktop/minishell/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/mmaryjan/projects/minishell/./includes"/>
+					<Add directory="/Users/mflor/Desktop/minishell/./includes"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
@@ -75,29 +75,41 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 miniRT/fast"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mmaryjan/projects/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 minishell/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/mflor/Desktop/minishell/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/mmaryjan/projects/minishell/includes/minishell.h">
-			<Option target="miniRT"/>
+		<Unit filename="/Users/mflor/Desktop/minishell/includes/minishell.h">
+			<Option target="minishell"/>
 		</Unit>
-		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/get_next_line.c">
-			<Option target="miniRT"/>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_forline.c">
+			<Option target="minishell"/>
 		</Unit>
-		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/get_next_line_utils.c">
-			<Option target="miniRT"/>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_split.c">
+			<Option target="minishell"/>
 		</Unit>
-		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/lstadd_back.c">
-			<Option target="miniRT"/>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_strncmp.c">
+			<Option target="minishell"/>
 		</Unit>
-		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/main.c">
-			<Option target="miniRT"/>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_strtrim.c">
+			<Option target="minishell"/>
 		</Unit>
-		<Unit filename="/Users/mmaryjan/projects/minishell/CMakeLists.txt">
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/get_next_line.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/get_next_line_utils.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/lstadd_back.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/main.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

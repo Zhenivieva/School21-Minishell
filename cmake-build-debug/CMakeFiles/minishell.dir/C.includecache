@@ -6,7 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/mmaryjan/projects/minishell/main.c
+../includes/minishell.h
+fcntl.h
+-
+unistd.h
+-
+stdlib.h
+-
+math.h
+-
+pthread.h
+-
+errno.h
+-
 stdio.h
 -
+
+/Users/mflor/Desktop/minishell/srcs/ft_forline.c
+minishell.h
+/Users/mflor/Desktop/minishell/srcs/minishell.h
 

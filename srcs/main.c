@@ -15,6 +15,8 @@ int main(int argc, char **argv, char **envp)
 	int fd;
 	int i;
 	char dir[MAXDIR];
+	char **commands;
+	int t;
 
 	fd = 0;
 	i = 1;
@@ -24,6 +26,15 @@ int main(int argc, char **argv, char **envp)
 	{
 		write(1, "success_minishell$", 18);
 		i = get_next_line(fd, &line);
+		ft_forsplit(line, ';');
+		commands = ft_split(line, 10);
+		t = -1;
+		while (commands[++t])
+		{
+			commands[t] = ft_strtrim(commands[t], " ");
+			printf("%d-%s\n", t, commands[t]);
+			ft_pipim(commands[t], envp);
+		}
 //		parsing(line, copyenvp);
 //		printf("%s\n", line);
 		if (!(strncmp(line, "pwd", 4)))
@@ -32,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 			printf("%s\n", dir);
 		}
 	}
-	int t = -1;
+	t = -1;
 	while (envp[++t])
 	{
 		printf("t-%s\n", envp[t]);
