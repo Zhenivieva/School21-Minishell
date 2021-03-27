@@ -105,7 +105,7 @@ void ft_parsecom(char **pipecom, t_com *com)
 			b = 0;
 			while (pipecom[t][k] == ' ')
 				k++;
-			com->args[a] = malloc(ft_numcommand(pipecom[t] + k) + 1);
+			com->args[a] = malloc(ft_numcommand(pipecom[t] + k) + 201);
 			if (com->args == NULL)
 				ft_error(-3);
 			while (pipecom[t][k] != ' ' && pipecom[t][k] != '\0')

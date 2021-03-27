@@ -20,10 +20,11 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 			 c++;
 	}
 	ret = c;
+
 	t = -1;
 	while (com->envp[++t])
 		if (!(ft_strncmp(com->envp[t], dollar, c)))
 			while (com->envp[t][c])
-				com->args[(int)*a][(int)*b++] = com->envp[t][++c];
+				com->args[*a][(*b)++] = com->envp[t][++c];
 	return (ret + 1);
 }
