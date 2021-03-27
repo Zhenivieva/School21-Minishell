@@ -105,7 +105,7 @@ void ft_parsecom(char **pipecom, t_com *com)
 			b = 0;
 			while (pipecom[t][k] == ' ')
 				k++;
-			com->args[a] = malloc(ft_numcommand(pipecom[t] + k) + 201);
+			com->args[a] = malloc(ft_numcommand(pipecom[t] + k) + 301);
 			if (com->args == NULL)
 				ft_error(-3);
 			while (pipecom[t][k] != ' ' && pipecom[t][k] != '\0')
@@ -118,8 +118,15 @@ void ft_parsecom(char **pipecom, t_com *com)
 													  || pipecom[t][k + 1] == '"' || pipecom[t][k + 1] == '\\'))
 							k++;
 						if (pipecom[t][k] == '$')
-							k = k + ft_getdollar(pipecom[t] + k + 1, com, &b, &a);
-						com->args[a][b++] = pipecom[t][k++];
+						{
+							k = k +
+								ft_getdollar(pipecom[t] + k + 1, com, &b, &a);
+							continue;
+						}
+						if (pipecom[t][k] != '$')
+							com->args[a][b++] = pipecom[t][k++];
+//						if (pipecom[t][k] == '"')
+//							k++;
 					}
 					k++;
 //					com->args[a][b++] = pipecom[t][k++];
@@ -130,7 +137,14 @@ void ft_parsecom(char **pipecom, t_com *com)
 						com->args[a][b++] = pipecom[t][k];
 					k++;
 				}
-				com->args[a][b++] = pipecom[t][k++];
+				if (pipecom[t][k] == '$')
+				{
+					k = k +
+						ft_getdollar(pipecom[t] + k + 1, com, &b, &a);
+					continue;
+				}
+				if (pipecom[t][k] != '$')
+					com->args[a][b++] = pipecom[t][k++];
 			}
 			com->args[a][b] = '\0';
 			printf("com->argc[%d]-%s\n", a, com->args[a]);
