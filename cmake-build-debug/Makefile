@@ -143,6 +143,33 @@ minishell/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/build
 .PHONY : minishell/fast
 
+srcs/ft_builtin.o: srcs/ft_builtin.c.o
+
+.PHONY : srcs/ft_builtin.o
+
+# target to build an object file
+srcs/ft_builtin.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_builtin.c.o
+.PHONY : srcs/ft_builtin.c.o
+
+srcs/ft_builtin.i: srcs/ft_builtin.c.i
+
+.PHONY : srcs/ft_builtin.i
+
+# target to preprocess a source file
+srcs/ft_builtin.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_builtin.c.i
+.PHONY : srcs/ft_builtin.c.i
+
+srcs/ft_builtin.s: srcs/ft_builtin.c.s
+
+.PHONY : srcs/ft_builtin.s
+
+# target to generate assembly for a file
+srcs/ft_builtin.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_builtin.c.s
+.PHONY : srcs/ft_builtin.c.s
+
 srcs/ft_forline.o: srcs/ft_forline.c.o
 
 .PHONY : srcs/ft_forline.o
@@ -169,6 +196,60 @@ srcs/ft_forline.s: srcs/ft_forline.c.s
 srcs/ft_forline.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_forline.c.s
 .PHONY : srcs/ft_forline.c.s
+
+srcs/ft_parse_utils.o: srcs/ft_parse_utils.c.o
+
+.PHONY : srcs/ft_parse_utils.o
+
+# target to build an object file
+srcs/ft_parse_utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o
+.PHONY : srcs/ft_parse_utils.c.o
+
+srcs/ft_parse_utils.i: srcs/ft_parse_utils.c.i
+
+.PHONY : srcs/ft_parse_utils.i
+
+# target to preprocess a source file
+srcs/ft_parse_utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.i
+.PHONY : srcs/ft_parse_utils.c.i
+
+srcs/ft_parse_utils.s: srcs/ft_parse_utils.c.s
+
+.PHONY : srcs/ft_parse_utils.s
+
+# target to generate assembly for a file
+srcs/ft_parse_utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.s
+.PHONY : srcs/ft_parse_utils.c.s
+
+srcs/ft_putstr_fd.o: srcs/ft_putstr_fd.c.o
+
+.PHONY : srcs/ft_putstr_fd.o
+
+# target to build an object file
+srcs/ft_putstr_fd.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o
+.PHONY : srcs/ft_putstr_fd.c.o
+
+srcs/ft_putstr_fd.i: srcs/ft_putstr_fd.c.i
+
+.PHONY : srcs/ft_putstr_fd.i
+
+# target to preprocess a source file
+srcs/ft_putstr_fd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.i
+.PHONY : srcs/ft_putstr_fd.c.i
+
+srcs/ft_putstr_fd.s: srcs/ft_putstr_fd.c.s
+
+.PHONY : srcs/ft_putstr_fd.s
+
+# target to generate assembly for a file
+srcs/ft_putstr_fd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.s
+.PHONY : srcs/ft_putstr_fd.c.s
 
 srcs/ft_split.o: srcs/ft_split.c.o
 
@@ -368,9 +449,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... minishell"
+	@echo "... srcs/ft_builtin.o"
+	@echo "... srcs/ft_builtin.i"
+	@echo "... srcs/ft_builtin.s"
 	@echo "... srcs/ft_forline.o"
 	@echo "... srcs/ft_forline.i"
 	@echo "... srcs/ft_forline.s"
+	@echo "... srcs/ft_parse_utils.o"
+	@echo "... srcs/ft_parse_utils.i"
+	@echo "... srcs/ft_parse_utils.s"
+	@echo "... srcs/ft_putstr_fd.o"
+	@echo "... srcs/ft_putstr_fd.i"
+	@echo "... srcs/ft_putstr_fd.s"
 	@echo "... srcs/ft_split.o"
 	@echo "... srcs/ft_split.i"
 	@echo "... srcs/ft_split.s"

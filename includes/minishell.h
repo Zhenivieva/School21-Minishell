@@ -40,6 +40,7 @@ typedef struct s_com
 {
 	char *komand;
 	char **args;
+	char **envp;
 }				t_com;
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
@@ -51,6 +52,17 @@ char		**ft_split(char const *s, char c);
 void	ft_forsplit(char *line, char k);
 char	*ft_strtrim(char const *s1, char const *set);
 void ft_pipim(char *command, char **envp);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_pwd(void);
+int		ft_echo(t_com *com);
+int		ft_export(t_com *com, char **envp);
+int		ft_unset(t_com *com, char **envp);
+int		ft_cd(t_com *com, char **envp);
+int		ft_env(t_com *com, char **envp);
+int		ft_exit(char **envp);
+int ft_error(int n);
+void	ft_putstr_fd(char *s, int fd);
+int ft_getdollar(char *dollar, t_com *com, int *b, int *a);
 
 
 

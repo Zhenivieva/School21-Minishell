@@ -85,7 +85,16 @@
 		<Unit filename="/Users/mflor/Desktop/minishell/includes/minishell.h">
 			<Option target="minishell"/>
 		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_builtin.c">
+			<Option target="minishell"/>
+		</Unit>
 		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_forline.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_parse_utils.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_putstr_fd.c">
 			<Option target="minishell"/>
 		</Unit>
 		<Unit filename="/Users/mflor/Desktop/minishell/srcs/ft_split.c">
