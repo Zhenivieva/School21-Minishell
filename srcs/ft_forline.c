@@ -12,6 +12,8 @@ int ft_error(int n)
 		printf("Malloc problem4444\n");
 	if (n == -5)
 		printf("FD with gnl problem\n");
+	if (n == -6)
+		printf("Execve oblem\n");
 	exit(n);
 }
 
@@ -98,7 +100,7 @@ void ft_parsecom(char **pipecom, t_com *com)
 		while (pipecom[t][k] != ' ' && pipecom[t][k] != '\0')
 			com->komand[b++] = pipecom[t][k++];
 		com->komand[b] = '\0';
-		printf("komand-%s\n", com->komand);
+//		printf("komand-%s\n", com->komand);
 		k = 0;
 		while (pipecom[t][k])
 		{
@@ -147,7 +149,7 @@ void ft_parsecom(char **pipecom, t_com *com)
 					com->args[a][b++] = pipecom[t][k++];
 			}
 			com->args[a][b] = '\0';
-			printf("com->argc[%d]-%s\n", a, com->args[a]);
+//			printf("com->argc[%d]-%s\n", a, com->args[a]);
 			a++;
 		}
 		com->args[a] = NULL;
@@ -195,11 +197,12 @@ int ft_forexecve(t_com *com, char **envp)
 	if (ft_slash(com->komand))
 		com->komand = ft_strjoin("/bin/", com->komand); //вместо /bin/ функция по поиску этой функции
 	pid = fork();
-	printf("pid=%d\n", pid);
+//	printf("pid=%d\n", pid);
 	if (pid != 0)
 		wait(pid);
 	if (pid == 0)
-		execve(com->komand, com->args, envp);
+		if (execve(com->komand, com->args, envp) == -1)
+			ft_error(-6);
 }
 
 int		ft_kolenvp(char **envp)
@@ -211,7 +214,7 @@ int		ft_kolenvp(char **envp)
 	c = 0;
 	while (envp[++t])
 		c++;
-	printf("kolichestvo-%d\n", c);
+//	printf("kolichestvo-%d\n", c);
 	return (c);
 }
 
@@ -229,9 +232,7 @@ void ft_pipim(char *command, char **envp)
 	while (envp[++t])
 		com->envp[t] = ft_strdup(envp[t]);
 	com->envp[t] = NULL;
-	t = -1;
-	while (com->envp[++t])
-		printf("first-%d-%s\n", t, com->envp[t]);
+
 	ft_forsplit(command, '|');
 	pipecom = ft_split(command, 10);
 	t = -1;

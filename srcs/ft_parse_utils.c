@@ -9,9 +9,7 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 	int c;
 	int ret;
 
-	t = -1;
-	while (com->envp[++t])
-		printf("dollar-%d-%s\n", t, com->envp[t]);
+
 	c = 0;
 	while (dollar[c] != '\0' && dollar[c] != '$'
 	&& dollar[c] != '\\' && dollar[c] != '\''

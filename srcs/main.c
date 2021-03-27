@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **envp)
 		while (commands[++t])
 		{
 			commands[t] = ft_strtrim(commands[t], " ");
-			printf("%d-%s\n", t, commands[t]);
+//			printf("%d-%s\n", t, commands[t]);
 			ft_pipim(commands[t], envp);
 			free(commands[t]);
 			commands[t] = NULL;
