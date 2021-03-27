@@ -3,35 +3,35 @@
 
 CMakeFiles/minishell.dir/srcs/ft_builtin.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_builtin.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_builtin.c
 CMakeFiles/minishell.dir/srcs/ft_forline.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_forline.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_forline.c
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_parse_utils.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_parse_utils.c
 CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_putstr_fd.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_putstr_fd.c
 CMakeFiles/minishell.dir/srcs/ft_split.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_split.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_split.c
 CMakeFiles/minishell.dir/srcs/ft_strncmp.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_strncmp.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_strncmp.c
 CMakeFiles/minishell.dir/srcs/ft_strtrim.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/ft_strtrim.c
+ /Users/mmaryjan/projects/minishell/srcs/ft_strtrim.c
 CMakeFiles/minishell.dir/srcs/get_next_line.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/get_next_line.c
+ /Users/mmaryjan/projects/minishell/srcs/get_next_line.c
 CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.o
- /Users/mflor/Desktop/minishell/includes/get_next_line.h
- /Users/mflor/Desktop/minishell/srcs/get_next_line_utils.c
+ /Users/mmaryjan/projects/minishell/includes/get_next_line.h
+ /Users/mmaryjan/projects/minishell/srcs/get_next_line_utils.c
 CMakeFiles/minishell.dir/srcs/lstadd_back.c.o
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/lstadd_back.c
+ /Users/mmaryjan/projects/minishell/srcs/lstadd_back.c
 CMakeFiles/minishell.dir/srcs/main.c.o
  ../includes/get_next_line.h
  ../includes/minishell.h
- /Users/mflor/Desktop/minishell/srcs/main.c
+ /Users/mmaryjan/projects/minishell/srcs/main.c

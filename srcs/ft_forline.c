@@ -112,7 +112,8 @@ void ft_parsecom(char **pipecom, t_com *com)
 			{
 				if (pipecom[t][k] == '"')
 				{
-					while (pipecom[t][++k] != '"') {
+					k++;
+					while (pipecom[t][k] != '"') {
 						if (pipecom[t][k] == '\\' && (pipecom[t][k + 1] == '$'
 													  || pipecom[t][k + 1] == '"' || pipecom[t][k + 1] == '\\'))
 							k++;
@@ -120,11 +121,15 @@ void ft_parsecom(char **pipecom, t_com *com)
 							k = k + ft_getdollar(pipecom[t] + k + 1, com, &b, &a);
 						com->args[a][b++] = pipecom[t][k++];
 					}
-					com->args[a][b++] = pipecom[t][k++];
+					k++;
+//					com->args[a][b++] = pipecom[t][k++];
 				}
 				if (pipecom[t][k] == '\'')
+				{
 					while (pipecom[t][++k] != '\'')
-						com->args[a][b++] = pipecom[t][k++];
+						com->args[a][b++] = pipecom[t][k];
+					k++;
+				}
 				com->args[a][b++] = pipecom[t][k++];
 			}
 			com->args[a][b] = '\0';
@@ -189,8 +194,10 @@ int		ft_kolenvp(char **envp)
 	int c;
 
 	t = -1;
+	c = 0;
 	while (envp[++t])
 		c++;
+	printf("kolichestvo-%d\n", c);
 	return (c);
 }
 
@@ -208,6 +215,9 @@ void ft_pipim(char *command, char **envp)
 	while (envp[++t])
 		com->envp[t] = ft_strdup(envp[t]);
 	com->envp[t] = NULL;
+	t = -1;
+	while (com->envp[++t])
+		printf("first-%d-%s\n", t, com->envp[t]);
 	ft_forsplit(command, '|');
 	pipecom = ft_split(command, 10);
 	t = -1;

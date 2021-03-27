@@ -16,5 +16,3 @@ LINK_DIRECTORIES(./)
 
 # Add executable target with source files listed in SOURCE_FILES variable
 add_executable(minishell ${SOURCE_FILES})
-
-#target_link_libraries(miniRT libmlx.a)

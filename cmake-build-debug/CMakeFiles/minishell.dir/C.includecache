@@ -22,7 +22,7 @@ errno.h
 stdio.h
 -
 
-/Users/mflor/Desktop/minishell/srcs/ft_forline.c
+/Users/mmaryjan/projects/minishell/srcs/ft_parse_utils.c
 minishell.h
-/Users/mflor/Desktop/minishell/srcs/minishell.h
+/Users/mmaryjan/projects/minishell/srcs/minishell.h
 
