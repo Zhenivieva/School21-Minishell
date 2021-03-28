@@ -36,6 +36,16 @@ typedef struct		s_lstobj
 	void			*next;
 }					t_lstobj;
 
+
+typedef struct s_indexes
+{
+	int	t;
+	int k;
+	int a;
+	int b;
+}				t_indexes;
+
+
 typedef struct s_com
 {
 	char **args;
