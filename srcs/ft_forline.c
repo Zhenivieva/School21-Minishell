@@ -10,7 +10,7 @@ int ft_error(int n)
 		printf("Malloc problem3333\n");
 	if (n == -4)
 		printf("Malloc problem4444\n");
-	if (n == -5)
+	if (n == 5)
 		printf("FD with gnl problem\n");
 	if (n == 6)
 		printf("Execve problem\n");
@@ -83,23 +83,23 @@ int 	ft_numargs(char *command)
 	return (c);
 }
 
-void double_quotes(char **pipecom, t_com *com, t_indexes *inds)
+void double_quotes(char *pipecom, t_com *com, t_indexes *inds)
 {
-	if (pipecom[inds->t][inds->k] == '"')
+	if (pipecom[inds->k] == '"')
 	{
 		inds->k++;
-		while (pipecom[inds->t][inds->k] != '"') {
-			if (pipecom[inds->t][inds->k] == '\\' && (pipecom[inds->t][inds->k + 1] == '$'
-										  || pipecom[inds->t][inds->k + 1] == '"' || pipecom[inds->t][inds->k + 1] == '\\'))
+		while (pipecom[inds->k] != '"') {
+			if (pipecom[inds->k] == '\\' && (pipecom[inds->k + 1] == '$'
+										  || pipecom[inds->k + 1] == '"' || pipecom[inds->k + 1] == '\\'))
 				inds->k++;
-			if (pipecom[inds->t][inds->k] == '$')
+			if (pipecom[inds->k] == '$')
 			{
 				inds->k = inds->k +
-					ft_getdollar(pipecom[inds->t] + inds->k + 1, com, &(inds->b), &(inds->a));
+					ft_getdollar(pipecom + inds->k + 1, com, &(inds->b), &(inds->a));
 				continue;
 			}
-			if (pipecom[inds->t][inds->k] != '$')
-				com->args[inds->a][inds->b++] = pipecom[inds->t][inds->k++];
+			if (pipecom[inds->k] != '$')
+				com->args[inds->a][inds->b++] = pipecom[inds->k++];
 //						if (pipecom[t][k] == '"')
 //							k++;
 		}
@@ -110,24 +110,24 @@ void double_quotes(char **pipecom, t_com *com, t_indexes *inds)
 
 
 
-void ft_parsecom(char **pipecom, t_com *com)
+void ft_parsecom(char *pipecom, t_com *com)
 {
 	t_indexes inds;
 
-	inds.t = -1;
+	inds.k = -1;
 	inds.a = 0;
-	while (pipecom[++inds.t])
+	while (pipecom[++inds.k])
 	{
-		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom[inds.t]) + 2));
+		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom) + 2));
 		if (!com->args)
 			ft_error(-4);
 		inds.k = 0;
-		while (pipecom[inds.t][inds.k])
+		while (pipecom[inds.k])
 		{
 			inds.b = 0;
-			while (pipecom[inds.t][inds.k] == ' ')
+			while (pipecom[inds.k] == ' ')
 				inds.k++;
-			com->args[inds.a] = malloc(ft_numcommand(pipecom[inds.t] + inds.k) + 301);
+			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 301);
 			if (com->args == NULL)
 				ft_error(-3);
 			parse_word(pipecom, com, &inds);
@@ -139,7 +139,7 @@ void ft_parsecom(char **pipecom, t_com *com)
 	}
 }
 
-int ft_builtin(t_com *com, char **envp)
+int ft_builtin(t_com *com)
 {
 	if (!(ft_strncmp(com->args[0], "pwd", 4)))
 		return (ft_pwd());
@@ -173,20 +173,19 @@ int ft_slash(char *comand)
 	return (1);
 }
 
-int ft_forexecve(t_com *com, char **envp)
+int ft_forexecve(t_com *com)
 {
-	int pid;
+	pid_t pid;
 
 	if (ft_slash(com->args[0]))
 	{
 		if (ft_relabsbin(com))
 		{
 			pid = fork();
-			if (pid != 0)
-				wait(pid);
 			if (pid == 0)
-				if (execve(com->args[0], com->args, envp) == -1)
+				if (execve(com->args[0], com->args, com->envp) == -1)
 					ft_error(6);
+			waitpid(pid, NULL, 0);
 		}
 		else
 			ft_error(-6);
@@ -204,6 +203,82 @@ int		ft_kolenvp(char **envp)
 		c++;
 //	printf("kolichestvo-%d\n", c);
 	return (c);
+}
+
+void	ft_pipe(t_com *com, char **pipecom)
+{
+	int	fd[2];
+//	int fd2[2];
+	int	cpid1;
+	int	cpid2, cpid3;
+
+	dup2(com->def_fd0, 0);
+	dup2(com->def_fd1, 1);
+
+//	dup2(fd2[0], fd[0]);
+//	dup2(fd2[1], fd[1]);
+		if (pipe(fd) == -1)
+			ft_error(3);
+
+		cpid1 = fork();
+		if (cpid1 == -1) {
+			perror("fork");   //заменить функцию
+			exit(1);
+		}
+		if (cpid1 == 0) {
+			dup2(fd[1], STDOUT_FILENO);
+			close(fd[0]);
+			close(fd[1]);
+			ft_parsecom(pipecom[0], com);
+			if (ft_builtin(com))
+				(ft_forexecve(com));
+			exit(1);
+		}
+		cpid2 = fork();
+		if (cpid2 == -1) {
+			perror("fork");
+		exit(1);   //почему приходится это делать?????
+		}
+		if (cpid2 == 0) {
+			dup2(fd[0], STDIN_FILENO);
+			close(fd[0]);
+			close(fd[1]);
+			ft_parsecom(pipecom[1], com);
+			if (ft_builtin(com))
+				(ft_forexecve(com));
+		exit(2);  //и тут, непонятно, поччему надо писать эксит????
+	}
+/* проба с 3 форком*/
+//	cpid3 = fork();
+//	if (cpid3 == -1)
+//	{
+//		perror("fork");
+//		exit(1);   //почему приходится это делать?????
+//	}
+//	if (cpid3 == 0)
+//	{
+//		dup2(fd[0], STDIN_FILENO);
+//		close(fd[0]);
+//		close(fd[1]);
+//		ft_parsecom(pipecom[2], com);
+//		if (ft_builtin(com))
+//			(ft_forexecve(com));
+//		exit(3);  //и тут, непонятно, поччему надо писать эксит????
+//	}
+	/*проба с третьим формком*/
+	close(fd[0]);
+	close(fd[1]);
+	waitpid(cpid1, NULL, 0);
+	waitpid(cpid2, NULL, 0);
+//	waitpid(cpid3, NULL, 0);
+
+
+	dup2(0, com->def_fd0);
+	dup2(1, com->def_fd1);
+	//dup2(fd[0], fd2[0]);
+	//	dup2(fd[1], fd2[1]);
+
+
 }
 
 void ft_pipim(char *command, char **envp)
@@ -226,7 +301,12 @@ void ft_pipim(char *command, char **envp)
 	t = -1;
 	while(pipecom[++t])
 		pipecom[t] = ft_strtrim(pipecom[t], " ");
-	ft_parsecom(pipecom, com);
-	if (ft_builtin(com, envp))
-		(ft_forexecve(com, envp));
+	if (!(pipecom[1]))
+	{
+		ft_parsecom(pipecom[0], com);
+		if (ft_builtin(com))
+			(ft_forexecve(com));
+	}
+	else
+		ft_pipe(com, pipecom);
 }

@@ -26,7 +26,7 @@ int main(int argc, char **argv, char **envp)
 		ft_putstr_fd("minishell$", 1);
 		i = get_next_line(fd, &line);
 		if (i == -1)
-			ft_error(-5);
+			ft_error(5);
 		if (ft_forsplit(line, ';') > 0)
 		{
 			commands = ft_split(line, 10);

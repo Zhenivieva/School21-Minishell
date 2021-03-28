@@ -12,6 +12,7 @@
 # include <pthread.h>
 # include <errno.h>
 # include <stdio.h>
+# include <sys/types.h>
 
 
 typedef struct		s_list
@@ -50,6 +51,8 @@ typedef struct s_com
 {
 	char **args;
 	char **envp;
+	int  def_fd0;
+	int  def_fd1;
 }				t_com;
 
 char	*ft_strchr(const char *s, int c);
@@ -75,8 +78,8 @@ void	ft_putstr_fd(char *s, int fd);
 int		ft_getdollar(char *dollar, t_com *com, int *b, int *a);
 char	*ft_getpath(t_com *com);
 int 	ft_relabsbin(t_com *com);
-void parse_word(char **pipecom, t_com *com, t_indexes *inds);
-void double_quotes(char **pipecom, t_com *com, t_indexes *inds);
+void parse_word(char *pipecom, t_com *com, t_indexes *inds);
+void double_quotes(char *pipecom, t_com *com, t_indexes *inds);
 
 
 
