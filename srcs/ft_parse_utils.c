@@ -69,15 +69,13 @@ void 	ft_relabsbin(t_com *com)
 	while (paths[++t])
 	{
 		temp = ft_strjoin(paths[t], "/");
-		temp2 = ft_strjoin(temp, com->komand);
+		temp2 = ft_strjoin(temp, com->args[0]);
 		free (temp);
 		if (open(temp2, O_RDONLY) > 0)
 		{
-			temp = com->komand;
-			com->komand = temp2;
+			temp = com->args[0];
+			com->args[0] = temp2;
 			free(temp);
 		}
-
-
 	}
 }

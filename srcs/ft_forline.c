@@ -77,6 +77,10 @@ int 	ft_numargs(char *command)
 	}
 	return (c);
 }
+//void double_quotes(char **pipecom, t_com *com)
+//{
+//
+//}
 
 void ft_parsecom(char **pipecom, t_com *com)
 {
@@ -87,20 +91,11 @@ void ft_parsecom(char **pipecom, t_com *com)
 
 	t = -1;
 	a = 0;
-
 	while (pipecom[++t])
 	{
-		k = 0;
-		b = 0;
-
 		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom[t]) + 2));
-		com->komand = malloc(ft_numcommand(pipecom[t]) + 1);
-		if (!(com->args  && com->komand))
+		if (!com->args)
 			ft_error(-4);
-		while (pipecom[t][k] != ' ' && pipecom[t][k] != '\0')
-			com->komand[b++] = pipecom[t][k++];
-		com->komand[b] = '\0';
-//		printf("komand-%s\n", com->komand);
 		k = 0;
 		while (pipecom[t][k])
 		{
@@ -139,13 +134,13 @@ void ft_parsecom(char **pipecom, t_com *com)
 						com->args[a][b++] = pipecom[t][k];
 					k++;
 				}
-				if (pipecom[t][k] == '$')
+				else if (pipecom[t][k] == '$')
 				{
 					k = k +
 						ft_getdollar(pipecom[t] + k + 1, com, &b, &a);
 					continue;
 				}
-				if (pipecom[t][k] != '$')
+				else if (pipecom[t][k] != '$')
 					com->args[a][b++] = pipecom[t][k++];
 			}
 			com->args[a][b] = '\0';
@@ -158,19 +153,19 @@ void ft_parsecom(char **pipecom, t_com *com)
 
 int ft_builtin(t_com *com, char **envp)
 {
-	if (!(ft_strncmp(com->komand, "pwd", 4)))
+	if (!(ft_strncmp(com->args[0], "pwd", 4)))
 		return (ft_pwd());
-//	if (!(ft_strncmp(com->komand, "echo", 5)))
+//	if (!(ft_strncmp(com->args[0], "echo", 5)))
 //		return (ft_echo(com));
-//	if (!(ft_strncmp(com->komand, "export", 7)))
+//	if (!(ft_strncmp(com->args[0], "export", 7)))
 //		return (ft_export(com, envp));
-//	if (!(ft_strncmp(com->komand, "unset", 6)))
+//	if (!(ft_strncmp(com->args[0], "unset", 6)))
 //		return (ft_unset(com, envp));
-//	if (!(ft_strncmp(com->komand, "cd", 3)))
+//	if (!(ft_strncmp(com->args[0], "cd", 3)))
 //		return (ft_cd(com, envp));
-//	if (!(ft_strncmp(com->komand, "env", 4)))
+//	if (!(ft_strncmp(com->args[0], "env", 4)))
 //		return (ft_env(com, envp));
-//	if (!(ft_strncmp(com->komand, "exit", 5)))
+//	if (!(ft_strncmp(com->args[0], "exit", 5)))
 //		return (ft_exit(envp));
 	return (1);
 }
@@ -194,7 +189,7 @@ int ft_forexecve(t_com *com, char **envp)
 {
 	int pid;
 
-	if (ft_slash(com->komand))
+	if (ft_slash(com->args[0]))
 		ft_relabsbin(com);
 //		com->komand = ft_strjoin("/bin/", com->komand); //вместо /bin/ функция по поиску этой функции
 	pid = fork();
@@ -202,7 +197,7 @@ int ft_forexecve(t_com *com, char **envp)
 	if (pid != 0)
 		wait(pid);
 	if (pid == 0)
-		if (execve(com->komand, com->args, envp) == -1)
+		if (execve(com->args[0], com->args, envp) == -1)
 			ft_error(-6);
 }
 
