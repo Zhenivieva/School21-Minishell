@@ -12,12 +12,16 @@ int ft_error(int n)
 		printf("Malloc problem4444\n");
 	if (n == -5)
 		printf("FD with gnl problem\n");
+	if (n == 6)
+		printf("Execve problem\n");
 	if (n == -6)
-		printf("Execve oblem\n");
-	exit(n);
+		printf("Unknown program\n");
+	if (n > 0)
+		exit(n);
+	return (n);
 }
 
-void	ft_forsplit(char *line, char k)
+int	ft_forsplit(char *line, char k)
 {
 	int t;
 
@@ -31,20 +35,21 @@ void	ft_forsplit(char *line, char k)
 				if (line[t] == '\\')
 					t = t + 2;
 				if (line[t] == '\0')
-					ft_error(-1);
+					return(ft_error(-1));
 			}
 		}
 		if (line[t] == '\'')
 		{
 			while (line[++t] != '\'')
 				if (line[t] == '\0')
-					ft_error(-1);
+					return (ft_error(-1));
 		}
 		if (line[t] == '\\')
 			t = t + 2;
 		if (line[t] == k)
 			line[t] = 10;
 	}
+	return (1);
 }
 
 int		ft_numcommand(char *command)
@@ -105,7 +110,6 @@ void double_quotes(char **pipecom, t_com *com, t_indexes *inds)
 
 
 
-
 void ft_parsecom(char **pipecom, t_com *com)
 {
 	t_indexes inds;
@@ -126,23 +130,7 @@ void ft_parsecom(char **pipecom, t_com *com)
 			com->args[inds.a] = malloc(ft_numcommand(pipecom[inds.t] + inds.k) + 301);
 			if (com->args == NULL)
 				ft_error(-3);
-			while (pipecom[inds.t][inds.k] != ' ' && pipecom[inds.t][inds.k] != '\0')
-			{
-				double_quotes(pipecom, com, &inds);
-				if (pipecom[inds.t][inds.k] == '\'')
-					{
-						while (pipecom[inds.t][++inds.k] != '\'')
-							com->args[inds.a][inds.b++] = pipecom[inds.t][inds.k];
-						inds.k++;
-					}
-					else if (pipecom[inds.t][inds.k] == '$')
-					{
-						inds.k = inds.k + ft_getdollar(pipecom[inds.t] + inds.k + 1, com, &inds.b, &inds.a); //&inds
-						continue;
-					}
-					else if (pipecom[inds.t][inds.k] != '$')
-						com->args[inds.a][inds.b++] = pipecom[inds.t][inds.k++];
-			}
+			parse_word(pipecom, com, &inds);
 			com->args[inds.a][inds.b] = '\0';
 //			printf("com->argc[%d]-%s\n", a, com->args[a]);
 			inds.a++;
@@ -190,15 +178,19 @@ int ft_forexecve(t_com *com, char **envp)
 	int pid;
 
 	if (ft_slash(com->args[0]))
-		ft_relabsbin(com);
-//		com->komand = ft_strjoin("/bin/", com->komand); //вместо /bin/ функция по поиску этой функции
-	pid = fork();
-//	printf("pid=%d\n", pid);
-	if (pid != 0)
-		wait(pid);
-	if (pid == 0)
-		if (execve(com->args[0], com->args, envp) == -1)
+	{
+		if (ft_relabsbin(com))
+		{
+			pid = fork();
+			if (pid != 0)
+				wait(pid);
+			if (pid == 0)
+				if (execve(com->args[0], com->args, envp) == -1)
+					ft_error(6);
+		}
+		else
 			ft_error(-6);
+	}
 }
 
 int		ft_kolenvp(char **envp)
@@ -216,9 +208,9 @@ int		ft_kolenvp(char **envp)
 
 void ft_pipim(char *command, char **envp)
 {
-	t_com *com;
-	char **pipecom;
-	int t;
+	t_com	*com;
+	char	**pipecom;
+	int		t;
 
 	com = malloc(sizeof(t_com));
 	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));

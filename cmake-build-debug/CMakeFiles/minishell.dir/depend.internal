@@ -3,35 +3,35 @@
 
 CMakeFiles/minishell.dir/srcs/ft_builtin.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_builtin.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_builtin.c
 CMakeFiles/minishell.dir/srcs/ft_forline.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_forline.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_forline.c
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_parse_utils.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_parse_utils.c
 CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_putstr_fd.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_putstr_fd.c
 CMakeFiles/minishell.dir/srcs/ft_split.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_split.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_split.c
 CMakeFiles/minishell.dir/srcs/ft_strncmp.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_strncmp.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_strncmp.c
 CMakeFiles/minishell.dir/srcs/ft_strtrim.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/ft_strtrim.c
+ /Users/mflor/Osnova/minishell/2803/srcs/ft_strtrim.c
 CMakeFiles/minishell.dir/srcs/get_next_line.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/get_next_line.c
+ /Users/mflor/Osnova/minishell/2803/srcs/get_next_line.c
 CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.o
- /Users/mmaryjan/projects/minishell/includes/get_next_line.h
- /Users/mmaryjan/projects/minishell/srcs/get_next_line_utils.c
+ /Users/mflor/Osnova/minishell/2803/includes/get_next_line.h
+ /Users/mflor/Osnova/minishell/2803/srcs/get_next_line_utils.c
 CMakeFiles/minishell.dir/srcs/lstadd_back.c.o
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/lstadd_back.c
+ /Users/mflor/Osnova/minishell/2803/srcs/lstadd_back.c
 CMakeFiles/minishell.dir/srcs/main.c.o
  ../includes/get_next_line.h
  ../includes/minishell.h
- /Users/mmaryjan/projects/minishell/srcs/main.c
+ /Users/mflor/Osnova/minishell/2803/srcs/main.c

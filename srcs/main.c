@@ -27,16 +27,18 @@ int main(int argc, char **argv, char **envp)
 		i = get_next_line(fd, &line);
 		if (i == -1)
 			ft_error(-5);
-		ft_forsplit(line, ';');
-		commands = ft_split(line, 10);
-		t = -1;
-		while (commands[++t])
+		if (ft_forsplit(line, ';') > 0)
 		{
-			commands[t] = ft_strtrim(commands[t], " ");
+			commands = ft_split(line, 10);
+			t = -1;
+			while (commands[++t])
+			{
+				commands[t] = ft_strtrim(commands[t], " ");
 //			printf("%d-%s\n", t, commands[t]);
-			ft_pipim(commands[t], envp);
-			free(commands[t]);
-			commands[t] = NULL;
+				ft_pipim(commands[t], envp);
+				free(commands[t]);
+				commands[t] = NULL;
+			}
 		}
 		free(line);
 	}

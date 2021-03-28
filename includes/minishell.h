@@ -58,11 +58,11 @@ char	*ft_strdup(const char *s1);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char		**ft_split(char const *s, char c);
-void	ft_forsplit(char *line, char k);
+char	**ft_split(char const *s, char c);
+int 	ft_forsplit(char *line, char k);
 char	*ft_strtrim(char const *s1, char const *set);
-void ft_pipim(char *command, char **envp);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+void	ft_pipim(char *command, char **envp);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_pwd(void);
 int		ft_echo(t_com *com);
 int		ft_export(t_com *com, char **envp);
@@ -70,11 +70,14 @@ int		ft_unset(t_com *com, char **envp);
 int		ft_cd(t_com *com, char **envp);
 int		ft_env(t_com *com, char **envp);
 int		ft_exit(char **envp);
-int ft_error(int n);
+int		ft_error(int n);
 void	ft_putstr_fd(char *s, int fd);
-int ft_getdollar(char *dollar, t_com *com, int *b, int *a);
+int		ft_getdollar(char *dollar, t_com *com, int *b, int *a);
 char	*ft_getpath(t_com *com);
-void 	ft_relabsbin(t_com *com);
+int 	ft_relabsbin(t_com *com);
+void parse_word(char **pipecom, t_com *com, t_indexes *inds);
+void double_quotes(char **pipecom, t_com *com, t_indexes *inds);
+
 
 
 

@@ -55,15 +55,16 @@ char *ft_getpath(t_com *com)
 	return (path);
 }
 
-void 	ft_relabsbin(t_com *com)
+int 	ft_relabsbin(t_com *com)
 {
 	char **paths;
 //	char *path;
 	int t;
-	int fd;
+	int flag;
 	char *temp;
 	char *temp2;
 
+	flag = 0;
 	paths = ft_split(ft_getpath(com), ':');
 	t = -1;
 	while (paths[++t])
@@ -76,6 +77,31 @@ void 	ft_relabsbin(t_com *com)
 			temp = com->args[0];
 			com->args[0] = temp2;
 			free(temp);
+			flag = 1;
 		}
+	}
+	if (flag)
+		return (1);
+	return (0);
+}
+
+void parse_word(char **pipecom, t_com *com, t_indexes *inds)
+{
+	while (pipecom[inds->t][inds->k] != ' ' && pipecom[inds->t][inds->k] != '\0')
+	{
+		double_quotes(pipecom, com, inds);
+		if (pipecom[inds->t][inds->k] == '\'')
+		{
+			while (pipecom[inds->t][++inds->k] != '\'')
+				com->args[inds->a][inds->b++] = pipecom[inds->t][inds->k];
+			inds->k++;
+		}
+		else if (pipecom[inds->t][inds->k] == '$')
+		{
+			inds->k = inds->k + ft_getdollar(pipecom[inds->t] + inds->k + 1, com, &inds->b, &inds->a); //&inds
+			continue;
+		}
+		else if (pipecom[inds->t][inds->k] != '$')
+			com->args[inds->a][inds->b++] = pipecom[inds->t][inds->k++];
 	}
 }

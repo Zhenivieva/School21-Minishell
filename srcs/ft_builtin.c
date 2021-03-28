@@ -2,12 +2,13 @@
 // Created by Murch Flor on 3/27/21.
 //
 #include "minishell.h"
+# define MAXDIR 50
 
 int		ft_pwd(void)
 {
-	char dir[50];
+	char dir[MAXDIR];
 
-	printf ("%s\n", getcwd(dir, 50));
+	printf ("%s\n", getcwd(dir, MAXDIR));
 
 	return (0);
 
