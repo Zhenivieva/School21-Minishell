@@ -103,22 +103,7 @@ void double_quotes(char **pipecom, t_com *com, t_indexes *inds)
 	}
 }
 
-//void single_quotes_dollar(char **pipecom, t_com *com, t_indexes *inds)
-//{
-//	if (pipecom[inds.t][inds.k] == '\'')
-//	{
-//		while (pipecom[inds.t][++inds.k] != '\'')
-//			com->args[inds.a][inds.b++] = pipecom[inds.t][inds.k];
-//		inds.k++;
-//	}
-//	else if (pipecom[inds.t][inds.k] == '$')
-//	{
-//		inds.k = inds.k + ft_getdollar(pipecom[inds.t] + inds.k + 1, com, &inds.b, &inds.a); //&inds
-//		continue;
-//	}
-//	else if (pipecom[inds.t][inds.k] != '$')
-//		com->args[inds.a][inds.b++] = pipecom[inds.t][inds.k++];
-//}
+
 
 
 void ft_parsecom(char **pipecom, t_com *com)
@@ -144,7 +129,19 @@ void ft_parsecom(char **pipecom, t_com *com)
 			while (pipecom[inds.t][inds.k] != ' ' && pipecom[inds.t][inds.k] != '\0')
 			{
 				double_quotes(pipecom, com, &inds);
-				single_quotes_dollar(pipecom, com, &inds);
+				if (pipecom[inds.t][inds.k] == '\'')
+					{
+						while (pipecom[inds.t][++inds.k] != '\'')
+							com->args[inds.a][inds.b++] = pipecom[inds.t][inds.k];
+						inds.k++;
+					}
+					else if (pipecom[inds.t][inds.k] == '$')
+					{
+						inds.k = inds.k + ft_getdollar(pipecom[inds.t] + inds.k + 1, com, &inds.b, &inds.a); //&inds
+						continue;
+					}
+					else if (pipecom[inds.t][inds.k] != '$')
+						com->args[inds.a][inds.b++] = pipecom[inds.t][inds.k++];
 			}
 			com->args[inds.a][inds.b] = '\0';
 //			printf("com->argc[%d]-%s\n", a, com->args[a]);
