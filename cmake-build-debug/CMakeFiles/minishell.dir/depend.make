@@ -10,6 +10,9 @@ CMakeFiles/minishell.dir/srcs/ft_forline.c.o: ../srcs/ft_forline.c
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o: ../srcs/ft_parse_utils.c
 
+CMakeFiles/minishell.dir/srcs/ft_pipes.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_pipes.c.o: ../srcs/ft_pipes.c
+
 CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o: ../srcs/ft_putstr_fd.c
 

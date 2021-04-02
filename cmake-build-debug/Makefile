@@ -224,6 +224,33 @@ srcs/ft_parse_utils.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.s
 .PHONY : srcs/ft_parse_utils.c.s
 
+srcs/ft_pipes.o: srcs/ft_pipes.c.o
+
+.PHONY : srcs/ft_pipes.o
+
+# target to build an object file
+srcs/ft_pipes.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_pipes.c.o
+.PHONY : srcs/ft_pipes.c.o
+
+srcs/ft_pipes.i: srcs/ft_pipes.c.i
+
+.PHONY : srcs/ft_pipes.i
+
+# target to preprocess a source file
+srcs/ft_pipes.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_pipes.c.i
+.PHONY : srcs/ft_pipes.c.i
+
+srcs/ft_pipes.s: srcs/ft_pipes.c.s
+
+.PHONY : srcs/ft_pipes.s
+
+# target to generate assembly for a file
+srcs/ft_pipes.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_pipes.c.s
+.PHONY : srcs/ft_pipes.c.s
+
 srcs/ft_putstr_fd.o: srcs/ft_putstr_fd.c.o
 
 .PHONY : srcs/ft_putstr_fd.o
@@ -458,6 +485,9 @@ help:
 	@echo "... srcs/ft_parse_utils.o"
 	@echo "... srcs/ft_parse_utils.i"
 	@echo "... srcs/ft_parse_utils.s"
+	@echo "... srcs/ft_pipes.o"
+	@echo "... srcs/ft_pipes.i"
+	@echo "... srcs/ft_pipes.s"
 	@echo "... srcs/ft_putstr_fd.o"
 	@echo "... srcs/ft_putstr_fd.i"
 	@echo "... srcs/ft_putstr_fd.s"

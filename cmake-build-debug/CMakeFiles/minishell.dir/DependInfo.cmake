@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/mflor/Osnova/minishell/2803/srcs/ft_builtin.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_builtin.c.o"
   "/Users/mflor/Osnova/minishell/2803/srcs/ft_forline.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_forline.c.o"
   "/Users/mflor/Osnova/minishell/2803/srcs/ft_parse_utils.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o"
+  "/Users/mflor/Osnova/minishell/2803/srcs/ft_pipes.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_pipes.c.o"
   "/Users/mflor/Osnova/minishell/2803/srcs/ft_putstr_fd.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o"
   "/Users/mflor/Osnova/minishell/2803/srcs/ft_split.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_split.c.o"
   "/Users/mflor/Osnova/minishell/2803/srcs/ft_strncmp.c" "/Users/mflor/Osnova/minishell/2803/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_strncmp.c.o"

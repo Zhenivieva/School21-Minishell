@@ -80,7 +80,10 @@ char	*ft_getpath(t_com *com);
 int 	ft_relabsbin(t_com *com);
 void parse_word(char *pipecom, t_com *com, t_indexes *inds);
 void double_quotes(char *pipecom, t_com *com, t_indexes *inds);
-
+int ft_forexecve(t_com *com);
+int ft_builtin(t_com *com);
+void ft_parsecom(char *pipecom, t_com *com);
+void	ft_pipes(t_com *com, char **pipecom, int npipes);
 
 
 

@@ -94,6 +94,9 @@
 		<Unit filename="/Users/mflor/Osnova/minishell/2803/srcs/ft_parse_utils.c">
 			<Option target="minishell"/>
 		</Unit>
+		<Unit filename="/Users/mflor/Osnova/minishell/2803/srcs/ft_pipes.c">
+			<Option target="minishell"/>
+		</Unit>
 		<Unit filename="/Users/mflor/Osnova/minishell/2803/srcs/ft_putstr_fd.c">
 			<Option target="minishell"/>
 		</Unit>

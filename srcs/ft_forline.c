@@ -141,8 +141,8 @@ void ft_parsecom(char *pipecom, t_com *com)
 
 int ft_builtin(t_com *com)
 {
-	if (!(ft_strncmp(com->args[0], "pwd", 4)))
-		return (ft_pwd());
+//	if (!(ft_strncmp(com->args[0], "pwd", 4)))
+//		return (ft_pwd());
 //	if (!(ft_strncmp(com->args[0], "echo", 5)))
 //		return (ft_echo(com));
 //	if (!(ft_strncmp(com->args[0], "export", 7)))
@@ -205,82 +205,6 @@ int		ft_kolenvp(char **envp)
 	return (c);
 }
 
-void	ft_pipe(t_com *com, char **pipecom)
-{
-	int	fd[2];
-//	int fd2[2];
-	int	cpid1;
-	int	cpid2, cpid3;
-
-	dup2(com->def_fd0, 0);
-	dup2(com->def_fd1, 1);
-
-//	dup2(fd2[0], fd[0]);
-//	dup2(fd2[1], fd[1]);
-		if (pipe(fd) == -1)
-			ft_error(3);
-
-		cpid1 = fork();
-		if (cpid1 == -1) {
-			perror("fork");   //заменить функцию
-			exit(1);
-		}
-		if (cpid1 == 0) {
-			dup2(fd[1], STDOUT_FILENO);
-			close(fd[0]);
-			close(fd[1]);
-			ft_parsecom(pipecom[0], com);
-			if (ft_builtin(com))
-				(ft_forexecve(com));
-			exit(1);
-		}
-		cpid2 = fork();
-		if (cpid2 == -1) {
-			perror("fork");
-		exit(1);   //почему приходится это делать?????
-		}
-		if (cpid2 == 0) {
-			dup2(fd[0], STDIN_FILENO);
-			close(fd[0]);
-			close(fd[1]);
-			ft_parsecom(pipecom[1], com);
-			if (ft_builtin(com))
-				(ft_forexecve(com));
-		exit(2);  //и тут, непонятно, поччему надо писать эксит????
-	}
-/* проба с 3 форком*/
-//	cpid3 = fork();
-//	if (cpid3 == -1)
-//	{
-//		perror("fork");
-//		exit(1);   //почему приходится это делать?????
-//	}
-//	if (cpid3 == 0)
-//	{
-//		dup2(fd[0], STDIN_FILENO);
-//		close(fd[0]);
-//		close(fd[1]);
-//		ft_parsecom(pipecom[2], com);
-//		if (ft_builtin(com))
-//			(ft_forexecve(com));
-//		exit(3);  //и тут, непонятно, поччему надо писать эксит????
-//	}
-	/*проба с третьим формком*/
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(cpid1, NULL, 0);
-	waitpid(cpid2, NULL, 0);
-//	waitpid(cpid3, NULL, 0);
-
-
-	dup2(0, com->def_fd0);
-	dup2(1, com->def_fd1);
-	//dup2(fd[0], fd2[0]);
-	//	dup2(fd[1], fd2[1]);
-
-
-}
-
 void ft_pipim(char *command, char **envp)
 {
 	t_com	*com;
@@ -300,7 +224,9 @@ void ft_pipim(char *command, char **envp)
 	pipecom = ft_split(command, 10);
 	t = -1;
 	while(pipecom[++t])
+	{
 		pipecom[t] = ft_strtrim(pipecom[t], " ");
+	}
 	if (!(pipecom[1]))
 	{
 		ft_parsecom(pipecom[0], com);
@@ -308,5 +234,5 @@ void ft_pipim(char *command, char **envp)
 			(ft_forexecve(com));
 	}
 	else
-		ft_pipe(com, pipecom);
+		ft_pipes(com, pipecom, t);
 }
