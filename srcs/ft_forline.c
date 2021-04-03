@@ -141,10 +141,10 @@ void ft_parsecom(char *pipecom, t_com *com)
 
 int ft_builtin(t_com *com)
 {
-//	if (!(ft_strncmp(com->args[0], "pwd", 4)))
-//		return (ft_pwd());
-//	if (!(ft_strncmp(com->args[0], "echo", 5)))
-//		return (ft_echo(com));
+	if (!(ft_strncmp(com->args[0], "pwd", 4)))
+		return (ft_pwd());
+	if (!(ft_strncmp(com->args[0], "echo", 5)))
+		return (ft_echo(com));
 //	if (!(ft_strncmp(com->args[0], "export", 7)))
 //		return (ft_export(com, envp));
 //	if (!(ft_strncmp(com->args[0], "unset", 6)))

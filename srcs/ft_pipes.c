@@ -23,7 +23,6 @@ void	ft_closefd(int npipes, int pipes[npipes][2])
  void	ft_pipes(t_com *com, char **pipecom, int npipes)
 {
     int i;
-    int cpid;
     int pids[npipes];
     int pipes[npipes][2];
 
