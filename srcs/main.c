@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "minishell.h"
 #include <string.h>
-#include "get_next_line.h"
+//#include "get_next_line.h"
 # define MAXDIR 50
 
 int main(int argc, char **argv, char **envp)
@@ -24,7 +24,8 @@ int main(int argc, char **argv, char **envp)
 //		printf("minishell:");
 //		write(1, "success_minishell$", 18);
 		ft_putstr_fd("minishell$", 1);
-		i = get_next_line(fd, &line);
+//		i = get_next_line(fd, &line);
+		i = get_next_line(&line);
 		if (i == -1)
 			ft_error(5);
 		if (ft_forsplit(line, ';') > 0)

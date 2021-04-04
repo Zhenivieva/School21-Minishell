@@ -102,6 +102,27 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds)
 			continue;
 		}
 		else if (pipecom[inds->k] != '$')
+		{
+			if (pipecom[inds->k] == '<')
+			{
+				com->less[inds->a + 1] = 1;
+				inds->k++;
+				break;
+			}
+			if (pipecom[inds->k] == '>' && pipecom[inds->k + 1] == '>')
+			{
+				com->append[inds->a + 1] = 1;
+				inds->k++;
+				break;
+			}
+			if (pipecom[inds->k] == '>' && pipecom[inds->k + 1] != '>')
+			{
+				com->great[inds->a + 1] = 1;
+				com->konecg = inds->a + 1;
+				inds->k++;
+				break;
+			}
 			com->args[inds->a][inds->b++] = pipecom[inds->k++];
+		}
 	}
 }

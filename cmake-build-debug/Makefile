@@ -143,6 +143,33 @@ minishell/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/build
 .PHONY : minishell/fast
 
+srcs/ft_atoi.o: srcs/ft_atoi.c.o
+
+.PHONY : srcs/ft_atoi.o
+
+# target to build an object file
+srcs/ft_atoi.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_atoi.c.o
+.PHONY : srcs/ft_atoi.c.o
+
+srcs/ft_atoi.i: srcs/ft_atoi.c.i
+
+.PHONY : srcs/ft_atoi.i
+
+# target to preprocess a source file
+srcs/ft_atoi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_atoi.c.i
+.PHONY : srcs/ft_atoi.c.i
+
+srcs/ft_atoi.s: srcs/ft_atoi.c.s
+
+.PHONY : srcs/ft_atoi.s
+
+# target to generate assembly for a file
+srcs/ft_atoi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_atoi.c.s
+.PHONY : srcs/ft_atoi.c.s
+
 srcs/ft_builtin.o: srcs/ft_builtin.c.o
 
 .PHONY : srcs/ft_builtin.o
@@ -278,6 +305,33 @@ srcs/ft_putstr_fd.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.s
 .PHONY : srcs/ft_putstr_fd.c.s
 
+srcs/ft_redirect.o: srcs/ft_redirect.c.o
+
+.PHONY : srcs/ft_redirect.o
+
+# target to build an object file
+srcs/ft_redirect.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_redirect.c.o
+.PHONY : srcs/ft_redirect.c.o
+
+srcs/ft_redirect.i: srcs/ft_redirect.c.i
+
+.PHONY : srcs/ft_redirect.i
+
+# target to preprocess a source file
+srcs/ft_redirect.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_redirect.c.i
+.PHONY : srcs/ft_redirect.c.i
+
+srcs/ft_redirect.s: srcs/ft_redirect.c.s
+
+.PHONY : srcs/ft_redirect.s
+
+# target to generate assembly for a file
+srcs/ft_redirect.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_redirect.c.s
+.PHONY : srcs/ft_redirect.c.s
+
 srcs/ft_split.o: srcs/ft_split.c.o
 
 .PHONY : srcs/ft_split.o
@@ -386,6 +440,33 @@ srcs/get_next_line.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line.c.s
 .PHONY : srcs/get_next_line.c.s
 
+srcs/get_next_line_exam.o: srcs/get_next_line_exam.c.o
+
+.PHONY : srcs/get_next_line_exam.o
+
+# target to build an object file
+srcs/get_next_line_exam.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line_exam.c.o
+.PHONY : srcs/get_next_line_exam.c.o
+
+srcs/get_next_line_exam.i: srcs/get_next_line_exam.c.i
+
+.PHONY : srcs/get_next_line_exam.i
+
+# target to preprocess a source file
+srcs/get_next_line_exam.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line_exam.c.i
+.PHONY : srcs/get_next_line_exam.c.i
+
+srcs/get_next_line_exam.s: srcs/get_next_line_exam.c.s
+
+.PHONY : srcs/get_next_line_exam.s
+
+# target to generate assembly for a file
+srcs/get_next_line_exam.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/get_next_line_exam.c.s
+.PHONY : srcs/get_next_line_exam.c.s
+
 srcs/get_next_line_utils.o: srcs/get_next_line_utils.c.o
 
 .PHONY : srcs/get_next_line_utils.o
@@ -476,6 +557,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... minishell"
+	@echo "... srcs/ft_atoi.o"
+	@echo "... srcs/ft_atoi.i"
+	@echo "... srcs/ft_atoi.s"
 	@echo "... srcs/ft_builtin.o"
 	@echo "... srcs/ft_builtin.i"
 	@echo "... srcs/ft_builtin.s"
@@ -491,6 +575,9 @@ help:
 	@echo "... srcs/ft_putstr_fd.o"
 	@echo "... srcs/ft_putstr_fd.i"
 	@echo "... srcs/ft_putstr_fd.s"
+	@echo "... srcs/ft_redirect.o"
+	@echo "... srcs/ft_redirect.i"
+	@echo "... srcs/ft_redirect.s"
 	@echo "... srcs/ft_split.o"
 	@echo "... srcs/ft_split.i"
 	@echo "... srcs/ft_split.s"
@@ -503,6 +590,9 @@ help:
 	@echo "... srcs/get_next_line.o"
 	@echo "... srcs/get_next_line.i"
 	@echo "... srcs/get_next_line.s"
+	@echo "... srcs/get_next_line_exam.o"
+	@echo "... srcs/get_next_line_exam.i"
+	@echo "... srcs/get_next_line_exam.s"
 	@echo "... srcs/get_next_line_utils.o"
 	@echo "... srcs/get_next_line_utils.i"
 	@echo "... srcs/get_next_line_utils.s"

@@ -16,6 +16,10 @@ int ft_error(int n)
 		printf("Execve problem\n");
 	if (n == -6)
 		printf("Unknown program\n");
+	if (n == 7)
+		printf("Fork returned -1\n");
+	if (n == 8)
+		printf("Ne smog otkrity fail, sorry\n");
 	if (n > 0)
 		exit(n);
 	return (n);
@@ -88,7 +92,8 @@ void double_quotes(char *pipecom, t_com *com, t_indexes *inds)
 	if (pipecom[inds->k] == '"')
 	{
 		inds->k++;
-		while (pipecom[inds->k] != '"') {
+		while (pipecom[inds->k] != '"')
+		{
 			if (pipecom[inds->k] == '\\' && (pipecom[inds->k + 1] == '$'
 										  || pipecom[inds->k + 1] == '"' || pipecom[inds->k + 1] == '\\'))
 				inds->k++;
@@ -125,8 +130,19 @@ void ft_parsecom(char *pipecom, t_com *com)
 		while (pipecom[inds.k])
 		{
 			inds.b = 0;
-			while (pipecom[inds.k] == ' ')
+			while (pipecom[inds.k] == ' ' || pipecom[inds.k] == '>' || pipecom[inds.k] == '<')
+			{
+				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] != '>')
+				{
+					com->great[inds.a] = 1;
+					com->konecg = inds.a;
+				}
+				if (pipecom[inds.k] == '<')
+					com->less[inds.a] = 1;
+				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] == '>')
+					com->append[inds.a] = 1;
 				inds.k++;
+			}
 			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 301);
 			if (com->args == NULL)
 				ft_error(-3);
@@ -153,8 +169,8 @@ int ft_builtin(t_com *com)
 //		return (ft_cd(com, envp));
 //	if (!(ft_strncmp(com->args[0], "env", 4)))
 //		return (ft_env(com, envp));
-//	if (!(ft_strncmp(com->args[0], "exit", 5)))
-//		return (ft_exit(envp));
+	if (!(ft_strncmp(com->args[0], "exit", 5)))
+		return (ft_exit(com));
 	return (1);
 }
 
@@ -177,19 +193,23 @@ int ft_forexecve(t_com *com)
 {
 	pid_t pid;
 
-	if (ft_slash(com->args[0]))
+	if (com->konecg == 0)
 	{
-		if (ft_relabsbin(com))
+		if (ft_slash(com->args[0]))
 		{
-			pid = fork();
-			if (pid == 0)
-				if (execve(com->args[0], com->args, com->envp) == -1)
-					ft_error(6);
-			waitpid(pid, NULL, 0);
+			if (ft_relabsbin(com))
+			{
+				pid = fork();
+				if (pid == 0)
+					if (execve(com->args[0], com->args, com->envp) == -1)
+						ft_error(6);
+				waitpid(pid, NULL, 0);
+			} else
+				ft_error(-6);
 		}
-		else
-			ft_error(-6);
 	}
+	else
+		ft_redir(com);
 }
 
 int		ft_kolenvp(char **envp)
@@ -211,6 +231,7 @@ void ft_pipim(char *command, char **envp)
 	char	**pipecom;
 	int		t;
 
+	com->konecg = 0;
 	com = malloc(sizeof(t_com));
 	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
 	if (!(com && com->envp))

@@ -78,7 +78,38 @@ int		ft_env(t_com *com, char **envp)
 
 }
 
-int		ft_exit(char **envp)
+int	ft_proverkadigit(char *s)
 {
+	int t;
+
+	t = -1;
+	while (s[++t])
+	{
+		if (!('0' <= s[t] && s[t] <= '9'))
+		{
+			printf("exit\n");
+			printf("minishell: exit: %s:numeric argument required\n", s);
+			exit(255);
+		}
+	}
+	return (1);
+}
+
+int		ft_exit(t_com *com)
+{
+	if (ft_proverkadigit(com->args[1]))
+	{
+		if (com->args[2])
+		{
+			printf("exit\n");
+			printf("minishell: exit: too many arguments\n");
+			exit(1);
+		}
+		else
+		{
+			printf("exit\n");
+			exit(ft_atoi(com->args[1]));
+		}
+	}
 
 }

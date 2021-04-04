@@ -9,7 +9,7 @@
 /*   Updated: 2020/11/21 03:42:49 by mmaryjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "minishell.h"
 
 char	*ft_strchr(const char *s, int c)
@@ -118,3 +118,4 @@ int		get_next_line(int fd, char **line)
 		return (resread);
 	return (1);
 }
+*/

@@ -42,10 +42,7 @@ void	ft_closefd(int npipes, int pipes[npipes][2])
     {
         pids[i] = fork();
         if (pids[i] == -1)
-        {
-            printf("Error with creating process %d", i);
-            exit (3);
-        }
+        	ft_error(7);
         if (pids[i] == 0)
         {
 			if (i == 0)

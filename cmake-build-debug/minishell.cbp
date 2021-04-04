@@ -85,6 +85,9 @@
 		<Unit filename="/Users/mmaryjan/projects/minishell/includes/minishell.h">
 			<Option target="minishell"/>
 		</Unit>
+		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_atoi.c">
+			<Option target="minishell"/>
+		</Unit>
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_builtin.c">
 			<Option target="minishell"/>
 		</Unit>
@@ -100,6 +103,9 @@
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_putstr_fd.c">
 			<Option target="minishell"/>
 		</Unit>
+		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_redirect.c">
+			<Option target="minishell"/>
+		</Unit>
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_split.c">
 			<Option target="minishell"/>
 		</Unit>
@@ -110,6 +116,9 @@
 			<Option target="minishell"/>
 		</Unit>
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/get_next_line.c">
+			<Option target="minishell"/>
+		</Unit>
+		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/get_next_line_exam.c">
 			<Option target="minishell"/>
 		</Unit>
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/get_next_line_utils.c">
