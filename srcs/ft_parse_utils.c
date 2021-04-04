@@ -126,7 +126,8 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t)
 				while(pipecom[inds->k] == ' ')
 					inds->k++;
 				com->less[inds->a + 1] = 1;
-				com->file[(*t)++] = ft_strdup(ft_forcontent(pipecom + inds->k, &inds->k));
+				com->konecg = 1;
+//				com->file[(*t)++] = ft_strdup(ft_forcontent(pipecom + inds->k, &inds->k));
 //				inds->k++;
 				break;
 			}
@@ -136,7 +137,9 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t)
 				while(pipecom[inds->k] == ' ')
 					inds->k++;
 				com->less[inds->a + 1] = 2;
-				com->file[*t++] = ft_strdup(ft_forcontent(pipecom + inds->k, &inds->k));
+				com->konecg = 1;
+				ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds->k, &inds->k)));
+//				com->file[*t++] = ft_strdup(ft_forcontent(pipecom + inds->k, &inds->k));
 //				inds->k++;
 				break;
 			}
@@ -146,7 +149,9 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t)
 				while(pipecom[inds->k] == ' ')
 					inds->k++;
 				com->less[inds->a + 1] = 3;
-				com->file[*t++] = (ft_forcontent(pipecom + inds->k, &inds->k));
+				com->konecg = 1;
+//				com->file[*t++] = (ft_forcontent(pipecom + inds->k, &inds->k));
+				ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds->k, &inds->k)));
 //				inds->k++;
 				break;
 			}

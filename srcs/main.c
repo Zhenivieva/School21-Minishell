@@ -19,6 +19,23 @@ int main(int argc, char **argv, char **envp)
 
 	fd = 0;
 	i = 1;
+
+//
+//	t_list *a;
+//	t_list *b;
+//
+//	a = ft_lstnew("hehe");
+//	b = ft_lstnew("hoho");
+//	ft_lstadd_back(&a, b);
+//	ft_lstadd_back(&com->redir, ft_lstnew("hihi"));
+//
+//	a = a->next;
+//	a = a->next;
+//	printf("%s\n", (char *)a->content);
+
+
+
+
 	while (i > 0)
 	{
 //		printf("minishell:");

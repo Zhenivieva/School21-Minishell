@@ -141,7 +141,9 @@ void ft_parsecom(char *pipecom, t_com *com)
 					while(pipecom[inds.k] == ' ')
 						inds.k++;
 					com->less[inds.a] = 1;
-					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
+					com->konecg = 1;
+//					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
+					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
 //					com->redir = ret;
 					com->konecg = 1;
 				}
@@ -151,8 +153,9 @@ void ft_parsecom(char *pipecom, t_com *com)
 					while(pipecom[inds.k] == ' ')
 						inds.k++;
 					com->less[inds.a] = 2;
+					com->konecg = 1;
 					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
-//					com->redir = ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k));
+					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
 				}
 				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] == '>')
 				{
@@ -160,7 +163,9 @@ void ft_parsecom(char *pipecom, t_com *com)
 					while(pipecom[inds.k] == ' ')
 						inds.k++;
 					com->less[inds.a] = 3;
-					com->file[t++] = ft_strdup(ft_forcontent(pipecom + inds.k, &inds.k));
+					com->konecg = 1;
+//					com->file[t++] = ft_strdup(ft_forcontent(pipecom + inds.k, &inds.k));
+					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
 //					com->redir = ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k));
 				}
 				inds.k++;
@@ -214,6 +219,15 @@ int ft_slash(char *comand)
 int ft_forexecve(t_com *com)
 {
 	pid_t pid;
+
+	int t = -1;
+
+	while (com->args[++t])
+	{
+		printf("%d-%s\n", t, com->args[t]);
+	}
+	if  (com->redir)
+		printf("redir-content:%s\n", (char *)com->redir->content);
 
 	if (com->konecg == 0)
 	{
