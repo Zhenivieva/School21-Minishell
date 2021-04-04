@@ -224,6 +224,33 @@ srcs/ft_forline.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_forline.c.s
 .PHONY : srcs/ft_forline.c.s
 
+srcs/ft_lstadd_back.o: srcs/ft_lstadd_back.c.o
+
+.PHONY : srcs/ft_lstadd_back.o
+
+# target to build an object file
+srcs/ft_lstadd_back.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o
+.PHONY : srcs/ft_lstadd_back.c.o
+
+srcs/ft_lstadd_back.i: srcs/ft_lstadd_back.c.i
+
+.PHONY : srcs/ft_lstadd_back.i
+
+# target to preprocess a source file
+srcs/ft_lstadd_back.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.i
+.PHONY : srcs/ft_lstadd_back.c.i
+
+srcs/ft_lstadd_back.s: srcs/ft_lstadd_back.c.s
+
+.PHONY : srcs/ft_lstadd_back.s
+
+# target to generate assembly for a file
+srcs/ft_lstadd_back.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.s
+.PHONY : srcs/ft_lstadd_back.c.s
+
 srcs/ft_parse_utils.o: srcs/ft_parse_utils.c.o
 
 .PHONY : srcs/ft_parse_utils.o
@@ -566,6 +593,9 @@ help:
 	@echo "... srcs/ft_forline.o"
 	@echo "... srcs/ft_forline.i"
 	@echo "... srcs/ft_forline.s"
+	@echo "... srcs/ft_lstadd_back.o"
+	@echo "... srcs/ft_lstadd_back.i"
+	@echo "... srcs/ft_lstadd_back.s"
 	@echo "... srcs/ft_parse_utils.o"
 	@echo "... srcs/ft_parse_utils.i"
 	@echo "... srcs/ft_parse_utils.s"

@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/mmaryjan/projects/minishell/srcs/ft_atoi.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_atoi.c.o"
   "/Users/mmaryjan/projects/minishell/srcs/ft_builtin.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_builtin.c.o"
   "/Users/mmaryjan/projects/minishell/srcs/ft_forline.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_forline.c.o"
+  "/Users/mmaryjan/projects/minishell/srcs/ft_lstadd_back.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o"
   "/Users/mmaryjan/projects/minishell/srcs/ft_parse_utils.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o"
   "/Users/mmaryjan/projects/minishell/srcs/ft_pipes.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_pipes.c.o"
   "/Users/mmaryjan/projects/minishell/srcs/ft_putstr_fd.c" "/Users/mmaryjan/projects/minishell/cmake-build-debug/CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o"

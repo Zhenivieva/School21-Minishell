@@ -58,11 +58,13 @@ typedef struct s_com
 	char **envp;
 	int  def_fd0;
 	int  def_fd1;
-	int append[100];
-	int great[100];
+//	int append[100];
+//	int great[100];
 	int less[100];
 	int konecg;
-	int nachl;
+//	int nachl;
+	t_list *redir;
+	char **file;
 }				t_com;
 
 int get_next_line(char **line);
@@ -88,7 +90,8 @@ void	ft_putstr_fd(char *s, int fd);
 int		ft_getdollar(char *dollar, t_com *com, int *b, int *a);
 char	*ft_getpath(t_com *com);
 int 	ft_relabsbin(t_com *com);
-void	parse_word(char *pipecom, t_com *com, t_indexes *inds);
+//void	parse_word(char *pipecom, t_com *com, t_indexes *inds);
+void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t);
 void	double_quotes(char *pipecom, t_com *com, t_indexes *inds);
 int		ft_forexecve(t_com *com);
 int		ft_builtin(t_com *com);
@@ -97,8 +100,10 @@ void	ft_pipes(t_com *com, char **pipecom, int npipes);
 int		ft_atoi(const char *str);
 int ft_redir(t_com *com);
 int ft_slash(char *comand);
-
-
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstlast(t_list *lst);
+char	*ft_forcontent(char *s, int *inds);
 
 
 

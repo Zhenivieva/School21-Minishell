@@ -10,6 +10,9 @@ CMakeFiles/minishell.dir/srcs/ft_builtin.c.o: ../srcs/ft_builtin.c
 CMakeFiles/minishell.dir/srcs/ft_forline.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_forline.c.o: ../srcs/ft_forline.c
 
+CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o: ../srcs/ft_lstadd_back.c
+
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o: ../srcs/ft_parse_utils.c
 
@@ -40,7 +43,6 @@ CMakeFiles/minishell.dir/srcs/get_next_line_exam.c.o: ../srcs/get_next_line_exam
 CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.o: ../includes/get_next_line.h
 CMakeFiles/minishell.dir/srcs/get_next_line_utils.c.o: ../srcs/get_next_line_utils.c
 
-CMakeFiles/minishell.dir/srcs/lstadd_back.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/lstadd_back.c.o: ../srcs/lstadd_back.c
 
 CMakeFiles/minishell.dir/srcs/main.c.o: ../includes/minishell.h

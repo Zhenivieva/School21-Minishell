@@ -94,6 +94,9 @@
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_forline.c">
 			<Option target="minishell"/>
 		</Unit>
+		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_lstadd_back.c">
+			<Option target="minishell"/>
+		</Unit>
 		<Unit filename="/Users/mmaryjan/projects/minishell/srcs/ft_parse_utils.c">
 			<Option target="minishell"/>
 		</Unit>

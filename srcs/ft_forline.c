@@ -114,13 +114,15 @@ void double_quotes(char *pipecom, t_com *com, t_indexes *inds)
 }
 
 
-
 void ft_parsecom(char *pipecom, t_com *com)
 {
 	t_indexes inds;
-
+	t_list *ret;
+	com->file = malloc(sizeof(char *) * 10);
+//	com->redir = malloc(sizeof(t_list *) * (300));
 	inds.k = -1;
 	inds.a = 0;
+	int t;
 	while (pipecom[++inds.k])
 	{
 		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom) + 2));
@@ -130,23 +132,43 @@ void ft_parsecom(char *pipecom, t_com *com)
 		while (pipecom[inds.k])
 		{
 			inds.b = 0;
+			t = 0;
 			while (pipecom[inds.k] == ' ' || pipecom[inds.k] == '>' || pipecom[inds.k] == '<')
 			{
 				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] != '>')
 				{
-					com->great[inds.a] = 1;
-					com->konecg = inds.a;
+					inds.k++;
+					while(pipecom[inds.k] == ' ')
+						inds.k++;
+					com->less[inds.a] = 1;
+					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
+//					com->redir = ret;
+					com->konecg = 1;
 				}
 				if (pipecom[inds.k] == '<')
-					com->less[inds.a] = 1;
+				{
+					inds.k++;
+					while(pipecom[inds.k] == ' ')
+						inds.k++;
+					com->less[inds.a] = 2;
+					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
+//					com->redir = ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k));
+				}
 				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] == '>')
-					com->append[inds.a] = 1;
+				{
+					inds.k++;
+					while(pipecom[inds.k] == ' ')
+						inds.k++;
+					com->less[inds.a] = 3;
+					com->file[t++] = ft_strdup(ft_forcontent(pipecom + inds.k, &inds.k));
+//					com->redir = ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k));
+				}
 				inds.k++;
 			}
 			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 301);
-			if (com->args == NULL)
+			if (com->args[inds.a] == NULL)
 				ft_error(-3);
-			parse_word(pipecom, com, &inds);
+			parse_word(pipecom, com, &inds, &t);
 			com->args[inds.a][inds.b] = '\0';
 //			printf("com->argc[%d]-%s\n", a, com->args[a]);
 			inds.a++;
@@ -231,8 +253,8 @@ void ft_pipim(char *command, char **envp)
 	char	**pipecom;
 	int		t;
 
-	com->konecg = 0;
 	com = malloc(sizeof(t_com));
+	com->konecg = 0;
 	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
 	if (!(com && com->envp))
 		ft_error(-2);

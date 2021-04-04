@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/minishell.dir/srcs/ft_atoi.c.o"
   "CMakeFiles/minishell.dir/srcs/ft_builtin.c.o"
   "CMakeFiles/minishell.dir/srcs/ft_forline.c.o"
+  "CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o"
   "CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o"
   "CMakeFiles/minishell.dir/srcs/ft_pipes.c.o"
   "CMakeFiles/minishell.dir/srcs/ft_putstr_fd.c.o"

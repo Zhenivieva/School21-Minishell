@@ -85,7 +85,24 @@ int 	ft_relabsbin(t_com *com)
 	return (0);
 }
 
-void parse_word(char *pipecom, t_com *com, t_indexes *inds)
+char	*ft_forcontent(char *s, int *indk)
+{
+	int t;
+	char *ret;
+
+	ret = malloc(sizeof(char) * (300)); //заменить на strdup
+	t = -1;
+	while (s[++t] && s[t] != ' ' && s[t] != '<' && s[t] != '>')
+	{
+		ret[t] = s[t];
+		(*indk)++;
+	}
+	ret[t] = '\0';
+	(*indk)++;
+	return (ret);
+}
+
+void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t)
 {
 	while (pipecom[inds->k] != ' ' && pipecom[inds->k] != '\0')
 	{
@@ -105,21 +122,32 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds)
 		{
 			if (pipecom[inds->k] == '<')
 			{
-				com->less[inds->a + 1] = 1;
 				inds->k++;
+				while(pipecom[inds->k] == ' ')
+					inds->k++;
+				com->less[inds->a + 1] = 1;
+				com->file[(*t)++] = ft_strdup(ft_forcontent(pipecom + inds->k, &inds->k));
+//				inds->k++;
 				break;
 			}
 			if (pipecom[inds->k] == '>' && pipecom[inds->k + 1] == '>')
 			{
-				com->append[inds->a + 1] = 1;
 				inds->k++;
+				while(pipecom[inds->k] == ' ')
+					inds->k++;
+				com->less[inds->a + 1] = 2;
+				com->file[*t++] = ft_strdup(ft_forcontent(pipecom + inds->k, &inds->k));
+//				inds->k++;
 				break;
 			}
 			if (pipecom[inds->k] == '>' && pipecom[inds->k + 1] != '>')
 			{
-				com->great[inds->a + 1] = 1;
-				com->konecg = inds->a + 1;
 				inds->k++;
+				while(pipecom[inds->k] == ' ')
+					inds->k++;
+				com->less[inds->a + 1] = 3;
+				com->file[*t++] = (ft_forcontent(pipecom + inds->k, &inds->k));
+//				inds->k++;
 				break;
 			}
 			com->args[inds->a][inds->b++] = pipecom[inds->k++];
