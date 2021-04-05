@@ -98,7 +98,7 @@ char	*ft_forcontent(char *s, int *indk)
 		(*indk)++;
 	}
 	ret[t] = '\0';
-	(*indk)++;
+//	(*indk)++;
 	return (ret);
 }
 

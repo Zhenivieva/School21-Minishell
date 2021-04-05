@@ -135,7 +135,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 			t = 0;
 			while (pipecom[inds.k] == ' ' || pipecom[inds.k] == '>' || pipecom[inds.k] == '<')
 			{
-				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] != '>')
+				while (pipecom[inds.k] == '>' && pipecom[inds.k + 1] != '>')
 				{
 					inds.k++;
 					while(pipecom[inds.k] == ' ')
@@ -147,7 +147,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 //					com->redir = ret;
 					com->konecg = 1;
 				}
-				if (pipecom[inds.k] == '<')
+				while (pipecom[inds.k] == '<')
 				{
 					inds.k++;
 					while(pipecom[inds.k] == ' ')
@@ -157,7 +157,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
 					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
 				}
-				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] == '>')
+				while (pipecom[inds.k] == '>' && pipecom[inds.k + 1] == '>')
 				{
 					inds.k++;
 					while(pipecom[inds.k] == ' ')
@@ -168,7 +168,8 @@ void ft_parsecom(char *pipecom, t_com *com)
 					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
 //					com->redir = ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k));
 				}
-				inds.k++;
+				if ((pipecom[inds.k] != '<') && (pipecom[inds.k] != '>'))
+					inds.k++;
 			}
 			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 301);
 			if (com->args[inds.a] == NULL)
@@ -176,7 +177,8 @@ void ft_parsecom(char *pipecom, t_com *com)
 			parse_word(pipecom, com, &inds, &t);
 			com->args[inds.a][inds.b] = '\0';
 //			printf("com->argc[%d]-%s\n", a, com->args[a]);
-			inds.a++;
+			if (inds.b > 0)
+				inds.a++;
 		}
 		com->args[inds.a] = NULL;
 	}
@@ -226,8 +228,13 @@ int ft_forexecve(t_com *com)
 	{
 		printf("%d-%s\n", t, com->args[t]);
 	}
-	if  (com->redir)
-		printf("redir-content:%s\n", (char *)com->redir->content);
+//	if  (com->redir) {
+//		printf("before cicle redir-content:%s\n", (char *) com->redir->content);
+//		while (com->redir) {
+//			printf("redir-content:%s\n", (char *) com->redir->content);
+//			com->redir = com->redir->next;
+//		}
+//	}
 
 	if (com->konecg == 0)
 	{
