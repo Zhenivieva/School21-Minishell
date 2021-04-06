@@ -24,10 +24,7 @@ int ft_redir(t_com *com)
 		int file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
 		if (file == -1)
 			ft_error(8);
-//		printf("The fd to pingResults: %d\n", file);
 		int file2 = dup2(file, 1);
-		//printf("Test2222");   будет принтить в файл
-//		printf ("The duplicated fd: %d\n", file2);
 		close(file);
 
 		if (ft_slash(com->args[0]))
