@@ -143,7 +143,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 					com->less[inds.a] = 1;
 					com->konecg = 1;
 //					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
-					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
+					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k), 2));
 //					com->redir = ret;
 					com->konecg++;
 				}
@@ -155,7 +155,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 					com->less[inds.a] = 2;
 					com->konecg++;
 //					com->file[t++] = (ft_forcontent(pipecom + inds.k, &inds.k));
-					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
+					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k), 1));
 				}
 				if (pipecom[inds.k] == '>' && pipecom[inds.k + 1] == '>')
 				{
@@ -165,7 +165,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 					com->less[inds.a] = 3;
 					com->konecg++;
 //					com->file[t++] = ft_strdup(ft_forcontent(pipecom + inds.k, &inds.k));
-					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k)));
+					ft_lstadd_back(&com->redir, ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k), 3));
 //					com->redir = ft_lstnew(ft_forcontent(pipecom + inds.k, &inds.k));
 				}
 				if ((pipecom[inds.k] != '<') && (pipecom[inds.k] != '>'))
@@ -229,13 +229,14 @@ int ft_forexecve(t_com *com)
 		printf("%d-%s\n", t, com->args[t]);
 	}
 	printf("com->konecg=%d\n", com->konecg);
-	if  (com->redir) {
-		printf("before cicle redir-content:%s\n", (char *) com->redir->content);
-		while (com->redir) {
-			printf("redir-content:%s\n", (char *) com->redir->content);
-			com->redir = com->redir->next;
-		}
-	}
+//	if  (com->redir) {
+//		printf("before cicle redir-content:%s\n", (char *) com->redir->content);
+//		while (com->redir) {
+//		    printf("type:%d\n", com->redir->type);
+//			printf("redir-content:%s\n", (char *) com->redir->content);
+//			com->redir = com->redir->next;
+//		}
+//	}
 
 	if (com->konecg == 0)
 	{

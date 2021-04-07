@@ -15,22 +15,47 @@
 int ft_redir(t_com *com)
 {
 
+    int file;
+    int file2;
 	int pid = fork();
 //	if (pid == -1)
 //		ft_error(7);
 	if (pid == 0)
 	{
 		// dityatko
-		int file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
-		if (file == -1)
-			ft_error(8);
-		int file2 = dup2(file, 1);
-		close(file);
+        while (com->redir)
+        {
+            printf("type:%d\n", com->redir->type);
+            printf("redir-content:%s\n", (char *) com->redir->content);
 
-		if (ft_slash(com->args[0]))
-			ft_relabsbin(com);
-		if (execve(com->args[0], com->args, com->envp) == -1)
-			ft_error(6);
+            if (com->redir->type == 1) {
+                file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
+                file2 = dup2(file, 0);
+            }
+            else if (com->redir->type == 2)
+            {
+                file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
+                file2 = dup2(file, 1);
+            }
+            else if (com->redir->type == 3)
+            {
+                file = open(com->redir->content, O_WRONLY | O_APPEND);
+                file2 = dup2(file, 1);
+            }
+            if (file == -1)
+                ft_error(8);
+//            int file2 = dup2(file, 1);
+            close(file);
+            com->redir = com->redir->next;
+        }
+
+        if (ft_builtin(com))
+        {
+            if (ft_slash(com->args[0]))
+                ft_relabsbin(com);
+            if (execve(com->args[0], com->args, com->envp) == -1)
+                ft_error(6);
+        }
 
 //		int err = execve(com->args[0], com->args);
 //		if (err == -1)

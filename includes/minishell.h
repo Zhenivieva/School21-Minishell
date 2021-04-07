@@ -22,6 +22,7 @@ typedef struct		s_redir
 
 typedef struct		s_list
 {
+    int             type;
 	void			*content;
 	struct s_list	*next;
 }					t_list;
@@ -100,7 +101,7 @@ void	ft_pipes(t_com *com, char **pipecom, int npipes);
 int		ft_atoi(const char *str);
 int ft_redir(t_com *com);
 int ft_slash(char *comand);
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(void *content, int type);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 char	*ft_forcontent(char *s, int *inds);
