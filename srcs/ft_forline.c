@@ -186,6 +186,8 @@ void ft_parsecom(char *pipecom, t_com *com)
 
 int ft_builtin(t_com *com)
 {
+//    if (com->konecg > 0)
+//        ft_redir(com);
 	if (!(ft_strncmp(com->args[0], "pwd", 4)))
 		return (ft_pwd());
 	if (!(ft_strncmp(com->args[0], "echo", 5)))
@@ -222,13 +224,13 @@ int ft_forexecve(t_com *com)
 {
 	pid_t pid;
 
-	int t = -1;
+//	int t = -1;
 
-	while (com->args[++t])
-	{
-		printf("%d-%s\n", t, com->args[t]);
-	}
-	printf("com->konecg=%d\n", com->konecg);
+//	while (com->args[++t])
+//	{
+//		printf("%d-%s\n", t, com->args[t]);
+//	}
+//	printf("com->konecg=%d\n", com->konecg);
 //	if  (com->redir) {
 //		printf("before cicle redir-content:%s\n", (char *) com->redir->content);
 //		while (com->redir) {
@@ -240,18 +242,20 @@ int ft_forexecve(t_com *com)
 
 	if (com->konecg == 0)
 	{
-		if (ft_slash(com->args[0]))
-		{
-			if (ft_relabsbin(com))
-			{
-				pid = fork();
-				if (pid == 0)
-					if (execve(com->args[0], com->args, com->envp) == -1)
-						ft_error(6);
-				waitpid(pid, NULL, 0);
-			} else
-				ft_error(-6);
-		}
+        if (ft_builtin(com))
+        {
+            if (ft_slash(com->args[0]))
+            {
+                if (!(ft_relabsbin(com))) {
+                    ft_error(-6);
+                }
+            }
+            pid = fork();
+            if (pid == 0)
+                if (execve(com->args[0], com->args, com->envp) == -1)
+                    ft_error(6);
+            waitpid(pid, NULL, 0);
+        }
 	}
 	else
 		ft_redir(com);
@@ -296,8 +300,8 @@ void ft_pipim(char *command, char **envp)
 	if (!(pipecom[1]))
 	{
 		ft_parsecom(pipecom[0], com);
-		if (ft_builtin(com))
-			(ft_forexecve(com));
+//		if (ft_builtin(com))
+			ft_forexecve(com);
 	}
 	else
 		ft_pipes(com, pipecom, t);

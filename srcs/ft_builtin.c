@@ -43,16 +43,19 @@ int		ft_echo(t_com *com)
 	int a;
 
 	a = 1;
-	nflag = check_nflag(com->args[a]);
-	while (check_nflag(com->args[a]))
-			a++;
-	while (com->args[a])
+	nflag = 0;
+	if (com->args[a])
 	{
-		write (1, com->args[a], ft_strlen(com->args[a]));
-		if (com->args[a + 1])
-		write (1, " ", 1);
-		a++;
-	}
+        nflag = check_nflag(com->args[a]);
+        while (check_nflag(com->args[a]))
+            a++;
+        while (com->args[a]) {
+            write(1, com->args[a], ft_strlen(com->args[a]));
+            if (com->args[a + 1])
+                write(1, " ", 1);
+            a++;
+        }
+    }
 	if (!nflag)
 		write (1, "\n", 1);
 	return (0);
@@ -111,5 +114,6 @@ int		ft_exit(t_com *com)
 			exit(ft_atoi(com->args[1]));
 		}
 	}
+	return (0);
 
 }

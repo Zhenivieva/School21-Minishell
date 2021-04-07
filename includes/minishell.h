@@ -12,6 +12,7 @@
 # include <pthread.h>
 # include <errno.h>
 # include <stdio.h>
+# include <signal.h>
 # include <sys/types.h>
 
 typedef struct		s_redir
