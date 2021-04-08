@@ -25,7 +25,31 @@ t_list	*ft_lstnew(void *content, int type)
 	return (str);
 }
 
+t_env	*ft_lstnew1(char *key, char *content)
+{
+	t_env *str;
+
+	str = malloc(sizeof(t_env));
+	if (!str)
+		return (NULL);
+	str->key = key;
+	str->content = content;
+	str->next = 0x0;
+	return (str);
+}
+
 t_list	*ft_lstlast(t_list *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+t_env	*ft_lstlast1(t_env *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -48,6 +72,22 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	last = ft_lstlast(*lst);
+	new->next = last->next;
+	last->next = new;
+}
+
+void	ft_lstadd_back1(t_env **lst, t_env *new)
+{
+	t_env *last;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstlast1(*lst);
 	new->next = last->next;
 	last->next = new;
 }

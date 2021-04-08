@@ -113,6 +113,44 @@ void double_quotes(char *pipecom, t_com *com, t_indexes *inds)
 	}
 }
 
+int		ft_kolenvp(char **envp)
+{
+	int t;
+	int c;
+
+	t = -1;
+	c = 0;
+	while (envp[++t])
+		c++;
+//	printf("kolichestvo-%d\n", c);
+	return (c);
+}
+
+void ft_forenv(t_com *com, char **envp)
+{
+	int t;
+	char **envstring;
+	t_env *temp;
+
+//	com->env = malloc(sizeof(t_env));
+	t = -1;
+//	temp = com->env;
+	while(envp[++t])
+	{
+		envstring = ft_split(envp[t], '=');
+//		printf("%s\n", envstring[0]);
+//		printf("%s\n", envstring[1]);
+		ft_lstadd_back1(&com->env, ft_lstnew1(envstring[0], envstring[1]));
+	}
+//	com->env = temp;
+	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
+	if (!(com && com->envp))
+		ft_error(-2);
+	t = -1;
+	while (envp[++t])
+		com->envp[t] = ft_strdup(envp[t]);
+	com->envp[t] = NULL;
+}
 
 void ft_parsecom(char *pipecom, t_com *com)
 {
@@ -122,6 +160,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 //	com->redir = malloc(sizeof(t_list *) * (300));
 	inds.k = -1;
 	inds.a = 0;
+
 	int t;
 	while (pipecom[++inds.k])
 	{
@@ -192,14 +231,14 @@ int ft_builtin(t_com *com)
 		return (ft_pwd());
 	if (!(ft_strncmp(com->args[0], "echo", 5)))
 		return (ft_echo(com));
-//	if (!(ft_strncmp(com->args[0], "export", 7)))
-//		return (ft_export(com, envp));
+	if (!(ft_strncmp(com->args[0], "export", 7)))
+		return (ft_export(com));
 //	if (!(ft_strncmp(com->args[0], "unset", 6)))
-//		return (ft_unset(com, envp));
+//		return (ft_unset(com));
 //	if (!(ft_strncmp(com->args[0], "cd", 3)))
-//		return (ft_cd(com, envp));
+//		return (ft_cd(com));
 //	if (!(ft_strncmp(com->args[0], "env", 4)))
-//		return (ft_env(com, envp));
+//		return (ft_env(com));
 	if (!(ft_strncmp(com->args[0], "exit", 5)))
 		return (ft_exit(com));
 	return (1);
@@ -246,7 +285,8 @@ int ft_forexecve(t_com *com)
         {
             if (ft_slash(com->args[0]))
             {
-                if (!(ft_relabsbin(com))) {
+                if (!(ft_relabsbin(com)))
+                {
                     ft_error(-6);
                 }
             }
@@ -261,34 +301,23 @@ int ft_forexecve(t_com *com)
 		ft_redir(com);
 }
 
-int		ft_kolenvp(char **envp)
-{
-	int t;
-	int c;
 
-	t = -1;
-	c = 0;
-	while (envp[++t])
-		c++;
-//	printf("kolichestvo-%d\n", c);
-	return (c);
-}
 
-void ft_pipim(char *command, char **envp)
+void ft_pipim(char *command, t_com *com)
 {
-	t_com	*com;
+//	t_com	*com;
 	char	**pipecom;
 	int		t;
 
-	com = malloc(sizeof(t_com));
+//	com = malloc(sizeof(t_com));
 	com->konecg = 0;
-	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
-	if (!(com && com->envp))
-		ft_error(-2);
-	t = -1;
-	while (envp[++t])
-		com->envp[t] = ft_strdup(envp[t]);
-	com->envp[t] = NULL;
+//	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
+//	if (!(com && com->envp))
+//		ft_error(-2);
+//	t = -1;
+//	while (envp[++t])
+//		com->envp[t] = ft_strdup(envp[t]);
+//	com->envp[t] = NULL;
 
 	ft_forsplit(command, '|');
 	pipecom = ft_split(command, 10);

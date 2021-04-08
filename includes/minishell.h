@@ -21,6 +21,13 @@ typedef struct		s_redir
 
 }					t_redir;
 
+typedef struct		s_env
+{
+	char            *key;
+	char 			*content;
+	struct s_env	*next;
+}					t_env;
+
 typedef struct		s_list
 {
     int             type;
@@ -67,6 +74,7 @@ typedef struct s_com
 //	int nachl;
 	t_list *redir;
 	char **file;
+	t_env *env;
 }				t_com;
 
 int get_next_line(char **line);
@@ -78,14 +86,14 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 int 	ft_forsplit(char *line, char k);
 char	*ft_strtrim(char const *s1, char const *set);
-void	ft_pipim(char *command, char **envp);
+void	ft_pipim(char *command, t_com *com);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_pwd(void);
 int		ft_echo(t_com *com);
-int		ft_export(t_com *com, char **envp);
-int		ft_unset(t_com *com, char **envp);
-int		ft_cd(t_com *com, char **envp);
-int		ft_env(t_com *com, char **envp);
+int		ft_export(t_com *com);
+int		ft_unset(t_com *com);
+int		ft_cd(t_com *com);
+int		ft_env(t_com *com);
 int		ft_exit(t_com *com);
 int		ft_error(int n);
 void	ft_putstr_fd(char *s, int fd);
@@ -106,8 +114,9 @@ t_list	*ft_lstnew(void *content, int type);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 char	*ft_forcontent(char *s, int *inds);
-
-
+t_env	*ft_lstnew1(char *key, char *content);
+void	ft_lstadd_back1(t_env **lst, t_env *new);
+void ft_forenv(t_com *com, char **envp);
 
 
 #endif //MINISHELL_MINISHELL_H

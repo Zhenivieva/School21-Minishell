@@ -13,13 +13,13 @@ int main(int argc, char **argv, char **envp)
 	char *line;
 	int fd;
 	int i;
-
+	t_com *com;
 	char **commands;
 	int t;
 
 	fd = 0;
 	i = 1;
-
+	com = malloc(sizeof(t_com));
 //
 //	t_list *a;
 //	t_list *b;
@@ -34,8 +34,7 @@ int main(int argc, char **argv, char **envp)
 //	printf("%s\n", (char *)a->content);
 
 
-
-
+	ft_forenv(com, envp);
 	while (i > 0)
 	{
 //		printf("minishell:");
@@ -53,7 +52,7 @@ int main(int argc, char **argv, char **envp)
 			{
 				commands[t] = ft_strtrim(commands[t], " ");
 //			printf("%d-%s\n", t, commands[t]);
-				ft_pipim(commands[t], envp);
+				ft_pipim(commands[t], com);
 				free(commands[t]);
 				commands[t] = NULL;
 			}

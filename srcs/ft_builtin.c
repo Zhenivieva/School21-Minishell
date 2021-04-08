@@ -61,22 +61,18 @@ int		ft_echo(t_com *com)
 	return (0);
 }
 
-int		ft_export(t_com *com, char **envp)
+
+int		ft_unset(t_com *com)
 {
 
 }
 
-int		ft_unset(t_com *com, char **envp)
+int		ft_cd(t_com *com)
 {
 
 }
 
-int		ft_cd(t_com *com, char **envp)
-{
-
-}
-
-int		ft_env(t_com *com, char **envp)
+int		ft_env(t_com *com)
 {
 
 }

@@ -56,7 +56,7 @@ void	ft_closefd(int npipes, int pipes[npipes][2])
 				dup2(pipes[i - 1][0], 0);
 			ft_closefd(npipes, pipes);
 			ft_parsecom(pipecom[i], com);
-			if (ft_builtin(com))
+//			if (ft_builtin(com))
 				(ft_forexecve(com));
 			exit(11);
         }
