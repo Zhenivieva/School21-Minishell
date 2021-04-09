@@ -27,15 +27,20 @@ void 	ft_sortenv(t_env *env)
 
 int 	ft_poiskkey(t_env *env, char *find, char *content)
 {
+	t_env *temp;
+
+	temp = env;
 	while (env)
 	{
-		if (!(ft_strncmp(env->key, find, ft_strlen(find))))
+		if (!(ft_strcmp(env->key, find)))
 		{
 			env->content = ft_strdup(content);
+			env = temp;
 			return (0);
 		}
 		env = env->next;
 	}
+	env = temp;
 	return (1);
 }
 
@@ -59,7 +64,11 @@ int		ft_export(t_com *com)
 //	char *content;
 	char **envstring;
 	t_env *temp;
-
+	int r = -1;
+	while(com->args[++r])
+	{
+		printf("parseceom: args[%d]-%s\n", r, com->args[r]);
+	}
 	temp = com->env;
 	if (!(com->args[1]))
 	{
@@ -90,7 +99,7 @@ int		ft_export(t_com *com)
 			{
 				envstring = ft_split(com->args[t], '=');
 				if (ft_poiskkey(com->env, envstring[0], envstring[1]))
-					ft_lstadd_back1(&com->env,
+					ft_putsorted(&com->env,
 									ft_lstnew1(envstring[0], envstring[1]));
 				com->env = temp;
 			}

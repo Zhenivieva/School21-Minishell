@@ -91,3 +91,42 @@ void	ft_lstadd_back1(t_env **lst, t_env *new)
 	new->next = last->next;
 	last->next = new;
 }
+
+void	ft_lstadd_front(t_env **lst, t_env *new)
+{
+	if (new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+}
+
+void 	ft_insafter(t_env *env, t_env *new)
+{
+	new->next = env->next;
+	env->next = new;
+}
+
+void	ft_putsorted(t_env **lst, t_env *new)
+{
+	t_env *curr;
+
+	if (*lst == NULL || ft_strncmp((*lst)->key, new->key, ft_strlen(new->key)) >= 0)
+	{
+		ft_lstadd_front(lst, new);
+		return;
+	}
+	curr = *lst;
+	while(curr->next)
+	{
+		if (ft_strncmp(curr->key, new->key, ft_strlen(curr->key)) >= 0)
+		{
+			ft_insafter(curr, new);
+			return;
+		}
+		curr = curr->next;
+
+	}
+	ft_insafter(curr, new);
+
+}

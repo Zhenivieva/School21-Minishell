@@ -32,8 +32,12 @@ int main(int argc, char **argv, char **envp)
 //	a = a->next;
 //	a = a->next;
 //	printf("%s\n", (char *)a->content);
-
-
+/*
+	while(envp[++t])
+	{
+		printf("%s\n", envp[t]);
+	}
+*/
 	ft_forenv(com, envp);
 	while (i > 0)
 	{
@@ -58,7 +62,9 @@ int main(int argc, char **argv, char **envp)
 			}
 		}
 		free(line);
+		line = NULL;
 	}
+
 	return 0;
 }
 

@@ -62,11 +62,6 @@ int		ft_echo(t_com *com)
 }
 
 
-int		ft_unset(t_com *com)
-{
-
-}
-
 int		ft_cd(t_com *com)
 {
 

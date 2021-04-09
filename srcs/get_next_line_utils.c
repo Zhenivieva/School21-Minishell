@@ -17,10 +17,9 @@ size_t	ft_strlen(const char *str)
 	int	k;
 
 	k = 0;
-	while (*str)
+	while (str[k])
 	{
 		k++;
-		str++;
 	}
 	return (k);
 }
@@ -29,6 +28,8 @@ char	*ft_strdup(const char *s1)
 {
 	char	*s2;
 	size_t	len;
+	if (!s1)
+		return (NULL);
 
 	len = ft_strlen(s1) + 1;
 	s2 = malloc(sizeof(char) * (len));

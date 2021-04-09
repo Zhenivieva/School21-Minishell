@@ -63,7 +63,9 @@ int		ft_numcommand(char *command)
 
 	c = 0;
 	t = -1;
-	while (command[++t] != ' ' && command[t] != '\0')
+	if (!command)
+		return (0);
+	while (command[t] != '\0' && command[++t] != ' ')
 		c++;
 	return (c);
 }
@@ -75,6 +77,8 @@ int 	ft_numargs(char *command)
 
 	c = 0;
 	t = -1;
+	if (!command)
+		return (0);
 	while (command[++t])
 	{
 		if (command[t] == ' ')
@@ -131,16 +135,26 @@ void ft_forenv(t_com *com, char **envp)
 	int t;
 	char **envstring;
 	t_env *temp;
-
+	com->env = NULL;
 //	com->env = malloc(sizeof(t_env));
 	t = -1;
 //	temp = com->env;
+/*
+	while(envp[++t])
+	{
+		printf("%s\n", envp[t]);
+	}
+ */
+
 	while(envp[++t])
 	{
 		envstring = ft_split(envp[t], '=');
+//		printf("-----------------------------------------\n");
 //		printf("%s\n", envstring[0]);
 //		printf("%s\n", envstring[1]);
-		ft_lstadd_back1(&com->env, ft_lstnew1(envstring[0], envstring[1]));
+//		printf("-----------------------------------------\n");
+//		ft_lstadd_back1(&com->env, ft_lstnew1(envstring[0], envstring[1]));
+		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 	}
 //	com->env = temp;
 	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
@@ -150,6 +164,23 @@ void ft_forenv(t_com *com, char **envp)
 	while (envp[++t])
 		com->envp[t] = ft_strdup(envp[t]);
 	com->envp[t] = NULL;
+
+
+
+//	while (com->env)
+//	{
+//		write(1, "declare -x ", 11);
+//		ft_putstr_fd(com->env->key, 1);
+//		if (com->env->content)
+//		{
+//			write(1, "=\"", 2);
+//			ft_putstr_fd(com->env->content, 1);
+//			write(1, "\"", 1);
+//		}
+//		write(1, "\n", 1);
+//		com->env = com->env->next;
+//	}
+//	com->env = temp;
 }
 
 void ft_parsecom(char *pipecom, t_com *com)
@@ -221,6 +252,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 		}
 		com->args[inds.a] = NULL;
 	}
+
 }
 
 int ft_builtin(t_com *com)
@@ -233,8 +265,8 @@ int ft_builtin(t_com *com)
 		return (ft_echo(com));
 	if (!(ft_strncmp(com->args[0], "export", 7)))
 		return (ft_export(com));
-//	if (!(ft_strncmp(com->args[0], "unset", 6)))
-//		return (ft_unset(com));
+	if (!(ft_strncmp(com->args[0], "unset", 6)))
+		return (ft_unset(com));
 //	if (!(ft_strncmp(com->args[0], "cd", 3)))
 //		return (ft_cd(com));
 //	if (!(ft_strncmp(com->args[0], "env", 4)))
