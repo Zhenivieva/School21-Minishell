@@ -8,7 +8,7 @@ int ft_error(int n)
 		printf("Malloc problem2222\n");
 	if (n == -3)
 		printf("Malloc problem3333\n");
-	if (n == -4)
+	if (n == 4)
 		printf("Malloc problem4444\n");
 	if (n == 5)
 		printf("FD with gnl problem\n");
@@ -65,7 +65,7 @@ int		ft_numcommand(char *command)
 	t = -1;
 	if (!command)
 		return (0);
-	while (command[t] != '\0' && command[++t] != ' ')
+	while (command[++t] != '\0' && command[t] != ' ')
 		c++;
 	return (c);
 }
@@ -117,35 +117,23 @@ void double_quotes(char *pipecom, t_com *com, t_indexes *inds)
 	}
 }
 
-int		ft_kolenvp(char **envp)
-{
-	int t;
-	int c;
-
-	t = -1;
-	c = 0;
-	while (envp[++t])
-		c++;
-//	printf("kolichestvo-%d\n", c);
-	return (c);
-}
 
 void ft_forenv(t_com *com, char **envp)
 {
 	int t;
-	char **envstring;
-	t_env *temp;
+	char **envstring; //НУЖНО!!!
+//	t_env *temp;
 	com->env = NULL;
 //	com->env = malloc(sizeof(t_env));
 	t = -1;
 //	temp = com->env;
-/*
-	while(envp[++t])
-	{
-		printf("%s\n", envp[t]);
-	}
- */
 
+//	while(envp[++t])
+//	{
+//		printf("%s\n", envp[t]);
+//	}
+
+t = -1;
 	while(envp[++t])
 	{
 		envstring = ft_split(envp[t], '=');
@@ -157,13 +145,13 @@ void ft_forenv(t_com *com, char **envp)
 		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 	}
 //	com->env = temp;
-	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
-	if (!(com && com->envp))
-		ft_error(-2);
-	t = -1;
-	while (envp[++t])
-		com->envp[t] = ft_strdup(envp[t]);
-	com->envp[t] = NULL;
+//	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
+//	if (!(com && com->envp))
+//		ft_error(-2);
+//	t = -1;
+//	while (envp[++t])
+//		com->envp[t] = ft_strdup(envp[t]);
+//	com->envp[t] = NULL;
 
 
 
@@ -186,7 +174,7 @@ void ft_forenv(t_com *com, char **envp)
 void ft_parsecom(char *pipecom, t_com *com)
 {
 	t_indexes inds;
-	t_list *ret;
+//	t_list *ret;
 	com->file = malloc(sizeof(char *) * 10);
 //	com->redir = malloc(sizeof(t_list *) * (300));
 	inds.k = -1;
@@ -197,7 +185,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 	{
 		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom) + 2));
 		if (!com->args)
-			ft_error(-4);
+			ft_error(4);
 		inds.k = 0;
 		while (pipecom[inds.k])
 		{
@@ -241,7 +229,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 				if ((pipecom[inds.k] != '<') && (pipecom[inds.k] != '>'))
 					inds.k++;
 			}
-			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 301);
+			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 1000);
 			if (com->args[inds.a] == NULL)
 				ft_error(-3);
 			parse_word(pipecom, com, &inds, &t);
@@ -255,24 +243,45 @@ void ft_parsecom(char *pipecom, t_com *com)
 
 }
 
+void ft_shlvlinc(t_com *com)
+{
+	t_env *temp;
+
+	temp = com->env;
+	while(com->env)
+	{
+		if (!(ft_strcmp(com->env->key, "SHLVL")))
+		{
+			com->env->content = ft_strdup("5"); //leaks, oh my gggg
+			break;
+		}
+		com->env = com->env->next;
+	}
+
+	com->env = temp;
+}
+
 int ft_builtin(t_com *com)
 {
+	com->shlvl = 0;
 //    if (com->konecg > 0)
 //        ft_redir(com);
-	if (!(ft_strncmp(com->args[0], "pwd", 4)))
+	if (!(ft_strcmp(com->args[0], "pwd")))
 		return (ft_pwd());
-	if (!(ft_strncmp(com->args[0], "echo", 5)))
+	if (!(ft_strcmp(com->args[0], "echo")))
 		return (ft_echo(com));
-	if (!(ft_strncmp(com->args[0], "export", 7)))
+	if (!(ft_strcmp(com->args[0], "export")))
 		return (ft_export(com));
-	if (!(ft_strncmp(com->args[0], "unset", 6)))
+	if (!(ft_strcmp(com->args[0], "unset")))
 		return (ft_unset(com));
 //	if (!(ft_strncmp(com->args[0], "cd", 3)))
 //		return (ft_cd(com));
 //	if (!(ft_strncmp(com->args[0], "env", 4)))
 //		return (ft_env(com));
-	if (!(ft_strncmp(com->args[0], "exit", 5)))
+	if (!(ft_strcmp(com->args[0], "exit")))
 		return (ft_exit(com));
+	if (!(ft_strcmp(com->args[0], "./minishell")))
+		ft_shlvlinc(com);
 	return (1);
 }
 
@@ -313,8 +322,10 @@ int ft_forexecve(t_com *com)
 
 	if (com->konecg == 0)
 	{
+
         if (ft_builtin(com))
         {
+			ft_copyenvp(com);
             if (ft_slash(com->args[0]))
             {
                 if (!(ft_relabsbin(com)))
@@ -328,9 +339,11 @@ int ft_forexecve(t_com *com)
                     ft_error(6);
             waitpid(pid, NULL, 0);
         }
+
 	}
 	else
 		ft_redir(com);
+	return (0);
 }
 
 

@@ -157,6 +157,7 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t)
 				break;
 			}
 			com->args[inds->a][inds->b++] = pipecom[inds->k++];
+			(void)t;
 		}
 	}
 }

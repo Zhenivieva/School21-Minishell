@@ -51,6 +51,7 @@ int ft_redir(t_com *com)
 
         if (ft_builtin(com))
         {
+			ft_copyenvp(com);
             if (ft_slash(com->args[0]))
                 ft_relabsbin(com);
             if (execve(com->args[0], com->args, com->envp) == -1)
@@ -83,4 +84,5 @@ int ft_redir(t_com *com)
 //		printf("Succes!\n");
 //		printf("Some port processing goes here!\n");
 	}
+	return (0);
 }

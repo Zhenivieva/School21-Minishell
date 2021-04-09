@@ -20,10 +20,6 @@
 //	}
 //}
 
-void 	ft_sortenv(t_env *env)
-{
-
-}
 
 int 	ft_poiskkey(t_env *env, char *find, char *content)
 {
@@ -59,7 +55,7 @@ int 	ft_parsearg(char *key)
 int		ft_export(t_com *com)
 {
 	int t;
-	int k;
+//	int k;
 //	char *key;
 //	char *content;
 	char **envstring;

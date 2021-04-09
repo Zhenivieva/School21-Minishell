@@ -4,7 +4,7 @@
 
 #ifndef MINISHELL_MINISHELL_H
 #define MINISHELL_MINISHELL_H
-# define BUFFER_SIZE 1
+# define BS 1
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -14,6 +14,8 @@
 # include <stdio.h>
 # include <signal.h>
 # include <sys/types.h>
+
+
 
 typedef struct		s_redir
 {
@@ -75,6 +77,7 @@ typedef struct s_com
 	t_list *redir;
 	char **file;
 	t_env *env;
+	int 	shlvl;
 }				t_com;
 
 int get_next_line(char **line);
@@ -119,5 +122,6 @@ void	ft_lstadd_back1(t_env **lst, t_env *new);
 void 	ft_forenv(t_com *com, char **envp);
 void	ft_putsorted(t_env **lst, t_env *new);
 int		ft_strcmp(const char *s1, const char *s2);
+void	ft_copyenvp(t_com *com);
 
 #endif //MINISHELL_MINISHELL_H

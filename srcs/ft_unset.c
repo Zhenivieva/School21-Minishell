@@ -27,7 +27,7 @@ int		ft_unset(t_com *com)
 	int t;
 	t_env *to_remove;
 	t_env  *curr;
-	t_env  *temp;
+//	t_env  *temp;
 
 	t = 0;
 	if (com->env == NULL)

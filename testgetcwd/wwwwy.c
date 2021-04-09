@@ -1,0 +1,30 @@
+//USER=mmaryjan
+//TERMINAL_EMULATOR=JetBrains-JediTerm
+//HOME=/Users/mmaryjan
+//		COMMAND_MODE=unix2003
+//LOGIN_SHELL=1
+//XPC_SERVICE_NAME=0
+//LOGNAME=mmaryjan
+//TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n003vcwh00yv74/T/
+//SHELL=/bin/zsh
+//		__INTELLIJ_COMMAND_HISTFILE__=/Users/mmaryjan/Library/Application Support/JetBrains/CLion2020.3/terminal/history/history-82
+//SECURITYSESSIONID=186a8
+//XPC_FLAGS=0x0
+//Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.06enEjm2iV/Render
+//		LC_CTYPE=en_US.UTF-8
+//__CF_USER_TEXT_ENCODING=0xF6CE4:0x0:0x0
+//PATH=/Users/mmaryjan/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+//		TERM=xterm-256color
+//SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.7Kd0MsRAVl/Listeners
+//		SHLVL=1
+//PWD=/Users/mmaryjan/projects/minishell
+//		OLDPWD=/Users/mmaryjan/projects/minishell
+//		ZSH=/Users/mmaryjan/.oh-my-zsh
+//		PAGER=less
+//LESS=-R
+//LSCOLORS=Gxfxcxdxbxegedabagacad
+//HOMEBREW_CACHE=/tmp/mmaryjan/Homebrew/Caches
+//		HOMEBREW_TEMP=/tmp/mmaryjan/Homebrew/Temp
+//		_=/Users/mmaryjan/projects/minishell/./minishell
+
+
