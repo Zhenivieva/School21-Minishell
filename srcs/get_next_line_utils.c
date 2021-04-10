@@ -76,6 +76,29 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (dest);
 }
 
+char	*ft_strjoin_f(char const *s1, char const *s2)
+{
+	size_t	l1;
+	size_t	l2;
+	char	*dest;
+
+	if (!s1)
+		return (ft_strdup(s2)); //to avoid segf
+	if (!s2)
+		return (ft_strdup(s1)); //to avoid segf
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	dest = malloc(sizeof(char) * (l1 + l2 + 1));
+	if (dest == NULL)
+		return (NULL);
+	(void)ft_memcpy(dest, s1, l1);
+	(void)ft_memcpy(&dest[l1], s2, l2);
+	dest[l1 + l2] = '\0';
+//	free(s1);
+//	free(s2);
+	return (dest);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;

@@ -54,5 +54,6 @@ int		ft_unset(t_com *com)
 			curr = curr->next;
 		}
 	}
+	ft_copyenvp(com);
 	return (0);
 }

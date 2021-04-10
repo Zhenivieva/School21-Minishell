@@ -107,17 +107,23 @@ int		ft_exit(t_com *com)
 			{
 				printf("exit\n");
 				printf("minishell: exit: too many arguments\n");
-				exit(1);
+				com->exit = 1;
+				printf("com->exit in ft_exit:%d\n", com->exit);
+				exit(com->exit);
 			}
 			else
 			{
 				printf("exit\n");
 				res = ft_atoi(com->args[1]);
-				exit(res >= 0 ? res : 256 + res);
+				com->exit = (res >= 0 ? res : 256 + res);
+				printf("com->exit in ft_exit:%d\n", com->exit);
+				exit(com->exit);
 			}
 		}
 	}
-	exit(0);
+	com->exit = 0;
+	printf("com->exit in ft_exit:%d\n", com->exit);
+	exit(com->exit);
 	return (0);
 
 }

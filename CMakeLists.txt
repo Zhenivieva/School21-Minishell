@@ -10,7 +10,7 @@ include_directories(./includes/)
 AUX_SOURCE_DIRECTORY (${PATH} MY_SRCS)
 
 # Add main.cpp file of project root directory as source file
-set(SOURCE_FILES ${MY_SRCS} includes/minishell.h srcs/ft_redirect.c srcs/ft_export.c testgetcwd/wwwwy.c srcs/mini_utils.c)
+set(SOURCE_FILES ${MY_SRCS} includes/minishell.h srcs/ft_redirect.c srcs/ft_export.c unnecessary_files/wwwwy.c srcs/mini_utils.c)
 
 LINK_DIRECTORIES(./)
 

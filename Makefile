@@ -34,6 +34,7 @@ SRCS	=   srcs/ft_atoi.c \
             srcs/lstadd_back.c \
             srcs/main.c \
             srcs/mini_utils.c \
+            srcs/ft_itoa.c \
 
 DIR_HEADERS	= ./includes/
 

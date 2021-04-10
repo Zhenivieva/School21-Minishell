@@ -20,6 +20,7 @@ int main(int argc, char **argv, char **envp)
 
 	fd = 0;
 	i = 1;
+
 	com = malloc(sizeof(t_com));
 //
 //	t_list *a;
@@ -35,11 +36,13 @@ int main(int argc, char **argv, char **envp)
 //	printf("%s\n", (char *)a->content);
 	(void)argc;
 	(void)argv;
+//	com->exit = 8;
 //	t = -1;
 //	while(envp[++t])
 //	{
 //		printf("%s\n", envp[t]);
 //	}
+
 
 	ft_forenv(com, envp);
 	while (i > 0)

@@ -144,6 +144,7 @@ t = -1;
 //		ft_lstadd_back1(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 	}
+	ft_shlvlinc(com);
 //	com->env = temp;
 //	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
 //	if (!(com && com->envp))
@@ -181,8 +182,8 @@ void ft_parsecom(char *pipecom, t_com *com)
 	inds.a = 0;
 
 	int t;
-	while (pipecom[++inds.k])
-	{
+//	while (pipecom[++inds.k])
+//	{
 		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom) + 2));
 		if (!com->args)
 			ft_error(4);
@@ -239,31 +240,47 @@ void ft_parsecom(char *pipecom, t_com *com)
 				inds.a++;
 		}
 		com->args[inds.a] = NULL;
-	}
+//	}
 
 }
 
 void ft_shlvlinc(t_com *com)
 {
 	t_env *temp;
+	int temp2;
+	char *temps;
+	char temp3[300];
 
 	temp = com->env;
 	while(com->env)
 	{
 		if (!(ft_strcmp(com->env->key, "SHLVL")))
 		{
-			com->env->content = ft_strdup("5"); //leaks, oh my gggg
+			temp2 = ft_atoi(com->env->content);
+			temp2++;
+			temps = com->env->content;
+			com->env->content = ft_itoa(temp2);
+			free(temps);
+			temps = NULL;
 			break;
+		}
+		if (!(ft_strcmp(com->env->key, "OLDPWD")))
+		{
+			com->env->content = NULL;
+		}
+		if (!(ft_strcmp(com->env->key, "PWD")))
+		{
+			com->env->content = getcwd(temp3, 300);
 		}
 		com->env = com->env->next;
 	}
-
 	com->env = temp;
+	ft_copyenvp(com);
 }
+
 
 int ft_builtin(t_com *com)
 {
-	com->shlvl = 0;
 //    if (com->konecg > 0)
 //        ft_redir(com);
 	if (!(ft_strcmp(com->args[0], "pwd")))
@@ -280,8 +297,6 @@ int ft_builtin(t_com *com)
 //		return (ft_env(com));
 	if (!(ft_strcmp(com->args[0], "exit")))
 		return (ft_exit(com));
-	if (!(ft_strcmp(com->args[0], "./minishell")))
-		ft_shlvlinc(com);
 	return (1);
 }
 
@@ -325,7 +340,6 @@ int ft_forexecve(t_com *com)
 
         if (ft_builtin(com))
         {
-			ft_copyenvp(com);
             if (ft_slash(com->args[0]))
             {
                 if (!(ft_relabsbin(com)))
@@ -335,8 +349,10 @@ int ft_forexecve(t_com *com)
             }
             pid = fork();
             if (pid == 0)
-                if (execve(com->args[0], com->args, com->envp) == -1)
-                    ft_error(6);
+			{
+            	if (execve(com->args[0], com->args, com->envp) == -1)
+					ft_error(6);
+			}
             waitpid(pid, NULL, 0);
         }
 
@@ -345,8 +361,6 @@ int ft_forexecve(t_com *com)
 		ft_redir(com);
 	return (0);
 }
-
-
 
 void ft_pipim(char *command, t_com *com)
 {
@@ -375,7 +389,7 @@ void ft_pipim(char *command, t_com *com)
 	{
 		ft_parsecom(pipecom[0], com);
 //		if (ft_builtin(com))
-			ft_forexecve(com);
+		ft_forexecve(com);
 	}
 	else
 		ft_pipes(com, pipecom, t);

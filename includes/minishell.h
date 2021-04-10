@@ -67,6 +67,7 @@ typedef struct s_com
 {
 	char **args;
 	char **envp;
+	char **envp2;
 	int  def_fd0;
 	int  def_fd1;
 //	int append[100];
@@ -77,7 +78,7 @@ typedef struct s_com
 	t_list *redir;
 	char **file;
 	t_env *env;
-	int 	shlvl;
+	int 	exit;
 }				t_com;
 
 int get_next_line(char **line);
@@ -123,5 +124,9 @@ void 	ft_forenv(t_com *com, char **envp);
 void	ft_putsorted(t_env **lst, t_env *new);
 int		ft_strcmp(const char *s1, const char *s2);
 void	ft_copyenvp(t_com *com);
+char	*ft_strjoin_f(char const *s1, char const *s2);
+char	*ft_itoa(int n);
+void	ft_shlvlinc(t_com *com);
+void	ft_codeforexit(int status, t_com *com);
 
 #endif //MINISHELL_MINISHELL_H

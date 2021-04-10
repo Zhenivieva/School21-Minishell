@@ -8,26 +8,40 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 	int t;
 	int c;
 	int ret;
+	char *itoa;
 
-
-	c = 0;
-	while (dollar[c] != '\0' && dollar[c] != '$'
-	&& dollar[c] != '\\' && dollar[c] != '\''
-	&& dollar[c] != '"' && dollar[c] != ' ')
+	if (*dollar == '?')
 	{
-			 c++;
+		itoa = ft_itoa(com->exit);
+		printf("com->exit in get dollar:%d\n", com->exit);
+		while ((c = ft_strlen(itoa)) > 0)
+		{
+			com->args[*a][(*b)++] = *itoa++;
+			c--;
+		}
+		return (2);
 	}
-	ret = c;
-//добавить реаллок com->args[*a]
-	t = -1;
-	while (com->envp[++t])
-		if (!(ft_strncmp(com->envp[t], dollar, c)))
+	else
+	{
+		c = 0;
+		while (dollar[c] != '\0' && dollar[c] != '$'
+			   && dollar[c] != '\\' && dollar[c] != '\''
+			   && dollar[c] != '"' && dollar[c] != ' ')
 		{
 			c++;
-			while (com->envp[t][c])
-				com->args[*a][(*b)++] = com->envp[t][c++];
 		}
-	return (ret + 1);
+		ret = c;
+//добавить реаллок com->args[*a]
+		t = -1;
+		while (com->envp[++t])
+			if (!(ft_strncmp(com->envp[t], dollar, c)))
+			{
+				c++;
+				while (com->envp[t][c])
+					com->args[*a][(*b)++] = com->envp[t][c++];
+			}
+		return (ret + 1);
+	}
 }
 
 char *ft_getpath(t_com *com)
@@ -78,6 +92,7 @@ int 	ft_relabsbin(t_com *com)
 			com->args[0] = temp2;
 			free(temp);
 			flag = 1;
+			break ;
 		}
 	}
 	if (flag)

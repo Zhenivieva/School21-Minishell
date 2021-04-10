@@ -13,6 +13,7 @@
 void	ft_closefd(int npipes, int pipes[npipes][2])
 {
 	int j = -1;
+
 	while (++j < npipes)
 	{
 		close(pipes[j][0]);
@@ -25,6 +26,7 @@ void	ft_closefd(int npipes, int pipes[npipes][2])
     int i;
     int pids[npipes];
     int pipes[npipes][2];
+	int wstatus;
 
 	dup2(0, com->def_fd0);
 	dup2(1, com->def_fd1);
@@ -64,7 +66,8 @@ void	ft_closefd(int npipes, int pipes[npipes][2])
 	ft_closefd(npipes, pipes);
     i = -1;
 	while (++i < npipes)
-		waitpid(pids[i], NULL, 0);
+		waitpid(pids[i], &wstatus, 0);
+	ft_codeforexit(wstatus, com);
 	dup2(com->def_fd0, 0);
 	dup2(com->def_fd1, 1);
 }

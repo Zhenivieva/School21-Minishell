@@ -52,6 +52,31 @@ int 	ft_parsearg(char *key)
 	return (1);
 }
 
+void ft_zamenashlvl(t_com *com, char *content)
+{
+	int t;
+//	char *temp;
+	(void)content;
+
+//	temp = NULL;
+	t = -1;
+	while(com->envp[++t])
+	{
+		if (!(ft_strncmp(com->envp[t], "SHLVL", 5)))
+		{
+			if (com->envp[t] + 6)
+			{
+				printf("ozhidaem shlvl:%s\n", com->envp[t] + 6);
+//				temp = content;
+//				content = ft_strdup(com->envp[t] + 6);
+//				free(temp);
+//				temp = NULL;
+				break;
+			}
+		}
+	}
+}
+
 int		ft_export(t_com *com)
 {
 	int t;
@@ -60,17 +85,19 @@ int		ft_export(t_com *com)
 //	char *content;
 	char **envstring;
 	t_env *temp;
-	int r = -1;
-	while(com->args[++r])
-	{
-		printf("parseceom: args[%d]-%s\n", r, com->args[r]);
-	}
+//	int r = -1;
+//	while(com->args[++r])
+//	{
+//		printf("parseceom: args[%d]-%s\n", r, com->args[r]);
+//	}
 	temp = com->env;
 	if (!(com->args[1]))
 	{
 //		temp = com->env;
 		while (com->env)
 		{
+//			if (!(ft_strcmp(com->env->key, "SHLVL")))
+//				ft_zamenashlvl(com, com->env->content);
 			write(1, "declare -x ", 11);
 			ft_putstr_fd(com->env->key, 1);
 			if (com->env->content)
@@ -122,5 +149,6 @@ int		ft_export(t_com *com)
 //		com->env = com->env->next;
 //	}
 //	ft_sortenv(com->env);
+	ft_copyenvp(com);
 	return (0);
 }

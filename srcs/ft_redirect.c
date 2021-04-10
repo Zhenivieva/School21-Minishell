@@ -12,6 +12,16 @@
 # include <stdio.h>
 # include <sys/types.h>
 
+void ft_codeforexit(int status, t_com *com)
+{
+	if (status == 0)
+		com->exit = 0;
+	else if (status == 256)
+		com->exit = 1;
+	else
+		com->exit = status >> 8;
+}
+
 int ft_redir(t_com *com)
 {
 
@@ -25,8 +35,8 @@ int ft_redir(t_com *com)
 		// dityatko
         while (com->redir)
         {
-            printf("type:%d\n", com->redir->type);
-            printf("redir-content:%s\n", (char *) com->redir->content);
+//            printf("type:%d\n", com->redir->type);
+//            printf("redir-content:%s\n", (char *) com->redir->content);
 
             if (com->redir->type == 1) {
                 file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
@@ -51,7 +61,6 @@ int ft_redir(t_com *com)
 
         if (ft_builtin(com))
         {
-			ft_copyenvp(com);
             if (ft_slash(com->args[0]))
                 ft_relabsbin(com);
             if (execve(com->args[0], com->args, com->envp) == -1)
@@ -64,7 +73,7 @@ int ft_redir(t_com *com)
 //			printf("Could not find program to execute!\n");
 //			exit (15);
 //		}
-		exit(115);
+		exit(0);
 	}
 	else
 	{
@@ -73,6 +82,7 @@ int ft_redir(t_com *com)
 		wait(&wstatus);
 		if (WIFEXITED(wstatus))
 		{
+			ft_codeforexit(wstatus, com);
 			int statusCode = WEXITSTATUS(wstatus);
 			if (statusCode == 0)
 			{
