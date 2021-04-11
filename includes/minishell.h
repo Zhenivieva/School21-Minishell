@@ -14,6 +14,9 @@
 # include <stdio.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <sys/stat.h>
+# include <dirent.h>
+# include <string.h>
 
 
 
@@ -79,6 +82,7 @@ typedef struct s_com
 	char **file;
 	t_env *env;
 	int 	exit;
+	char *oldpwd;
 }				t_com;
 
 int get_next_line(char **line);

@@ -142,6 +142,7 @@ t = -1;
 //		printf("%s\n", envstring[1]);
 //		printf("-----------------------------------------\n");
 //		ft_lstadd_back1(&com->env, ft_lstnew1(envstring[0], envstring[1]));
+
 		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 	}
 	ft_shlvlinc(com);
@@ -291,8 +292,8 @@ int ft_builtin(t_com *com)
 		return (ft_export(com));
 	if (!(ft_strcmp(com->args[0], "unset")))
 		return (ft_unset(com));
-//	if (!(ft_strncmp(com->args[0], "cd", 3)))
-//		return (ft_cd(com));
+	if (!(ft_strncmp(com->args[0], "cd", 3)))
+		return (ft_cd(com));
 //	if (!(ft_strncmp(com->args[0], "env", 4)))
 //		return (ft_env(com));
 	if (!(ft_strcmp(com->args[0], "exit")))

@@ -7,11 +7,23 @@ CMakeFiles/minishell.dir/srcs/ft_atoi.c.o: ../srcs/ft_atoi.c
 CMakeFiles/minishell.dir/srcs/ft_builtin.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_builtin.c.o: ../srcs/ft_builtin.c
 
+CMakeFiles/minishell.dir/srcs/ft_cd.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_cd.c.o: ../srcs/ft_cd.c
+
+CMakeFiles/minishell.dir/srcs/ft_export.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_export.c.o: ../srcs/ft_export.c
+
 CMakeFiles/minishell.dir/srcs/ft_forline.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_forline.c.o: ../srcs/ft_forline.c
 
+CMakeFiles/minishell.dir/srcs/ft_itoa.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_itoa.c.o: ../srcs/ft_itoa.c
+
 CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_lstadd_back.c.o: ../srcs/ft_lstadd_back.c
+
+CMakeFiles/minishell.dir/srcs/ft_memcmp.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_memcmp.c.o: ../srcs/ft_memcmp.c
 
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_parse_utils.c.o: ../srcs/ft_parse_utils.c
@@ -34,6 +46,9 @@ CMakeFiles/minishell.dir/srcs/ft_strncmp.c.o: ../srcs/ft_strncmp.c
 CMakeFiles/minishell.dir/srcs/ft_strtrim.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/ft_strtrim.c.o: ../srcs/ft_strtrim.c
 
+CMakeFiles/minishell.dir/srcs/ft_unset.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/ft_unset.c.o: ../srcs/ft_unset.c
+
 CMakeFiles/minishell.dir/srcs/get_next_line.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/get_next_line.c.o: ../srcs/get_next_line.c
 
@@ -47,4 +62,9 @@ CMakeFiles/minishell.dir/srcs/lstadd_back.c.o: ../srcs/lstadd_back.c
 
 CMakeFiles/minishell.dir/srcs/main.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/srcs/main.c.o: ../srcs/main.c
+
+CMakeFiles/minishell.dir/srcs/mini_utils.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/srcs/mini_utils.c.o: ../srcs/mini_utils.c
+
+CMakeFiles/minishell.dir/unnecessary_files/wwwwy.c.o: ../unnecessary_files/wwwwy.c
 
