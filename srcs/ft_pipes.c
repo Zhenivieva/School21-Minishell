@@ -60,7 +60,8 @@ void	ft_closefd(int npipes, int pipes[npipes][2])
 			ft_parsecom(pipecom[i], com);
 //			if (ft_builtin(com))
 				(ft_forexecve(com));
-			exit(11);
+			com->exit = 11;
+			exit(com->exit);
         }
     }
 	ft_closefd(npipes, pipes);

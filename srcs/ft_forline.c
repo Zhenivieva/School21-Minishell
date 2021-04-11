@@ -318,6 +318,7 @@ int ft_slash(char *comand)
 int ft_forexecve(t_com *com)
 {
 	pid_t pid;
+	int wstatus;
 
 //	int t = -1;
 
@@ -353,7 +354,9 @@ int ft_forexecve(t_com *com)
             	if (execve(com->args[0], com->args, com->envp) == -1)
 					ft_error(6);
 			}
-            waitpid(pid, NULL, 0);
+            waitpid(pid, &wstatus, 0);
+            ft_codeforexit(wstatus, com);
+
         }
 
 	}

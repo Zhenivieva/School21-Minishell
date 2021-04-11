@@ -73,7 +73,8 @@ int ft_redir(t_com *com)
 //			printf("Could not find program to execute!\n");
 //			exit (15);
 //		}
-		exit(0);
+		com->exit = 15;
+		exit(com->exit);
 	}
 	else
 	{
