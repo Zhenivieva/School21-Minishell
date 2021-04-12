@@ -49,7 +49,8 @@ int		ft_echo(t_com *com)
         nflag = check_nflag(com->args[a]);
         while (check_nflag(com->args[a]))
             a++;
-        while (com->args[a]) {
+        while (com->args[a])
+        {
             write(1, com->args[a], ft_strlen(com->args[a]));
             if (com->args[a + 1])
                 write(1, " ", 1);

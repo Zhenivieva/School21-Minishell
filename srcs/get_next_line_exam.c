@@ -10,7 +10,10 @@ int get_next_line(char **line)
 	if (!line || (!(buf = malloc(sizeof(char) * 100000))) || read(0, &buf[0], 0) < 0)
 		return (-1);
 	while ((res = read(0, &buf[i], 1)) > 0 &&  buf[i] != '\n')
-		i++;
+	{
+//	    if (signal(SIGINT, &sighan);
+        i++;
+    }
 	buf[i] = '\0';
 	if (res != -1)
 		*line  = buf;

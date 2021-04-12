@@ -83,6 +83,7 @@ typedef struct s_com
 	t_env *env;
 	int 	exit;
 	char *oldpwd;
+	char *curpwd;
 }				t_com;
 
 int get_next_line(char **line);

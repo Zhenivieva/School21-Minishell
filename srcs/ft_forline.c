@@ -268,10 +268,16 @@ void ft_shlvlinc(t_com *com)
 		if (!(ft_strcmp(com->env->key, "OLDPWD")))
 		{
 			com->env->content = NULL;
+			com->oldpwd = com->env->content;
 		}
 		if (!(ft_strcmp(com->env->key, "PWD")))
 		{
-			com->env->content = getcwd(temp3, 300);
+            temps = com->env->content;
+			com->env->content = ft_strdup(getcwd(temp3, 300));
+            free(temps);
+            temps = NULL;
+            com->curpwd = com->env->content;
+            break;
 		}
 		com->env = com->env->next;
 	}
