@@ -7,7 +7,7 @@ void    ft_copypwd(t_com *com)
 {
     int t;
     char *temp;
-    char *temp2;
+    t_env *temp2;
 
     t = -1;
     while (com->envp[++t])
@@ -48,9 +48,9 @@ void    ft_copypwd(t_com *com)
 int		ft_cd(t_com *com)
 {
 	char pwd[300];
-	char *temp;
+//	char *temp;
 //	com->oldpwd = getcwd(pwd, 300);
-	printf("%s\n", com->curpwd);
+//	printf("%s\n", com->curpwd);
 
 
 	if (com->args[1])
@@ -69,8 +69,8 @@ int		ft_cd(t_com *com)
 		    com->curpwd = ft_strdup(getcwd(pwd, 300));
 //		    free(temp);
 		    ft_copypwd(com);
-            printf("curpwd:%s\n", com->curpwd);
-            printf("oldpwd:%s\n", com->oldpwd);
+//            printf("curpwd:%s\n", com->curpwd);
+//            printf("oldpwd:%s\n", com->oldpwd);
         }
 //		else
 //		{

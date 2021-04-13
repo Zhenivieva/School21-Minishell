@@ -10,38 +10,17 @@
 
 int main(int argc, char **argv, char **envp)
 {
-
 	char *line;
-	int fd;
 	int i;
 	t_com *com;
 	char **commands;
 	int t;
 
-	fd = 0;
 	i = 1;
-
 	com = malloc(sizeof(t_com));
-//
-//	t_list *a;
-//	t_list *b;
-//
-//	a = ft_lstnew("hehe");
-//	b = ft_lstnew("hoho");
-//	ft_lstadd_back(&a, b);
-//	ft_lstadd_back(&com->redir, ft_lstnew("hihi"));
-//
-//	a = a->next;
-//	a = a->next;
-//	printf("%s\n", (char *)a->content);
 	(void)argc;
 	(void)argv;
-//	com->exit = 8;
-//	t = -1;
-//	while(envp[++t])
-//	{
-//		printf("%s\n", envp[t]);
-//	}
+
 
 
 	ft_forenv(com, envp);

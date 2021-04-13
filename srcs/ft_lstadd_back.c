@@ -119,7 +119,7 @@ void	ft_putsorted(t_env **lst, t_env *new)
 	curr = *lst;
 	while(curr->next)
 	{
-		if (ft_strncmp(curr->key, new->key, ft_strlen(curr->key)) >= 0)
+		if (ft_strncmp(curr->next->key, new->key, ft_strlen(curr->key)) >= 0)
 		{
 			ft_insafter(curr, new);
 			return;
@@ -128,5 +128,4 @@ void	ft_putsorted(t_env **lst, t_env *new)
 
 	}
 	ft_insafter(curr, new);
-
 }

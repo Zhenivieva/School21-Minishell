@@ -288,8 +288,6 @@ void ft_shlvlinc(t_com *com)
 
 int ft_builtin(t_com *com)
 {
-//    if (com->konecg > 0)
-//        ft_redir(com);
 	if (!(ft_strcmp(com->args[0], "pwd")))
 		return (ft_pwd());
 	if (!(ft_strcmp(com->args[0], "echo")))
@@ -300,8 +298,8 @@ int ft_builtin(t_com *com)
 		return (ft_unset(com));
 	if (!(ft_strncmp(com->args[0], "cd", 3)))
 		return (ft_cd(com));
-//	if (!(ft_strncmp(com->args[0], "env", 4)))
-//		return (ft_env(com));
+	if (!(ft_strncmp(com->args[0], "env", 4)))
+		return (ft_env(com));
 	if (!(ft_strcmp(com->args[0], "exit")))
 		return (ft_exit(com));
 	return (1);

@@ -67,31 +67,25 @@ int ft_redir(t_com *com)
                 ft_error(6);
         }
 
-//		int err = execve(com->args[0], com->args);
-//		if (err == -1)
-//		{
-//			printf("Could not find program to execute!\n");
-//			exit (15);
-//		}
+
 		com->exit = 15;
 		exit(com->exit);
 	}
 	else
 	{
-		// Parent process
 		int wstatus;
 		wait(&wstatus);
 		if (WIFEXITED(wstatus))
-		{
 			ft_codeforexit(wstatus, com);
-			int statusCode = WEXITSTATUS(wstatus);
-			if (statusCode == 0)
-			{
-				printf("Success!\n");
-			}
-			else
-				printf("Failure with status code %d!\n", statusCode);
-		}
+//		{
+//			int statusCode = WEXITSTATUS(wstatus);
+//			if (statusCode == 0)
+//			{
+//				printf("Success!\n");
+//			}
+//			else
+//				printf("Failure with status code %d!\n", statusCode);
+//		}
 //		printf("Succes!\n");
 //		printf("Some port processing goes here!\n");
 	}
