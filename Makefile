@@ -43,6 +43,8 @@ OBJS	= $(SRCS:.c=.o)
 
 RM		= rm -f
 
+
+
 CC		= gcc
 
 CFLAGS	= -Wall -Wextra -Werror -g
@@ -53,7 +55,7 @@ CFLAGS	= -Wall -Wextra -Werror -g
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) -I $(DIR_HEADERS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) -I $(DIR_HEADERS) $(OBJS) -o $(NAME) -ltermcap
 
 clean:
 	$(RM) $(OBJS)

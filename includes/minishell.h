@@ -17,6 +17,9 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <string.h>
+# include <term.h>
+# include <termios.h>
+# include <termcap.h>
 
 
 
