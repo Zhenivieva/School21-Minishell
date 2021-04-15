@@ -21,7 +21,12 @@
 # include <termios.h>
 # include <termcap.h>
 
-
+typedef struct 		s_tlist
+{
+	char *content;
+	struct s_tlist *prev;
+	struct s_tlist *next;
+}					t_tlist;
 
 typedef struct		s_redir
 {
@@ -87,9 +92,12 @@ typedef struct s_com
 	int 	exit;
 	char *oldpwd;
 	char *curpwd;
+	t_tlist *tail;
+	t_tlist *head;
+	int	inited;
 }				t_com;
 
-int get_next_line(char **line);
+int get_next_line(char **line, t_com *com);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
@@ -136,5 +144,7 @@ char	*ft_strjoin_f(char const *s1, char const *s2);
 char	*ft_itoa(int n);
 void	ft_shlvlinc(t_com *com);
 void	ft_codeforexit(int status, t_com *com);
+void    ft_init(t_tlist **tail, t_tlist **head, char *str, t_com *com);
+void    insert_beginning(t_tlist **tail, char *str);
 
 #endif //MINISHELL_MINISHELL_H

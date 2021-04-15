@@ -145,6 +145,12 @@ t = -1;
 
 		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 	}
+//	printf("%s\n",com->env->key);
+//	while (com->env)
+//	{
+//		printf("key=%s\n", com->env->key);
+//		com->env = com->env->next;
+//	}
 	ft_shlvlinc(com);
 //	com->env = temp;
 //	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
@@ -251,8 +257,8 @@ void ft_shlvlinc(t_com *com)
 	int temp2;
 	char *temps;
 	char temp3[300];
-
 	temp = com->env;
+
 	while(com->env)
 	{
 		if (!(ft_strcmp(com->env->key, "SHLVL")))
@@ -263,7 +269,6 @@ void ft_shlvlinc(t_com *com)
 			com->env->content = ft_itoa(temp2);
 			free(temps);
 			temps = NULL;
-			break;
 		}
 		if (!(ft_strcmp(com->env->key, "OLDPWD")))
 		{
@@ -277,7 +282,6 @@ void ft_shlvlinc(t_com *com)
             free(temps);
             temps = NULL;
             com->curpwd = com->env->content;
-            break;
 		}
 		com->env = com->env->next;
 	}

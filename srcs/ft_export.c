@@ -117,7 +117,6 @@ int		ft_export(t_com *com)
 		t = 0;
 		while (com->args[++t])
 		{
-			printf("args[%d]-%s\n", t, com->args[t]);
 			if (ft_parsearg(com->args[t]))
 			{
 				envstring = ft_split(com->args[t], '=');
@@ -127,28 +126,7 @@ int		ft_export(t_com *com)
 				com->env = temp;
 			}
 		}
-
-//		while (com->env)
-//		{
-//			write(1, "declare -x ", 11);
-//			ft_putstr_fd(com->env->key, 1);
-//			write(1, "=\"", 2);
-//			ft_putstr_fd(com->env->content, 1);
-//			write(1, "\"\n", 2);
-//			com->env = com->env->next;
-//		}
 	}
-//	com->env = temp;
-//	while (com->env)
-//	{
-//		write(1, "declare -x ", 11);
-//		ft_putstr_fd(com->env->key, 1);
-//		write(1, "=\"", 2);
-//		ft_putstr_fd(com->env->content, 1);
-//		write(1, "\"\n", 2);
-//		com->env = com->env->next;
-//	}
-//	ft_sortenv(com->env);
 	ft_copyenvp(com);
 	return (0);
 }
