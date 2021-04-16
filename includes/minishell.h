@@ -121,7 +121,7 @@ int		ft_getdollar(char *dollar, t_com *com, int *b, int *a);
 char	*ft_getpath(t_com *com);
 int 	ft_relabsbin(t_com *com);
 //void	parse_word(char *pipecom, t_com *com, t_indexes *inds);
-void parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t);
+void	parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t);
 void	double_quotes(char *pipecom, t_com *com, t_indexes *inds);
 int		ft_forexecve(t_com *com);
 int		ft_builtin(t_com *com);
@@ -147,4 +147,5 @@ void	ft_codeforexit(int status, t_com *com);
 void    ft_init(t_tlist **tail, t_tlist **head, char *str, t_com *com);
 void    insert_beginning(t_tlist **tail, char *str);
 
+int g_exit;
 #endif //MINISHELL_MINISHELL_H

@@ -21,12 +21,9 @@ void    ft_init(t_tlist **head, t_tlist **tail, char *str, t_com *com)
     new->content = ft_strdup(str);
     new->next = NULL;
     new->prev = NULL;
-
-
     *head = new;
     *tail = new;
     com->inited = 1;
-
 }
 
 void    insert_end(t_tlist **tail, char *str)

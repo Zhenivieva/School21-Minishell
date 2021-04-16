@@ -3,23 +3,6 @@
 //
 
 #include "minishell.h"
-//void make_env_list(t_com *com)
-//{
-//	com->env = malloc(sizeof(t_env));
-//
-//	int t;
-////	char *key;
-////	char *content;
-//	char **envstring;
-//
-//	t = -1;
-//	while(com->envp[++t])
-//	{
-//		envstring = ft_split(com->envp[t], '=');
-//
-//	}
-//}
-
 
 int 	ft_poiskkey(t_env *env, char *find, char *content)
 {
@@ -52,52 +35,19 @@ int 	ft_parsearg(char *key)
 	return (1);
 }
 
-void ft_zamenashlvl(t_com *com, char *content)
-{
-	int t;
-//	char *temp;
-	(void)content;
-
-//	temp = NULL;
-	t = -1;
-	while(com->envp[++t])
-	{
-		if (!(ft_strncmp(com->envp[t], "SHLVL", 5)))
-		{
-			if (com->envp[t] + 6)
-			{
-				printf("ozhidaem shlvl:%s\n", com->envp[t] + 6);
-//				temp = content;
-//				content = ft_strdup(com->envp[t] + 6);
-//				free(temp);
-//				temp = NULL;
-				break;
-			}
-		}
-	}
-}
 
 int		ft_export(t_com *com)
 {
 	int t;
-//	int k;
-//	char *key;
-//	char *content;
+
 	char **envstring;
 	t_env *temp;
-//	int r = -1;
-//	while(com->args[++r])
-//	{
-//		printf("parseceom: args[%d]-%s\n", r, com->args[r]);
-//	}
+
 	temp = com->env;
 	if (!(com->args[1]))
 	{
-//		temp = com->env;
 		while (com->env)
 		{
-//			if (!(ft_strcmp(com->env->key, "SHLVL")))
-//				ft_zamenashlvl(com, com->env->content);
 			write(1, "declare -x ", 11);
 			ft_putstr_fd(com->env->key, 1);
 			if (com->env->content)
@@ -110,7 +60,6 @@ int		ft_export(t_com *com)
 			com->env = com->env->next;
 		}
 		com->env = temp;
-
 	}
 	else
 	{
@@ -130,6 +79,31 @@ int		ft_export(t_com *com)
 	ft_copyenvp(com);
 	return (0);
 }
+
+
+void		ft_env2(t_com *com)
+{
+	if (!(ft_strcmp(com->args[1], "PWD")))
+			ft_pwd();
+	else if (!(ft_strcmp(com->args[1], "LOGNAME")))
+	{
+		while (com->env)
+		{
+			if (!(ft_strcmp(com->env->key, "LOGNAME"))) {
+				ft_putstr_fd(com->env->content, 1);
+				write(1, "\n", 1);
+			}
+			com->env = com->env->next;
+		}
+	}
+	else
+	{
+		write(1, "env: ", 5);
+		ft_putstr_fd(com->args[1], 1);
+		write(1, ": No such file or directory\n", 28);
+	}
+}
+
 
 int		ft_env(t_com *com)
 {
@@ -154,25 +128,7 @@ int		ft_env(t_com *com)
 	}
 	else
 	{
-		if (!(ft_strcmp(com->args[1], "PWD")))
-			ft_pwd();
-		else if (!(ft_strcmp(com->args[1], "LOGNAME")))
-		{
-			while (com->env)
-			{
-				if (!(ft_strcmp(com->env->key, "LOGNAME"))) {
-					ft_putstr_fd(com->env->content, 1);
-					write(1, "\n", 1);
-				}
-				com->env = com->env->next;
-			}
-		}
-		else
-		{
-			write(1, "env: ", 5);
-			ft_putstr_fd(com->args[1], 1);
-			write(1, ": No such file or directory\n", 28);
-		}
+		ft_env2(com);
 		com->env = temp;
 	}
 	return (0);

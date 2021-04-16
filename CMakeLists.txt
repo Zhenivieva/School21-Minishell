@@ -4,7 +4,7 @@ project(minishell)               # Create project "simple_example"
 
 set(PATH ./srcs/)
 
-include_directories(./includes/)
+include_directories(./includes/) 
 
 
 AUX_SOURCE_DIRECTORY (${PATH} MY_SRCS)

@@ -12,13 +12,14 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 
 	if (*dollar == '?')
 	{
-		itoa = ft_itoa(com->exit);
-		printf("com->exit in get dollar:%d\n", com->exit);
+		itoa = ft_itoa(g_exit);
+//		printf("g_exit in get dollar:%d\n", g_exit);
 		while ((c = ft_strlen(itoa)) > 0)
 		{
 			com->args[*a][(*b)++] = *itoa++;
 			c--;
 		}
+		printf("string after get dollar:%s\n",com->args[*a]);
 		return (2);
 	}
 	else

@@ -306,6 +306,7 @@ int ft_builtin(t_com *com)
 		return (ft_env(com));
 	if (!(ft_strcmp(com->args[0], "exit")))
 		return (ft_exit(com));
+	printf("g_exit in builtin:%d\n", g_exit);
 	return (1);
 }
 
@@ -365,9 +366,7 @@ int ft_forexecve(t_com *com)
 			}
             waitpid(pid, &wstatus, 0);
             ft_codeforexit(wstatus, com);
-
         }
-
 	}
 	else
 		ft_redir(com);
@@ -376,20 +375,10 @@ int ft_forexecve(t_com *com)
 
 void ft_pipim(char *command, t_com *com)
 {
-//	t_com	*com;
 	char	**pipecom;
 	int		t;
 
-//	com = malloc(sizeof(t_com));
 	com->konecg = 0;
-//	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
-//	if (!(com && com->envp))
-//		ft_error(-2);
-//	t = -1;
-//	while (envp[++t])
-//		com->envp[t] = ft_strdup(envp[t]);
-//	com->envp[t] = NULL;
-
 	ft_forsplit(command, '|');
 	pipecom = ft_split(command, 10);
 	t = -1;
@@ -400,7 +389,6 @@ void ft_pipim(char *command, t_com *com)
 	if (!(pipecom[1]))
 	{
 		ft_parsecom(pipecom[0], com);
-//		if (ft_builtin(com))
 		ft_forexecve(com);
 	}
 	else

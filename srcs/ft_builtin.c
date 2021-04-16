@@ -62,17 +62,6 @@ int		ft_echo(t_com *com)
 	return (0);
 }
 
-
-//int		ft_cd(t_com *com)
-//{
-//
-//}
-//
-//int		ft_env(t_com *com)
-//{
-//
-//}
-
 int	ft_proverkadigit(char *s)
 {
 	int t;
@@ -123,5 +112,4 @@ int		ft_exit(t_com *com)
 	com->exit = 0;
 	exit(com->exit);
 	return (0);
-
 }
