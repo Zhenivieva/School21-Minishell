@@ -4,7 +4,7 @@
 
 #ifndef MINISHELL_MINISHELL_H
 #define MINISHELL_MINISHELL_H
-# define BS 1
+# define BUFFER_SIZE 1
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -97,7 +97,8 @@ typedef struct s_com
 	int	inited;
 }				t_com;
 
-int get_next_line(char **line, t_com *com);
+int		g_p[2];
+int		get_next_line(char **line, t_com *com);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
@@ -146,6 +147,11 @@ void	ft_shlvlinc(t_com *com);
 void	ft_codeforexit(int status, t_com *com);
 void    ft_init(t_tlist **tail, t_tlist **head, char *str, t_com *com);
 void    insert_beginning(t_tlist **tail, char *str);
+int		get_next_line1(int fd, char **line);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void sigint(int num);
+void sigquit(int num);
+void 	ft_forcat(char **args);
 
 int g_exit;
 #endif //MINISHELL_MINISHELL_H

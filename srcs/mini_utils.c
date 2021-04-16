@@ -55,3 +55,10 @@ void	ft_copyenvp(t_com *com)
 	com->env = temp;
 }
 
+void 	ft_forcat(char **args)
+{
+
+	if (!(ft_strcmp(args[0], "cat")))
+		if (!(args[1]))
+			g_p[0] = 1;
+}

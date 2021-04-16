@@ -9,24 +9,24 @@
 /*   Updated: 2020/11/21 03:42:49 by mmaryjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
+
 #include "minishell.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	char	cc;
-
-	cc = (char)c;
-	while (*s)
-	{
-		if (*s == cc)
-			return ((char*)s);
-		s++;
-	}
-	if (*s == cc)
-		return ((char*)s);
-	return ((char*)NULL);
-}
+//char	*ft_strchr(const char *s, int c)
+//{
+//	char	cc;
+//
+//	cc = (char)c;
+//	while (*s)
+//	{
+//		if (*s == cc)
+//			return ((char*)s);
+//		s++;
+//	}
+//	if (*s == cc)
+//		return ((char*)s);
+//	return ((char*)NULL);
+//}
 
 char	*ft_save(char *buf, char *ost)
 {
@@ -97,7 +97,7 @@ int		retresread(char **ost, int fd)
 	return (resread);
 }
 
-int		get_next_line(int fd, char **line)
+int		get_next_line1(int fd, char **line)
 {
 	static char	*ost[4096];
 	int			resread;
@@ -118,4 +118,3 @@ int		get_next_line(int fd, char **line)
 		return (resread);
 	return (1);
 }
-*/

@@ -68,40 +68,10 @@ void    insert_beginning(t_tlist **head, char *str)
     new->prev = NULL;
     if (*head != NULL)
     {
-        // (*head)->next = NULL;
         (*head)->prev = new;
     }
-    // else
-    // {
-    //     *head
-    // }
     *head = new;
 
 
 }
 
-//int main(int argc, char **argv)
-//{
-//    t_tlist *head = NULL;
-//    t_tlist *tail = NULL;
-//
-//    t_tlist *curr;
-//
-//    init(&head, &tail, 'a');
-//    insert_beginning(&head, 'b');
-//    insert_beginning(&head, 'c');
-//    insert_beginning(&head, 'd');
-//    insert_beginning(&head, 'e');
-//    insert_beginning(&head, 'f');
-//    insert_beginning(&head, 'g');
-//    insert_end(&tail, 'z');
-//    curr = tail;
-//    while(curr)
-//    {
-//        // curr = tail;
-//        printf("%c\n", curr->content);
-//        curr = curr->prev;
-//    }
-//
-//    return (0);
-//}

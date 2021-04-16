@@ -29,6 +29,8 @@ int	ft_forsplit(char *line, char k)
 {
 	int t;
 
+	if (line == NULL)
+		return (0);
 	t = -1;
 	while (line[++t])
 	{
@@ -306,7 +308,6 @@ int ft_builtin(t_com *com)
 		return (ft_env(com));
 	if (!(ft_strcmp(com->args[0], "exit")))
 		return (ft_exit(com));
-	printf("g_exit in builtin:%d\n", g_exit);
 	return (1);
 }
 
@@ -346,6 +347,8 @@ int ft_forexecve(t_com *com)
 //		}
 //	}
 
+//	g_p[0] = 0;
+	ft_forcat(com->args);
 	if (com->konecg == 0)
 	{
 

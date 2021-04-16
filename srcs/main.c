@@ -7,7 +7,6 @@
 //#include "get_next_line.h"
 # define MAXDIR 50
 
-
 int main(int argc, char **argv, char **envp)
 {
 	char *line;
@@ -26,18 +25,17 @@ int main(int argc, char **argv, char **envp)
 	com->head = NULL;
 	com->tail = NULL;
 	ft_forenv(com, envp);
+	signal(SIGQUIT, sigquit);
+	signal(SIGINT, sigint);
 	while (i > 0)
 	{
 //		printf("minishell:");
 //		write(1, "success_minishell$", 18);
 		ft_putstr_fd("minishell$", 1);
-//		i = get_next_line(fd, &line);
 //		thead = com->head;
 		i = get_next_line(&line, com);
-		if (!(com->inited))
-			ft_init(&com->head, &com->tail, line, com);
-		else
-			insert_beginning(&com->head, line);
+//		i = get_next_line1(1, &line);
+//		printf("line in main %s\n", line);
 //		com->head = thead;
 
 		if (i == -1)
@@ -55,7 +53,8 @@ int main(int argc, char **argv, char **envp)
 				commands[t] = NULL;
 			}
 		}
-		free(line);
+		if (line)
+			free(line);
 		line = NULL;
 	}
 

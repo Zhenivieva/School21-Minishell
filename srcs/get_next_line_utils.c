@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "minishell.h"
 
 size_t	ft_strlen(const char *str)
 {
 	int	k;
 
+	if (str == NULL)
+		return (0);
 	k = 0;
 	while (str[k])
 	{
