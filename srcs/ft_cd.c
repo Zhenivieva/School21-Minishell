@@ -1,15 +1,24 @@
-//
-// Created by Murch Flor on 4/11/21.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/17 23:59:53 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/17 23:59:55 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void    ft_copypwd2(t_com *com)
+void	ft_copypwd2(t_com *com)
 {
-	char *temp;
-	t_env *temp2;
+	char	*temp;
+	t_env	*temp2;
 
 	temp2 = com->env;
-	while(com->env)
+	while (com->env)
 	{
 		if (!(ft_strcmp(com->env->key, "PWD")))
 		{
@@ -28,27 +37,27 @@ void    ft_copypwd2(t_com *com)
 	com->env = temp2;
 }
 
-void    ft_copypwd(t_com *com)
+void	ft_copypwd(t_com *com)
 {
-    int t;
-    char *temp;
+	int		t;
+	char	*temp;
 
-    t = -1;
-    while (com->envp[++t])
-    {
-        if (!(ft_strncmp(com->envp[t], "PWD", 3)))
-        {
-            temp = com->envp[t];
-            com->envp[t] = ft_strjoin("PWD=", com->curpwd);
-            free(temp);
-        }
-        if (!(ft_strncmp(com->envp[t], "OLDPWD", 6)))
-        {
-            temp = com->envp[t];
-            com->envp[t] = ft_strjoin("OLDPWD=", com->oldpwd);
-            free(temp);
-        }
-    }
+	t = -1;
+	while (com->envp[++t])
+	{
+		if (!(ft_strncmp(com->envp[t], "PWD", 3)))
+		{
+			temp = com->envp[t];
+			com->envp[t] = ft_strjoin("PWD=", com->curpwd);
+			free(temp);
+		}
+		if (!(ft_strncmp(com->envp[t], "OLDPWD", 6)))
+		{
+			temp = com->envp[t];
+			com->envp[t] = ft_strjoin("OLDPWD=", com->oldpwd);
+			free(temp);
+		}
+	}
 	ft_copypwd2(com);
 }
 
@@ -96,5 +105,5 @@ int		ft_cd(t_com *com)
 		com->curpwd = ft_strdup(getcwd(pwd, 300));
 		ft_copypwd(com);
 	}
-		return (0);
+	return (0);
 }

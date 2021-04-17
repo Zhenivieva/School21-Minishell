@@ -1,17 +1,26 @@
-//
-// Created by Murch Flor on 3/27/21.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_builtin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/17 23:56:33 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/17 23:56:41 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int		ft_pwd(void)
+int	ft_pwd(void)
 {
 	char dir[300];
 
-	printf ("%s\n", getcwd(dir, 300)); //putstr(getcwd(...))
+	printf("%s\n", getcwd(dir, 300));
 	return (0);
 }
 
-int check_nflag(char *word)
+int	check_nflag(char *word)
 {
 	int nflag;
 	int i;
@@ -30,14 +39,14 @@ int check_nflag(char *word)
 			else
 			{
 				nflag = 0;
-				break;
+				break ;
 			}
 		}
 	}
 	return (nflag);
 }
 
-int		ft_echo(t_com *com)
+int	ft_echo(t_com *com)
 {
 	int nflag;
 	int a;
@@ -46,26 +55,26 @@ int		ft_echo(t_com *com)
 	nflag = 0;
 	if (com->args[a])
 	{
-        nflag = check_nflag(com->args[a]);
-        while (check_nflag(com->args[a]))
-            a++;
-        while (com->args[a])
-        {
-            write(1, com->args[a], ft_strlen(com->args[a]));
-            if (com->args[a + 1])
-                write(1, " ", 1);
-            a++;
-        }
-    }
+		nflag = check_nflag(com->args[a]);
+		while (check_nflag(com->args[a]))
+			a++;
+		while (com->args[a])
+		{
+			write(1, com->args[a], ft_strlen(com->args[a]));
+			if (com->args[a + 1])
+				write(1, " ", 1);
+			a++;
+		}
+	}
 	if (!nflag)
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 	return (0);
 }
 
 int	ft_proverkadigit(char *s)
 {
-	int t;
-	int min;
+	int	t;
+	int	min;
 
 	t = -1;
 	while (s[++t])
@@ -85,7 +94,7 @@ int	ft_proverkadigit(char *s)
 	return (1);
 }
 
-int		ft_exit(t_com *com)
+int	ft_exit(t_com *com)
 {
 	int res;
 
