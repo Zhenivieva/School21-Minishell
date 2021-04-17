@@ -29,7 +29,6 @@ void    ft_init(t_tlist **head, t_tlist **tail, char *str, t_com *com)
 void    insert_end(t_tlist **tail, char *str)
 {
     t_tlist *new;
-    // t_tlist *curr;
 
     new = malloc(sizeof(t_tlist));
     if (new == NULL)
@@ -43,15 +42,9 @@ void    insert_end(t_tlist **tail, char *str)
     new->prev = *tail;
     if (*tail != NULL)
     {
-        // (*head)->next = NULL;
         (*tail)->next = new;
     }
-    // else
-    // {
-    //     *head
-    // }
     *tail = new;
-
 }
 
 void    insert_beginning(t_tlist **head, char *str)
@@ -71,7 +64,5 @@ void    insert_beginning(t_tlist **head, char *str)
         (*head)->prev = new;
     }
     *head = new;
-
-
 }
 

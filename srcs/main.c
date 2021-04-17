@@ -54,7 +54,10 @@ int main(int argc, char **argv, char **envp)
 			}
 		}
 		if (line)
+		{
 			free(line);
+			line = NULL;
+		}
 		line = NULL;
 	}
 

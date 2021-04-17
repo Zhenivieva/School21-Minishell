@@ -35,13 +35,29 @@ int 	ft_parsearg(char *key)
 	return (1);
 }
 
+void	ft_export2(t_com *com, t_env	*temp)
+{
+	char	**envstring;
+	int		t;
+
+	t = 0;
+	while (com->args[++t])
+	{
+		if (ft_parsearg(com->args[t]))
+		{
+			envstring = ft_split(com->args[t], '=');
+			if (ft_poiskkey(com->env, envstring[0], envstring[1]))
+				ft_putsorted(&com->env, ft_lstnew1(envstring[0],
+									   envstring[1]));
+			com->env = temp;
+		}
+	}
+	ft_copyenvp(com);
+}
 
 int		ft_export(t_com *com)
 {
-	int t;
-
-	char **envstring;
-	t_env *temp;
+	t_env	*temp;
 
 	temp = com->env;
 	if (!(com->args[1]))
@@ -62,24 +78,10 @@ int		ft_export(t_com *com)
 		com->env = temp;
 	}
 	else
-	{
-		t = 0;
-		while (com->args[++t])
-		{
-			if (ft_parsearg(com->args[t]))
-			{
-				envstring = ft_split(com->args[t], '=');
-				if (ft_poiskkey(com->env, envstring[0], envstring[1]))
-					ft_putsorted(&com->env,
-									ft_lstnew1(envstring[0], envstring[1]));
-				com->env = temp;
-			}
-		}
-	}
+		ft_export2(com, temp);
 	ft_copyenvp(com);
 	return (0);
 }
-
 
 void		ft_env2(t_com *com)
 {
@@ -89,7 +91,8 @@ void		ft_env2(t_com *com)
 	{
 		while (com->env)
 		{
-			if (!(ft_strcmp(com->env->key, "LOGNAME"))) {
+			if (!(ft_strcmp(com->env->key, "LOGNAME")))
+			{
 				ft_putstr_fd(com->env->content, 1);
 				write(1, "\n", 1);
 			}
@@ -104,10 +107,9 @@ void		ft_env2(t_com *com)
 	}
 }
 
-
 int		ft_env(t_com *com)
 {
-	t_env *temp;
+	t_env	*temp;
 
 	temp = com->env;
 	if (!(com->args[1]))

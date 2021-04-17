@@ -26,7 +26,6 @@ int		ft_kolenvp(char **envp)
 	c = 0;
 	while (envp[++t])
 		c++;
-//	printf("kolichestvo-%d\n", c);
 	return (c);
 }
 
@@ -41,9 +40,6 @@ void	ft_copyenvp(t_com *com)
 	if (!(com && com->envp))
 		ft_error(-2);
 	t = -1;
-//	while (envp[++t])
-//		com->envp[t] = ft_strdup(envp[t]);
-//	com->envp[t] = NULL;
 	while (com->env)
 	{
 		temp2 = ft_strjoin("=", com->env->content);

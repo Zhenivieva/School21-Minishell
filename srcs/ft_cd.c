@@ -50,9 +50,6 @@ int		ft_cd(t_com *com)
 	char pwd[300];
 	int flag;
 	t_env *temp;
-//	char *temp;
-//	com->oldpwd = getcwd(pwd, 300);
-//	printf("%s\n", com->curpwd);
 
 	flag = 0;
 	if (!(com->args[1]))
@@ -85,11 +82,6 @@ int		ft_cd(t_com *com)
 		com->oldpwd = com->curpwd;
 		com->curpwd = ft_strdup(getcwd(pwd, 300));
 		ft_copypwd(com);
-
 	}
-
-
 		return (0);
-
-
 	}

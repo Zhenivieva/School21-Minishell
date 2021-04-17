@@ -53,6 +53,7 @@ char *ft_remove(char *buf, int count)
 int get_next_line(char **line, t_com *com)
 {
 	char *buf;
+	char *tbuf;
 	int res;
 	char str[2000] = "";
 	struct termios term;
@@ -62,6 +63,8 @@ int get_next_line(char **line, t_com *com)
 	int count;
 	int max;
 	int flag;
+	int it;
+	int it2;
 
 	t_tlist *thead;
 	t_tlist *thead2;
@@ -96,18 +99,21 @@ int get_next_line(char **line, t_com *com)
 		{
 			tputs(restore_cursor, 1, ft_putchar);
 			tputs(tigetstr("ed"), 1, ft_putchar);
+
 			if (com->head)
 			{
 
-				if (buf)
+				if (buf)  // проверяем, если уже что-то набрано, то записываем в историю
 				{
+					printf("%s\n", buf);
 					if (!(com->inited))
 					{
 						thead2 = com->head;
 						com->head = thead;
 						ft_init(&com->head, &com->tail, buf, com);
 						com->head = thead2;
-						com->head = com->head->prev;
+//						if (com->head->prev)
+//							com->head = com->head->prev;
 					}
 					else
 					{
@@ -115,17 +121,22 @@ int get_next_line(char **line, t_com *com)
 						com->head = thead;
 						insert_beginning(&com->head, buf);
 						com->head = thead2;
-						com->head = com->head->prev;
+//						if (com->head->prev)
+//							com->head = com->head->prev;
 					}
 					free(buf);
 					buf = NULL;
-
 				}
 				if (com->head->next && flag == 1)
 					com->head = com->head->next;
 				*line = ft_strdup(com->head->content);
+//				count = ft_strlen(*line);
+//				max = count;
 				write(1, com->head->content, ft_strlen(com->head->content));
 				flag = 1;
+//				buf = ft_strdup(*line);   // нужно для того. чтобы обратиться с истории и редактировать
+				count = ft_strlen(*line);
+				max = count;
 			}
 
 		}
@@ -144,16 +155,21 @@ int get_next_line(char **line, t_com *com)
 		}
 		else if (!ft_strcmp(str, "\177"))
 		{
-			if (flag) {
-				buf = ft_strdup(com->head->content);
-				count = ft_strlen(buf);
-			}
+			printf("count %d\n", count);
+			printf("max %d\n", max);
+//			if (flag) {
+//				buf = ft_strdup(com->head->content);
+//				count = ft_strlen(buf);
+//				max = count;
+//			}
 			if (count > 0)
 			{
 				tputs(cursor_left, 1, ft_putchar);
 				tputs(tgetstr("dc", 0), 1, ft_putchar);
-
+//				printf("count %d\n", count);
+				printf("max1 %d\n", max);
 				buf = ft_remove(buf, count-1);
+				printf("max2 %d\n", max);
 				*line = ft_strdup(buf);
 				count--;
 				max--;
@@ -193,10 +209,59 @@ int get_next_line(char **line, t_com *com)
 		}
 		else
 		{
-			write (1, str, res);
+//			tputs(cursor_right, 1, ft_putchar);
+//			write (1, str, res);
+
+//			if (flag && *line)
+//			{
+//				buf = ft_strjoin(buf, *line);
+//			}
+			if (flag)
+				buf = ft_strdup(*line);
 			if (ft_strcmp(str, "\n") && ft_strlen(str) == 1)
-				buf = ft_strjoin_f(buf, str);
-			count = ft_strlen(buf);
+			{
+				count++;
+				max++;
+				if (count == max)
+				{
+
+					buf = ft_strjoin_f(buf, str);
+					write(1, str, res);
+				}
+				else
+				{
+					//					printf("count %d\n", count);
+//					printf("max %d\n", max);
+//					printf("str - %c\n", str[0]);
+					tbuf = malloc(sizeof(char) * (2000)); //leak
+					it = 0;
+					it2 = 0;
+					while (buf[it] && it < max - 1)
+					{
+						if (it2 == count - 1)
+							tbuf[it2++] = str[0];
+						else
+							tbuf[it2++] = buf[it++];
+
+					}
+					tbuf[it2] = '\0';
+//					printf("tbuf=%s\n", tbuf);
+					free(buf);
+					buf = tbuf;
+
+					it = -1;
+					while (++it < count - 1)
+						tputs(cursor_left, 1, ft_putchar);
+					write(1, buf, max);
+//					write(1, str, res);
+//					write(1, buf + count, max - count);
+					it = -1;
+					while (++it < max - count)
+						tputs(cursor_left, 1, ft_putchar);
+				}
+			}
+
+//			count = ft_strlen(buf);
 //			printf("count buf=%d\n", count);
 //			if (flag)
 //			{
@@ -204,17 +269,19 @@ int get_next_line(char **line, t_com *com)
 //				count = ft_strlen(*line);
 //				printf("count line=%d\n", count);
 //			}
-			max = count;
+
 			if (ft_strcmp(str, "\n"))
 			{
-				if (flag)
-					*line = ft_strjoin_f(*line, buf);
-				else
+//				if (flag)
+//					*line = ft_strjoin_f(*line, buf);
+//				else
 					*line = ft_strdup(buf);
 			}
 //				*line = ft_strjoin_f(*line, buf);
 		}
 	}
+
+	write (1, "\n", 1);
 	com->head = thead;
 	free(buf);
 	buf = NULL;

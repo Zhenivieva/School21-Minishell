@@ -152,6 +152,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void sigint(int num);
 void sigquit(int num);
 void 	ft_forcat(char **args);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 
 int g_exit;
 #endif //MINISHELL_MINISHELL_H
