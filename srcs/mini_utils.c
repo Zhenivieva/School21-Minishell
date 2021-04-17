@@ -65,3 +65,12 @@ void	ft_forcat(char **args)
 		if (!(args[1]))
 			g_p[0] = 1;
 }
+
+int 	ft_errno(char *komand, int ex)
+{
+	ft_putstr_fd("minishell: ", 1);
+	ft_putstr_fd(komand, 1);
+	ft_putstr_fd(": command not found\n", 1);
+//	write(1, "\n", 1);
+	exit(ex);
+}

@@ -4,19 +4,18 @@ void sigint(int num)
 {
 	(void)num;
 //	write(1, "\b\b  \b\b", 6);
-	write(1, "\nminishell$", 11);
+	write(1, "\n", 1);
 }
 
 void sigquit(int num)
 {
 	(void)num;
-	write(1, "sigquit\n",8);
 
-	if (g_p[0] == 1)
-	{
-		ft_putstr_fd("Quit: 3", 1);
-	}
-	exit(1);
+//	if (g_p[0] == 1)
+//	{
+		ft_putstr_fd("Quit: 3\n", 1);
+//	}
+
 //	write(1, "\b\b  \b\b", 6);
 //	write(1, "\nnazhali ctrl-\\\n", 16);
 }

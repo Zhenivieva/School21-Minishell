@@ -134,61 +134,21 @@ void ft_forenv(t_com *com, char **envp)
 {
 	int t;
 	char **envstring; //НУЖНО!!!
-//	t_env *temp;
+
 	com->env = NULL;
-//	com->env = malloc(sizeof(t_env));
 	t = -1;
-//	temp = com->env;
-
-//	while(envp[++t])
-//	{
-//		printf("%s\n", envp[t]);
-//	}
-
-t = -1;
 	while(envp[++t])
 	{
 		envstring = ft_split(envp[t], '=');
-//		printf("-----------------------------------------\n");
-//		printf("%s\n", envstring[0]);
-//		printf("%s\n", envstring[1]);
-//		printf("-----------------------------------------\n");
-//		ft_lstadd_back1(&com->env, ft_lstnew1(envstring[0], envstring[1]));
-
 		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
+//		if (envstring[1])
+//			free(envstring[1]);
+//		if (envstring[0])
+//			free(envstring[0]);
+//		if (envstring)
+//			free(envstring);
 	}
-//	printf("%s\n",com->env->key);
-//	while (com->env)
-//	{
-//		printf("key=%s\n", com->env->key);
-//		com->env = com->env->next;
-//	}
 	ft_shlvlinc(com);
-//	com->env = temp;
-//	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
-//	if (!(com && com->envp))
-//		ft_error(-2);
-//	t = -1;
-//	while (envp[++t])
-//		com->envp[t] = ft_strdup(envp[t]);
-//	com->envp[t] = NULL;
-
-
-
-//	while (com->env)
-//	{
-//		write(1, "declare -x ", 11);
-//		ft_putstr_fd(com->env->key, 1);
-//		if (com->env->content)
-//		{
-//			write(1, "=\"", 2);
-//			ft_putstr_fd(com->env->content, 1);
-//			write(1, "\"", 1);
-//		}
-//		write(1, "\n", 1);
-//		com->env = com->env->next;
-//	}
-//	com->env = temp;
 }
 
 void ft_parsecom(char *pipecom, t_com *com)
@@ -341,21 +301,6 @@ int ft_forexecve(t_com *com)
 	pid_t pid;
 	int wstatus;
 
-//	int t = -1;
-
-//	while (com->args[++t])
-//	{
-//		printf("%d-%s\n", t, com->args[t]);
-//	}
-//	printf("com->konecg=%d\n", com->konecg);
-//	if  (com->redir) {
-//		printf("before cicle redir-content:%s\n", (char *) com->redir->content);
-//		while (com->redir) {
-//		    printf("type:%d\n", com->redir->type);
-//			printf("redir-content:%s\n", (char *) com->redir->content);
-//			com->redir = com->redir->next;
-//		}
-//	}
 
 //	g_p[0] = 0;
 	ft_forcat(com->args);
@@ -375,7 +320,7 @@ int ft_forexecve(t_com *com)
             if (pid == 0)
 			{
             	if (execve(com->args[0], com->args, com->envp) == -1)
-					ft_error(6);
+					ft_errno(com->args[0],6);
 			}
             waitpid(pid, &wstatus, 0);
             ft_codeforexit(wstatus, com);

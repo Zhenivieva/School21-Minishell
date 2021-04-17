@@ -153,6 +153,7 @@ void sigint(int num);
 void sigquit(int num);
 void 	ft_forcat(char **args);
 void	*ft_memmove(void *dst, const void *src, size_t len);
+int 	ft_errno(char *komand, int ex);
 
 int g_exit;
 #endif //MINISHELL_MINISHELL_H

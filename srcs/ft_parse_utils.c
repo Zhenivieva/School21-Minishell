@@ -19,7 +19,6 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 			com->args[*a][(*b)++] = *itoa++;
 			c--;
 		}
-		printf("string after get dollar:%s\n",com->args[*a]);
 		return (2);
 	}
 	else
