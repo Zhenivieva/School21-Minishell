@@ -1,12 +1,20 @@
-//
-// Created by Marleen Maryjane on 4/9/21.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mflor <mflor@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/17 23:52:41 by mflor             #+#    #+#             */
+/*   Updated: 2021/04/17 23:56:47 by mflor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_lstsize(t_env *lst)
+int		ft_lstsize(t_env *lst)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (lst != NULL)
@@ -36,7 +44,7 @@ void	ft_copyenvp(t_com *com)
 	char	*temp2;
 
 	temp = com->env;
-	com->envp = malloc(sizeof (char *) * (ft_lstsize(com->env) + 1));
+	com->envp = malloc(sizeof(char *) * (ft_lstsize(com->env) + 1));
 	if (!(com && com->envp))
 		ft_error(-2);
 	t = -1;
@@ -51,9 +59,8 @@ void	ft_copyenvp(t_com *com)
 	com->env = temp;
 }
 
-void 	ft_forcat(char **args)
+void	ft_forcat(char **args)
 {
-
 	if (!(ft_strcmp(args[0], "cat")))
 		if (!(args[1]))
 			g_p[0] = 1;
