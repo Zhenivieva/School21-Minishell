@@ -13,13 +13,13 @@ int ft_error(int n)
 	if (n == 5)
 		printf("FD with gnl problem\n");
 	if (n == 6)
-		printf("Execve problem\n");
-	if (n == -6)
-		printf("Unknown program\n");
+		printf("minishell: unknown program\n");
+//	if (n == -6)
+//		printf("Unknown program\n");
 	if (n == 7)
 		printf("Fork returned -1\n");
 	if (n == 8)
-		printf("Ne smog otkrity fail, sorry\n");
+		printf("minishell: syntax error\n");
 	if (n > 0)
 		exit(n);
 	return (n);
@@ -34,6 +34,16 @@ int	ft_forsplit(char *line, char k)
 	t = -1;
 	while (line[++t])
 	{
+		if (line[t] == '<' || (line[t] == '>' && line[t + 1] != '>') || (line[t] == '>' && line[t + 1] == '>'))
+		{
+			t++;
+			if (line[t] == '>')
+				t++;
+			while (line[t] == ' ')
+				t++;
+			if (line[t] == '\0')
+				return(ft_error(-1));
+		}
 		if (line[t] == '"')
 		{
 			while (line[++t] != '"')
@@ -372,7 +382,7 @@ int ft_forexecve(t_com *com)
         }
 	}
 	else
-		ft_redir(com);
+		return (ft_redir(com));
 	return (0);
 }
 

@@ -71,6 +71,7 @@ int get_next_line(char **line, t_com *com)
 	*line = NULL;
 	buf = NULL; //buf = NULL
 
+	signal(SIGINT, sigint);
 
 //	fd = open("/Users/mflor/history2.txt", O_RDWR | O_CREAT | O_APPEND, 0777);
 	tcgetattr(0, &term);
@@ -93,6 +94,7 @@ int get_next_line(char **line, t_com *com)
 	{
 		res = read(0, str, 100);
 		str[res] = '\0';
+//		printf("str |%s|\n", str);
 //		if (ft_strlen(str) == 1)
 //			write(fd, str, ft_strlen(str));
 		if (!ft_strcmp(str, "\e[A"))
@@ -105,7 +107,7 @@ int get_next_line(char **line, t_com *com)
 
 				if (buf)  // проверяем, если уже что-то набрано, то записываем в историю
 				{
-					printf("%s\n", buf);
+//					printf("%s\n", buf);
 					if (!(com->inited))
 					{
 						thead2 = com->head;
@@ -134,7 +136,7 @@ int get_next_line(char **line, t_com *com)
 //				max = count;
 				write(1, com->head->content, ft_strlen(com->head->content));
 				flag = 1;
-//				buf = ft_strdup(*line);   // нужно для того. чтобы обратиться с истории и редактировать
+				buf = ft_strdup(*line);   // нужно для того. чтобы обратиться с истории и редактировать
 				count = ft_strlen(*line);
 				max = count;
 			}
@@ -151,12 +153,14 @@ int get_next_line(char **line, t_com *com)
 					write(1, com->head->content, ft_strlen(com->head->content));
 					*line = ft_strdup(com->head->content);
 				}
+				else
+					*line = ft_strdup("");
 			}
 		}
 		else if (!ft_strcmp(str, "\177"))
 		{
-			printf("count %d\n", count);
-			printf("max %d\n", max);
+//			printf("count %d\n", count);
+//			printf("max %d\n", max);
 //			if (flag) {
 //				buf = ft_strdup(com->head->content);
 //				count = ft_strlen(buf);
@@ -167,9 +171,9 @@ int get_next_line(char **line, t_com *com)
 				tputs(cursor_left, 1, ft_putchar);
 				tputs(tgetstr("dc", 0), 1, ft_putchar);
 //				printf("count %d\n", count);
-				printf("max1 %d\n", max);
+//				printf("max1 %d\n", max);
 				buf = ft_remove(buf, count-1);
-				printf("max2 %d\n", max);
+//				printf("max2 %d\n", max);
 				*line = ft_strdup(buf);
 				count--;
 				max--;
@@ -206,6 +210,11 @@ int get_next_line(char **line, t_com *com)
 			free(buf);
 			buf = NULL;
 			write(1, "\nminishell$", 11);
+		}
+		else if (!ft_strcmp(str, "\034"))
+		{
+//			printf("ctrl slash\n");
+			continue;
 		}
 		else
 		{
@@ -285,7 +294,7 @@ int get_next_line(char **line, t_com *com)
 	com->head = thead;
 	free(buf);
 	buf = NULL;
-	if (ft_strcmp(*line, "") != -1 )
+	if (ft_strcmp(*line, "") != -1 && ft_strcmp(*line, "") != 0)
 	{
 		if (!(com->inited))
 			ft_init(&com->head, &com->tail, *line, com);

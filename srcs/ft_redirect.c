@@ -24,23 +24,25 @@ void ft_codeforexit(int status, t_com *com)
 
 int ft_redir(t_com *com)
 {
-
+	t_list *temp;
     int file;
     int file2;
+	dup2(0, com->def_fd0);
+	dup2(1, com->def_fd1);
+//    temp = com->redir;
 	int pid = fork();
 //	if (pid == -1)
 //		ft_error(7);
 	if (pid == 0)
 	{
 		// dityatko
+		temp = com->redir;
         while (com->redir)
         {
-//            printf("type:%d\n", com->redir->type);
-//            printf("redir-content:%s\n", (char *) com->redir->content);
-
             if (com->redir->type == 1) {
-                file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
+                file = open(com->redir->content, O_RDONLY);
                 file2 = dup2(file, 0);
+                ft_putstr_fd("file=%d\n", 1);
             }
             else if (com->redir->type == 2)
             {
@@ -52,13 +54,17 @@ int ft_redir(t_com *com)
                 file = open(com->redir->content, O_WRONLY | O_APPEND);
                 file2 = dup2(file, 1);
             }
-            if (file == -1)
-                ft_error(8);
-//            int file2 = dup2(file, 1);
+//            if (file == -1)
+//                ft_error(8);
             close(file);
+			if (file == -1)
+			{
+				dup2(com->def_fd1, 1);
+				ft_error(8);
+			}
             com->redir = com->redir->next;
         }
-
+		com->redir = temp;
         if (ft_builtin(com))
         {
             if (ft_slash(com->args[0]))
@@ -89,5 +95,6 @@ int ft_redir(t_com *com)
 //		printf("Succes!\n");
 //		printf("Some port processing goes here!\n");
 	}
+//	com->redir = temp;
 	return (0);
 }

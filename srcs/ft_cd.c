@@ -3,11 +3,35 @@
 //
 #include "minishell.h"
 
+void    ft_copypwd2(t_com *com)
+{
+	char *temp;
+	t_env *temp2;
+
+	temp2 = com->env;
+	while(com->env)
+	{
+		if (!(ft_strcmp(com->env->key, "PWD")))
+		{
+			temp = com->env->content;
+			com->env->content = ft_strdup(com->curpwd);
+			free(temp);
+		}
+		if (!(ft_strcmp(com->env->key, "OLDPWD")))
+		{
+			temp = com->env->content;
+			com->env->content = ft_strdup(com->oldpwd);
+			free(temp);
+		}
+		com->env = com->env->next;
+	}
+	com->env = temp2;
+}
+
 void    ft_copypwd(t_com *com)
 {
     int t;
     char *temp;
-    t_env *temp2;
 
     t = -1;
     while (com->envp[++t])
@@ -25,31 +49,13 @@ void    ft_copypwd(t_com *com)
             free(temp);
         }
     }
-    temp2 = com->env;
-    while(com->env)
-    {
-        if (!(ft_strcmp(com->env->key, "PWD")))
-        {
-            temp = com->env->content;
-            com->env->content = ft_strdup(com->curpwd);
-            free(temp);
-        }
-        if (!(ft_strcmp(com->env->key, "OLDPWD")))
-        {
-            temp = com->env->content;
-            com->env->content = ft_strdup(com->oldpwd);
-            free(temp);
-        }
-        com->env = com->env->next;
-    }
-    com->env = temp2;
+	ft_copypwd2(com);
 }
 
-int		ft_cd(t_com *com)
+void	ft_cd2(t_com *com)
 {
-	char pwd[300];
-	int flag;
-	t_env *temp;
+	int		flag;
+	t_env	*temp;
 
 	flag = 0;
 	if (!(com->args[1]))
@@ -62,15 +68,22 @@ int		ft_cd(t_com *com)
 				if (com->env->content)
 					com->args[1] = com->env->content;
 				else
-					write(1, "HOME didn't set\n", 16);
+					write(1, "HOME isn't set\n", 15);
 				flag = 1;
 			}
 			com->env = com->env->next;
 		}
 		com->env = temp;
 		if (!flag)
-			write(1, "HOME didn't set\n", 16);
+			write(1, "HOME isn't set\n", 15);
 	}
+}
+
+int		ft_cd(t_com *com)
+{
+	char pwd[300];
+
+	ft_cd2(com);
 	if ((chdir(com->args[1])) < 0)
 	{
 		ft_putstr_fd("minishell: ", 1);
@@ -84,4 +97,4 @@ int		ft_cd(t_com *com)
 		ft_copypwd(com);
 	}
 		return (0);
-	}
+}

@@ -26,7 +26,7 @@ int main(int argc, char **argv, char **envp)
 	com->tail = NULL;
 	ft_forenv(com, envp);
 	signal(SIGQUIT, sigquit);
-	signal(SIGINT, sigint);
+//	signal(SIGINT, sigint);
 	while (i > 0)
 	{
 //		printf("minishell:");
