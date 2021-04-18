@@ -28,6 +28,7 @@ void	ft_init(t_tlist **head, t_tlist **tail, char *str, t_com *com)
 	*head = new;
 	*tail = new;
 	com->inited = 1;
+	ft_lstadd_front_m(&g_mem, ft_lstnew(new, 0));
 }
 
 void	insert_beginning(t_tlist **head, char *str)
@@ -35,6 +36,7 @@ void	insert_beginning(t_tlist **head, char *str)
 	t_tlist	*new;
 
 	new = malloc(sizeof(t_tlist));
+
 	if (new == NULL)
 	{
 		exit(1);
@@ -48,4 +50,5 @@ void	insert_beginning(t_tlist **head, char *str)
 		(*head)->prev = new;
 	}
 	*head = new;
+	ft_lstadd_front_m(&g_mem, ft_lstnew(new, 0));
 }

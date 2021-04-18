@@ -35,21 +35,11 @@ t_env	*ft_lstnew1(char *key, char *content)
 	str->key = key;
 	str->content = content;
 	str->next = 0x0;
+	ft_lstadd_front_m(&g_mem, ft_lstnew(str, 0));
 	return (str);
 }
 
 t_list	*ft_lstlast(t_list *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-	{
-		lst = lst->next;
-	}
-	return (lst);
-}
-
-t_env	*ft_lstlast1(t_env *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -76,29 +66,20 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	last->next = new;
 }
 
-void	ft_lstadd_back1(t_env **lst, t_env *new)
-{
-	t_env *last;
-
-	if (!lst || !new)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	last = ft_lstlast1(*lst);
-	new->next = last->next;
-	last->next = new;
-}
-
 void	ft_lstadd_front(t_env **lst, t_env *new)
 {
-	if (new)
-	{
-		new->next = *lst;
-		*lst = new;
-	}
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
+
+void	ft_lstadd_front_m(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }
 
 void 	ft_insafter(t_env *env, t_env *new)
@@ -110,9 +91,7 @@ void 	ft_insafter(t_env *env, t_env *new)
 void	ft_putsorted(t_env **lst, t_env *new)
 {
 	t_env *curr;
-//	t_env *temp;
 
-//	temp = *lst;
 	if (*lst == NULL || ft_strncmp((*lst)->key, new->key, ft_strlen(new->key)) >= 0)
 	{
 		ft_lstadd_front(lst, new);
@@ -130,5 +109,4 @@ void	ft_putsorted(t_env **lst, t_env *new)
 
 	}
 	ft_insafter(curr, new);
-//	*lst = temp;
 }

@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char **envp)
 
 	i = 1;
 	com = malloc(sizeof(t_com));
+	ft_lstadd_front_m(&g_mem, ft_lstnew(com, 0));
 	(void)argc;
 	(void)argv;
 	com->inited = 0;

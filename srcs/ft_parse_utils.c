@@ -19,7 +19,6 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 			com->args[*a][(*b)++] = *itoa++;
 			c--;
 		}
-		printf("string after get dollar:%s\n",com->args[*a]);
 		return (2);
 	}
 	else
@@ -64,6 +63,7 @@ char *ft_getpath(t_com *com)
 				count++;
 			c = 5;
 			path = malloc(count + 1);
+			ft_lstadd_front_m(&g_mem, ft_lstnew(path, 0));
 			while (com->envp[t][c])
 				path[a++] = com->envp[t][c++];
 		}
@@ -107,6 +107,7 @@ char	*ft_forcontent(char *s, int *indk)
 	char *ret;
 
 	ret = malloc(sizeof(char) * (300)); //заменить на strdup
+	ft_lstadd_front_m(&g_mem, ft_lstnew(ret, 0));
 	t = -1;
 	while (s[++t] && s[t] != ' ' && s[t] != '<' && s[t] != '>')
 	{

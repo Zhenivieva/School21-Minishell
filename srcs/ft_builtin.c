@@ -55,8 +55,9 @@ int	ft_echo(t_com *com)
 	nflag = 0;
 	if (com->args[a])
 	{
+
 		nflag = check_nflag(com->args[a]);
-		while (check_nflag(com->args[a]))
+		while (com->args[a] && check_nflag(com->args[a]))
 			a++;
 		while (com->args[a])
 		{

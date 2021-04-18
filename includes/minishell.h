@@ -98,6 +98,8 @@ typedef struct s_com
 }				t_com;
 
 int		g_p[2];
+t_list				*g_mem;
+
 int		get_next_line(char **line, t_com *com);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
@@ -136,7 +138,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 char	*ft_forcontent(char *s, int *inds);
 t_env	*ft_lstnew1(char *key, char *content);
-void	ft_lstadd_back1(t_env **lst, t_env *new);
+void	ft_lstadd_front(t_env **lst, t_env *new);
+void	ft_lstadd_front_m(t_list **lst, t_list *new);
 void 	ft_forenv(t_com *com, char **envp);
 void	ft_putsorted(t_env **lst, t_env *new);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -147,12 +150,11 @@ void	ft_shlvlinc(t_com *com);
 void	ft_codeforexit(int status, t_com *com);
 void    ft_init(t_tlist **tail, t_tlist **head, char *str, t_com *com);
 void    insert_beginning(t_tlist **tail, char *str);
-int		get_next_line1(int fd, char **line);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void sigint(int num);
 void sigquit(int num);
 void 	ft_forcat(char **args);
-void	*ft_memmove(void *dst, const void *src, size_t len);
+
 
 int g_exit;
 #endif //MINISHELL_MINISHELL_H

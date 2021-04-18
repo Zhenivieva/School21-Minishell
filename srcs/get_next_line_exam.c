@@ -35,7 +35,7 @@ char *ft_remove(char *buf, int count)
 	ret = malloc(sizeof(char) * ft_strlen(buf));
 	if (ret == NULL)
 		ft_error (-2);
-
+	ft_lstadd_front_m(&g_mem, ft_lstnew(ret, 0));
 	t = 0;
 	k = 0;
 	while (buf[t])
@@ -243,6 +243,7 @@ int get_next_line(char **line, t_com *com)
 //					printf("max %d\n", max);
 //					printf("str - %c\n", str[0]);
 					tbuf = malloc(sizeof(char) * (2000)); //leak
+					ft_lstadd_front_m(&g_mem, ft_lstnew(tbuf, 0));
 					it = 0;
 					it2 = 0;
 					while (buf[it] && it < max - 1)

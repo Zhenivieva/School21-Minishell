@@ -37,6 +37,7 @@ char	*ft_strdup(const char *s1)
 	s2 = malloc(sizeof(char) * (len));
 	if (!s2)
 		return (NULL);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(s2, 0));
 	s2 = ft_memcpy(s2, s1, len);
 	return (s2);
 }
@@ -72,6 +73,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	dest = malloc(sizeof(char) * (l1 + l2 + 1));
 	if (dest == NULL)
 		return (NULL);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(dest, 0));
 	(void)ft_memcpy(dest, s1, l1);
 	(void)ft_memcpy(&dest[l1], s2, l2);
 	dest[l1 + l2] = '\0';
@@ -95,6 +97,7 @@ char	*ft_strjoin_f(char const *s1, char const *s2)
 	dest = malloc(sizeof(char) * (l1 + l2 + 1));
 	if (dest == NULL)
 		return (NULL);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(dest, 0));
 	(void)ft_memcpy(dest, s1, l1);
 	(void)ft_memcpy(&dest[l1], s2, l2);
 	dest[l1 + l2] = '\0';
@@ -111,6 +114,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sdest = malloc(sizeof(char) * (len + 1));
 	if (!sdest || s == 0)
 		return (NULL);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(sdest, 0));
 	if ((size_t)start >= ft_strlen(s))
 	{
 		*sdest = '\0';

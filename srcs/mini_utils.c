@@ -47,6 +47,7 @@ void	ft_copyenvp(t_com *com)
 	com->envp = malloc(sizeof(char *) * (ft_lstsize(com->env) + 1));
 	if (!(com && com->envp))
 		ft_error(-2);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(com->envp, 0));
 	t = -1;
 	while (com->env)
 	{

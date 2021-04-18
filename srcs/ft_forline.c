@@ -14,8 +14,12 @@ int ft_error(int n)
 		printf("FD with gnl problem\n");
 	if (n == 6)
 		printf("minishell: unknown program\n");
-//	if (n == -6)
-//		printf("Unknown program\n");
+	if (n == -6)
+		printf("-6minishell: syntax error near unexpected token\n");
+	if (n == -7)
+		printf("-7minishell: syntax error near unexpected token\n");
+	if (n == -8)
+		printf("-8minishell: syntax error near unexpected token\n");
 	if (n == 7)
 		printf("Fork returned -1\n");
 	if (n == 8)
@@ -28,21 +32,32 @@ int ft_error(int n)
 int	ft_forsplit(char *line, char k)
 {
 	int t;
+	int p;
 
 	if (line == NULL)
 		return (0);
+	t = 0;
+	while(line[t] == ' ')
+		t++;
+	if (line[t] == k)
+	{
+		printf("line[%d]=%c\n", t, line[t]);
+		return (ft_error(-6));
+	}
 	t = -1;
 	while (line[++t])
 	{
+
 		if (line[t] == '<' || (line[t] == '>' && line[t + 1] != '>') || (line[t] == '>' && line[t + 1] == '>'))
 		{
-			t++;
-			if (line[t] == '>')
-				t++;
-			while (line[t] == ' ')
-				t++;
-			if (line[t] == '\0')
-				return(ft_error(-1));
+			p = t;
+			p++;
+			if (line[p] == '>')
+				p++;
+			while (line[p] == ' ')
+				p++;
+			if (line[p] == '\0')
+				return(ft_error(-7));
 		}
 		if (line[t] == '"')
 		{
@@ -63,7 +78,20 @@ int	ft_forsplit(char *line, char k)
 		if (line[t] == '\\')
 			t = t + 2;
 		if (line[t] == k)
+		{
 			line[t] = 10;
+			p = t;
+			p++;
+			while (line[p] == ' ')
+				p++;
+			if (k == '|')
+				if (line[p] == '\0' || line[p] == k)
+					return(ft_error(-8));
+			if (k == ';')
+				if (line[p] == k)
+					return(ft_error(-8));
+		}
+
 	}
 	return (1);
 }
@@ -157,55 +185,30 @@ t = -1;
 
 		ft_putsorted(&com->env, ft_lstnew1(envstring[0], envstring[1]));
 	}
-//	printf("%s\n",com->env->key);
-//	while (com->env)
-//	{
-//		printf("key=%s\n", com->env->key);
-//		com->env = com->env->next;
-//	}
+
 	ft_shlvlinc(com);
-//	com->env = temp;
-//	com->envp = malloc(sizeof (char *) * (ft_kolenvp(envp) + 1));
-//	if (!(com && com->envp))
-//		ft_error(-2);
-//	t = -1;
-//	while (envp[++t])
-//		com->envp[t] = ft_strdup(envp[t]);
-//	com->envp[t] = NULL;
 
 
 
-//	while (com->env)
-//	{
-//		write(1, "declare -x ", 11);
-//		ft_putstr_fd(com->env->key, 1);
-//		if (com->env->content)
-//		{
-//			write(1, "=\"", 2);
-//			ft_putstr_fd(com->env->content, 1);
-//			write(1, "\"", 1);
-//		}
-//		write(1, "\n", 1);
-//		com->env = com->env->next;
-//	}
-//	com->env = temp;
+
 }
 
 void ft_parsecom(char *pipecom, t_com *com)
 {
 	t_indexes inds;
-//	t_list *ret;
+
 	com->file = malloc(sizeof(char *) * 10);
-//	com->redir = malloc(sizeof(t_list *) * (300));
+	ft_lstadd_front_m(&g_mem, ft_lstnew(com->file, 0));
 	inds.k = -1;
 	inds.a = 0;
 
 	int t;
-//	while (pipecom[++inds.k])
+
 //	{
 		com->args = malloc(sizeof(char *) * (ft_numargs(pipecom) + 2));
 		if (!com->args)
 			ft_error(4);
+		ft_lstadd_front_m(&g_mem, ft_lstnew(com->args, 0));
 		inds.k = 0;
 		while (pipecom[inds.k])
 		{
@@ -250,6 +253,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 					inds.k++;
 			}
 			com->args[inds.a] = malloc(ft_numcommand(pipecom + inds.k) + 1000);
+			ft_lstadd_front_m(&g_mem, ft_lstnew(com->args[inds.a], 0));
 			if (com->args[inds.a] == NULL)
 				ft_error(-3);
 			parse_word(pipecom, com, &inds, &t);
@@ -368,7 +372,7 @@ int ft_forexecve(t_com *com)
             {
                 if (!(ft_relabsbin(com)))
                 {
-                    ft_error(-6);
+                    ft_error(-11);
                 }
             }
             pid = fork();
@@ -392,7 +396,8 @@ void ft_pipim(char *command, t_com *com)
 	int		t;
 
 	com->konecg = 0;
-	ft_forsplit(command, '|');
+	if (ft_forsplit(command, '|') < 0)
+		return ;
 	pipecom = ft_split(command, 10);
 	t = -1;
 	while(pipecom[++t])

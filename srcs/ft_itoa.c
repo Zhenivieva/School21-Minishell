@@ -60,6 +60,7 @@ char			*ft_itoa(int n)
 	dest = malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (NULL);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(dest, 0));
 	dest = filldest(dest, n, len);
 	return (dest);
 }
