@@ -46,7 +46,7 @@ char	*ft_save(char *buf, char *ost)
 
 char	*ft_check_line(char *ost, char **line, int resread)
 {
-	unsigned int	i;
+	int	i;
 	char			*copy;
 
 	i = 0;
@@ -79,6 +79,7 @@ int		retresread(char **ost, int fd)
 
 	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(buf, 0));
 	while (!ft_strchr(*ost, '\n') && (resread = read(fd, buf, BUFFER_SIZE)))
 	{
 		if (resread == -1)

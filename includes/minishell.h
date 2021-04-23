@@ -2,8 +2,8 @@
 // Created by Marleen Maryjane on 3/19/21.
 //
 
-#ifndef MINISHELL_MINISHELL_H
-#define MINISHELL_MINISHELL_H
+#ifndef MINISHELL_H
+#define MINISHELL_H
 # define BUFFER_SIZE 1
 # include <fcntl.h>
 # include <unistd.h>
@@ -85,7 +85,7 @@ typedef struct s_com
 //	int great[100];
 	int less[100];
 	int konecg;
-//	int nachl;
+	int fork;
 	t_list *redir;
 	char **file;
 	t_env *env;
@@ -97,10 +97,12 @@ typedef struct s_com
 	int	inited;
 }				t_com;
 
-int		g_p[2];
+//int		g_p[2];
+t_list *g_mem;
+
 int		get_next_line(char **line, t_com *com);
 char	*ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *str);
+int 	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -153,7 +155,8 @@ void sigint(int num);
 void sigquit(int num);
 void 	ft_forcat(char **args);
 void	*ft_memmove(void *dst, const void *src, size_t len);
-int 	ft_errno(char *komand, int ex);
-
-int g_exit;
+int 	ft_errno(char *komand, int ex, t_com *com);
+void	ft_lstadd_front_m(t_list **lst, t_list *new);
+void	sigint2(int num);
+void	sigquit2(int num);
 #endif //MINISHELL_MINISHELL_H

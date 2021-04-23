@@ -22,18 +22,23 @@ int	main(int argc, char **argv, char **envp)
 
 	i = 1;
 	com = malloc(sizeof(t_com));
+	ft_lstadd_front_m(&g_mem, ft_lstnew(com, 0));
 	(void)argc;
 	(void)argv;
 	com->inited = 0;
 	com->head = NULL;
 	com->tail = NULL;
 	ft_forenv(com, envp);
-	signal(SIGQUIT, sigquit);
-	signal(SIGINT, sigint);
+	if (com->fork == 2)
+	{
+		signal(SIGQUIT, sigquit);
+		signal(SIGINT, sigint);
+	}
 	while (i > 0)
 	{
 		ft_putstr_fd("minishell$", 1);
 		i = get_next_line(&line, com);
+//		i = get_next_line1(0, &line);
 		if (i == -1)
 			ft_error(5);
 		if (ft_forsplit(line, ';') > 0)

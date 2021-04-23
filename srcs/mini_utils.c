@@ -47,6 +47,7 @@ void	ft_copyenvp(t_com *com)
 	com->envp = malloc(sizeof(char *) * (ft_lstsize(com->env) + 1));
 	if (!(com && com->envp))
 		ft_error(-2);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(com->envp, 0));
 	t = -1;
 	while (com->env)
 	{
@@ -59,18 +60,20 @@ void	ft_copyenvp(t_com *com)
 	com->env = temp;
 }
 
-void	ft_forcat(char **args)
-{
-	if (!(ft_strcmp(args[0], "cat")))
-		if (!(args[1]))
-			g_p[0] = 1;
-}
+//void	ft_forcat(char **args)
+//{
+//	if (!(ft_strcmp(args[0], "cat")))
+//		if (!(args[1]))
+//			g_p[0] = 1;
+//}
 
-int 	ft_errno(char *komand, int ex)
+int 	ft_errno(char *komand, int ex, t_com *com)
 {
 	ft_putstr_fd("minishell: ", 1);
 	ft_putstr_fd(komand, 1);
 	ft_putstr_fd(": command not found\n", 1);
 //	write(1, "\n", 1);
-	exit(ex);
+	com->exit = ex + 128;
+//	printf("exit in ft_errno:%d", com->exit);
+	exit(com->exit);
 }

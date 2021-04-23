@@ -56,7 +56,7 @@ int	ft_echo(t_com *com)
 	if (com->args[a])
 	{
 		nflag = check_nflag(com->args[a]);
-		while (check_nflag(com->args[a]))
+		while (com->args[a] && check_nflag(com->args[a]))
 			a++;
 		while (com->args[a])
 		{
@@ -114,6 +114,7 @@ int	ft_exit(t_com *com)
 				printf("exit\n");
 				res = ft_atoi(com->args[1]);
 				com->exit = (res >= 0 ? res : 256 + res);
+//				printf("exit in com-exit: %d\n", com->exit);
 				exit(com->exit);
 			}
 		}

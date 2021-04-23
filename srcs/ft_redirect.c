@@ -16,6 +16,10 @@ void ft_codeforexit(int status, t_com *com)
 {
 	if (status == 0)
 		com->exit = 0;
+	else if (status == 2)
+		com->exit = 130;
+	else if (status == 3)
+		com->exit = 131;
 	else if (status == 256)
 		com->exit = 1;
 	else
@@ -31,8 +35,8 @@ int ft_redir(t_com *com)
 	dup2(1, com->def_fd1);
 //    temp = com->redir;
 	int pid = fork();
-//	if (pid == -1)
-//		ft_error(7);
+	if (pid == -1)
+		ft_error(7);
 	if (pid == 0)
 	{
 		// dityatko
@@ -42,16 +46,15 @@ int ft_redir(t_com *com)
             if (com->redir->type == 1) {
                 file = open(com->redir->content, O_RDONLY);
                 file2 = dup2(file, 0);
-                ft_putstr_fd("file=%d\n", 1);
             }
             else if (com->redir->type == 2)
             {
-                file = open(com->redir->content, O_WRONLY | O_CREAT, 0777);
+                file = open(com->redir->content, O_WRONLY | O_CREAT | O_TRUNC, 0777);
                 file2 = dup2(file, 1);
             }
             else if (com->redir->type == 3)
             {
-                file = open(com->redir->content, O_WRONLY | O_APPEND);
+                file = open(com->redir->content, O_WRONLY | O_CREAT | O_APPEND, 0777);
                 file2 = dup2(file, 1);
             }
 //            if (file == -1)
@@ -81,7 +84,8 @@ int ft_redir(t_com *com)
 	{
 		int wstatus;
 		wait(&wstatus);
-		if (WIFEXITED(wstatus))
+//		printf("status for exit in redirect:%d", wstatus);
+//		if (WIFEXITED(wstatus))
 			ft_codeforexit(wstatus, com);
 //		{
 //			int statusCode = WEXITSTATUS(wstatus);

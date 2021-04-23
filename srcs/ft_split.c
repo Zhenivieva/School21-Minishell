@@ -50,6 +50,7 @@ static char	**retab(char const *s, char c, char **ret)
 			a[2] = ft_strlenw(s, t, c);
 			if (!(ret[a[0]] = (char*)malloc(a[2] + 1)))
 				proverka(ret, a[0]);
+			ft_lstadd_front_m(&g_mem, ft_lstnew(ret[a[0]], 0));
 			a[1] = 0;
 			while (s[t] != c && s[t] != '\0')
 				ret[a[0]][a[1]++] = s[t++];
@@ -94,6 +95,7 @@ char		**ft_split(char const *s, char c)
 		return (NULL);
 	wordlen = reta(s, c);
 	ret = (char**)malloc((sizeof(char *) * (wordlen + 1)));
+	ft_lstadd_front_m(&g_mem, ft_lstnew(ret, 0));
 	if (ret == NULL)
 		return (NULL);
 	ret = retab(s, c, ret);

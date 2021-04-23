@@ -3,21 +3,13 @@
 void sigint(int num)
 {
 	(void)num;
-//	write(1, "\b\b  \b\b", 6);
-	write(1, "\n", 1);
+	write(1, "^C\n", 3);
 }
 
 void sigquit(int num)
 {
 	(void)num;
-
-//	if (g_p[0] == 1)
-//	{
-		ft_putstr_fd("Quit: 3\n", 1);
-//	}
-
-//	write(1, "\b\b  \b\b", 6);
-//	write(1, "\nnazhali ctrl-\\\n", 16);
+	ft_putstr_fd("^\\Quit: 3\n", 1);
 }
 
 int	ft_putchar(int c)
@@ -34,7 +26,7 @@ char *ft_remove(char *buf, int count)
 	ret = malloc(sizeof(char) * ft_strlen(buf));
 	if (ret == NULL)
 		ft_error (-2);
-
+	ft_lstadd_front_m(&g_mem, ft_lstnew(ret, 0));
 	t = 0;
 	k = 0;
 	while (buf[t])
@@ -56,7 +48,7 @@ int get_next_line(char **line, t_com *com)
 	int res;
 	char str[2000] = "";
 	struct termios term;
-	struct termios term1;
+//	struct termios term1;
 	char *term_name = "xterm-256color"; // на айос
 //	int fd;
 	int count;
@@ -70,11 +62,10 @@ int get_next_line(char **line, t_com *com)
 	*line = NULL;
 	buf = NULL; //buf = NULL
 
-	signal(SIGINT, sigint);
 
 //	fd = open("/Users/mflor/history2.txt", O_RDWR | O_CREAT | O_APPEND, 0777);
 	tcgetattr(0, &term);
-	tcgetattr(0, &term1);
+//	tcgetattr(0, &term1);
 	term.c_lflag &= ~(ECHO);
 	term.c_lflag &= ~(ICANON);
 	term.c_lflag &= ~(ISIG);
@@ -139,6 +130,26 @@ int get_next_line(char **line, t_com *com)
 				count = ft_strlen(*line);
 				max = count;
 			}
+
+		}
+		else if (!ft_strcmp(str, "\e[H")) //home
+		{
+			while (count > 0)
+			{
+				tputs(cursor_left, 1, ft_putchar);
+				count--;
+			}
+		}
+		else if (!ft_strcmp(str, "\e[F")) //end
+		{
+			while (count < max)
+			{
+				tputs(cursor_right, 1, ft_putchar);
+				count++;
+			}
+		}
+		else if (!ft_strcmp(str, "\t"))
+		{
 
 		}
 		else if (!ft_strcmp(str, "\e[B"))
@@ -242,6 +253,7 @@ int get_next_line(char **line, t_com *com)
 //					printf("max %d\n", max);
 //					printf("str - %c\n", str[0]);
 					tbuf = malloc(sizeof(char) * (2000)); //leak
+					ft_lstadd_front_m(&g_mem, ft_lstnew(tbuf, 0));
 					it = 0;
 					it2 = 0;
 					while (buf[it] && it < max - 1)
@@ -300,10 +312,10 @@ int get_next_line(char **line, t_com *com)
 		else
 			insert_beginning(&com->head, *line);
 	}
-	term = term1;
-//	term.c_lflag = 0x00000080;
+	term.c_lflag = 0x00000188;
 //	term.c_lflag = 0x00000008;
 //	term.c_lflag = 0x00000100;
+//	term = term1;
 	tcsetattr(0, TCSANOW, &term);
 	return (res);
 }
