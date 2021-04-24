@@ -12,6 +12,13 @@
 
 #include "minishell.h"
 
+static void ft_cominit(t_com *com)
+{
+	com->inited = 0;
+	com->head = NULL;
+	com->tail = NULL;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
@@ -25,9 +32,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_lstadd_front_m(&g_mem, ft_lstnew(com, 0));
 	(void)argc;
 	(void)argv;
-	com->inited = 0;
-	com->head = NULL;
-	com->tail = NULL;
+	ft_cominit(com);
 	ft_forenv(com, envp);
 	if (com->fork == 2)
 	{
@@ -38,7 +43,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ft_putstr_fd("minishell$", 1);
 		i = get_next_line(&line, com);
-//		i = get_next_line1(0, &line);
 		if (i == -1)
 			ft_error(5);
 		if (ft_forsplit(line, ';') > 0)

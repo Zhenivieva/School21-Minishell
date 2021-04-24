@@ -48,9 +48,7 @@ int get_next_line(char **line, t_com *com)
 	int res;
 	char str[2000] = "";
 	struct termios term;
-//	struct termios term1;
 	char *term_name = "xterm-256color"; // на айос
-//	int fd;
 	int count;
 	int max;
 	int flag;
@@ -63,9 +61,7 @@ int get_next_line(char **line, t_com *com)
 	buf = NULL; //buf = NULL
 
 
-//	fd = open("/Users/mflor/history2.txt", O_RDWR | O_CREAT | O_APPEND, 0777);
 	tcgetattr(0, &term);
-//	tcgetattr(0, &term1);
 	term.c_lflag &= ~(ECHO);
 	term.c_lflag &= ~(ICANON);
 	term.c_lflag &= ~(ISIG);
@@ -84,9 +80,6 @@ int get_next_line(char **line, t_com *com)
 	{
 		res = read(0, str, 100);
 		str[res] = '\0';
-//		printf("str |%s|\n", str);
-//		if (ft_strlen(str) == 1)
-//			write(fd, str, ft_strlen(str));
 		if (!ft_strcmp(str, "\e[A"))
 		{
 			tputs(restore_cursor, 1, ft_putchar);
@@ -97,15 +90,12 @@ int get_next_line(char **line, t_com *com)
 
 				if (buf)  // проверяем, если уже что-то набрано, то записываем в историю
 				{
-//					printf("%s\n", buf);
 					if (!(com->inited))
 					{
 						thead2 = com->head;
 						com->head = thead;
 						ft_init(&com->head, &com->tail, buf, com);
 						com->head = thead2;
-//						if (com->head->prev)
-//							com->head = com->head->prev;
 					}
 					else
 					{
@@ -113,8 +103,6 @@ int get_next_line(char **line, t_com *com)
 						com->head = thead;
 						insert_beginning(&com->head, buf);
 						com->head = thead2;
-//						if (com->head->prev)
-//							com->head = com->head->prev;
 					}
 					free(buf);
 					buf = NULL;
@@ -122,8 +110,6 @@ int get_next_line(char **line, t_com *com)
 				if (com->head->next && flag == 1)
 					com->head = com->head->next;
 				*line = ft_strdup(com->head->content);
-//				count = ft_strlen(*line);
-//				max = count;
 				write(1, com->head->content, ft_strlen(com->head->content));
 				flag = 1;
 				buf = ft_strdup(*line);   // нужно для того. чтобы обратиться с истории и редактировать
@@ -169,21 +155,11 @@ int get_next_line(char **line, t_com *com)
 		}
 		else if (!ft_strcmp(str, "\177"))
 		{
-//			printf("count %d\n", count);
-//			printf("max %d\n", max);
-//			if (flag) {
-//				buf = ft_strdup(com->head->content);
-//				count = ft_strlen(buf);
-//				max = count;
-//			}
 			if (count > 0)
 			{
 				tputs(cursor_left, 1, ft_putchar);
 				tputs(tgetstr("dc", 0), 1, ft_putchar);
-//				printf("count %d\n", count);
-//				printf("max1 %d\n", max);
 				buf = ft_remove(buf, count-1);
-//				printf("max2 %d\n", max);
 				*line = ft_strdup(buf);
 				count--;
 				max--;
@@ -223,18 +199,10 @@ int get_next_line(char **line, t_com *com)
 		}
 		else if (!ft_strcmp(str, "\034"))
 		{
-//			printf("ctrl slash\n");
 			continue;
 		}
 		else
 		{
-//			tputs(cursor_right, 1, ft_putchar);
-//			write (1, str, res);
-
-//			if (flag && *line)
-//			{
-//				buf = ft_strjoin(buf, *line);
-//			}
 			if (flag)
 				buf = ft_strdup(*line);
 			if (ft_strcmp(str, "\n") && ft_strlen(str) == 1)
@@ -243,15 +211,11 @@ int get_next_line(char **line, t_com *com)
 				max++;
 				if (count == max)
 				{
-
 					buf = ft_strjoin_f(buf, str);
 					write(1, str, res);
 				}
 				else
 				{
-					//					printf("count %d\n", count);
-//					printf("max %d\n", max);
-//					printf("str - %c\n", str[0]);
 					tbuf = malloc(sizeof(char) * (2000)); //leak
 					ft_lstadd_front_m(&g_mem, ft_lstnew(tbuf, 0));
 					it = 0;
@@ -265,7 +229,6 @@ int get_next_line(char **line, t_com *com)
 
 					}
 					tbuf[it2] = '\0';
-//					printf("tbuf=%s\n", tbuf);
 					free(buf);
 					buf = tbuf;
 
@@ -273,34 +236,18 @@ int get_next_line(char **line, t_com *com)
 					while (++it < count - 1)
 						tputs(cursor_left, 1, ft_putchar);
 					write(1, buf, max);
-//					write(1, str, res);
-//					write(1, buf + count, max - count);
 					it = -1;
 					while (++it < max - count)
 						tputs(cursor_left, 1, ft_putchar);
 				}
 			}
-
-//			count = ft_strlen(buf);
-//			printf("count buf=%d\n", count);
-//			if (flag)
-//			{
-//				*line = ft_strjoin_f(*line, buf);
-//				count = ft_strlen(*line);
-//				printf("count line=%d\n", count);
-//			}
-
 			if (ft_strcmp(str, "\n"))
 			{
-//				if (flag)
-//					*line = ft_strjoin_f(*line, buf);
-//				else
+
 					*line = ft_strdup(buf);
 			}
-//				*line = ft_strjoin_f(*line, buf);
 		}
 	}
-
 	write (1, "\n", 1);
 	com->head = thead;
 	free(buf);
@@ -313,9 +260,6 @@ int get_next_line(char **line, t_com *com)
 			insert_beginning(&com->head, *line);
 	}
 	term.c_lflag = 0x00000188;
-//	term.c_lflag = 0x00000008;
-//	term.c_lflag = 0x00000100;
-//	term = term1;
 	tcsetattr(0, TCSANOW, &term);
 	return (res);
 }
