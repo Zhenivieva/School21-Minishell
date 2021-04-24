@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_redirect1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 20:25:25 by mmaryjan          #+#    #+#             */
-/*   Updated: 2020/11/10 20:00:38 by zheniviev        ###   ########.fr       */
+/*   Created: 2021/04/24 12:07:10 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 12:07:39 by mmaryjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int		ft_strlen(const char *str)
 {
-	unsigned const char *d1;
-	unsigned const char *d2;
-	unsigned int		i;
+	int	k;
 
-	d1 = s1;
-	d2 = s2;
-	i = 0;
-	while (i++ < n)
+	if (str == NULL)
+		return (0);
+	k = 0;
+	while (str[k])
 	{
-		if (*(d1 + i - 1) != *(d2 + i - 1))
-			return (*(d1 + i - 1) - *(d2 + i - 1));
+		k++;
 	}
-	return (0);
+	return (k);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	cc;
+
+	cc = (char)c;
+	while (*s)
+	{
+		if (*s == cc)
+			return ((char*)s);
+		s++;
+	}
+	if (*s == cc)
+		return ((char*)s);
+	return ((char*)NULL);
 }

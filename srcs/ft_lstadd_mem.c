@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_mem.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,53 +12,50 @@
 
 #include "minishell.h"
 
-t_env	*ft_lstnew1(char *key, char *content)
+t_list	*ft_lstnew(void *content, int type)
 {
-	t_env *str;
+	t_list *str;
 
-	str = malloc(sizeof(t_env));
+	str = malloc(sizeof(t_list));
 	if (!str)
 		return (NULL);
-	str->key = key;
+	str->type = type;
 	str->content = content;
 	str->next = 0x0;
-	ft_lstadd_front_m(&g_mem, ft_lstnew(str, 0));
 	return (str);
 }
 
-void	ft_lstadd_front(t_env **lst, t_env *new)
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list *last;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstlast(*lst);
+	new->next = last->next;
+	last->next = new;
+}
+
+void	ft_lstadd_front_m(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
 		return ;
 	new->next = *lst;
 	*lst = new;
-}
-
-void	ft_insafter(t_env *env, t_env *new)
-{
-	new->next = env->next;
-	env->next = new;
-}
-
-void	ft_putsorted(t_env **lst, t_env *new)
-{
-	t_env *curr;
-
-	if (*lst == NULL || ft_strncmp((*lst)->key, new->key,
-								ft_strlen(new->key)) >= 0)
-	{
-		ft_lstadd_front(lst, new);
-		return ;
-	}
-	curr = *lst;
-	while (curr->next)
-	{
-		if (ft_strncmp(curr->next->key, new->key, ft_strlen(curr->key)) >= 0)
-		{
-			ft_insafter(curr, new);
-			return ;
-		}
-		curr = curr->next;
-	}
-	ft_insafter(curr, new);
 }

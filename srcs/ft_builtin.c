@@ -114,7 +114,6 @@ int	ft_exit(t_com *com)
 				printf("exit\n");
 				res = ft_atoi(com->args[1]);
 				com->exit = (res >= 0 ? res : 256 + res);
-//				printf("exit in com-exit: %d\n", com->exit);
 				exit(com->exit);
 			}
 		}

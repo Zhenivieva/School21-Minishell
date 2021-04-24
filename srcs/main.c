@@ -17,7 +17,7 @@ static void	ft_incicle(t_com *com)
 	char	**commands;
 	char	*line;
 	int		t;
-	
+
 	get_next_line(&line, com);
 	if (ft_forsplit(line, ';') > 0)
 	{
@@ -49,6 +49,16 @@ static void	ft_cominit(t_com *com)
 	com->buf = NULL;
 }
 
+void		sigint2(int num)
+{
+	(void)num;
+}
+
+void		sigquit2(int num)
+{
+	(void)num;
+}
+
 int			main(int argc, char **argv, char **envp)
 {
 	t_com	*com;
@@ -63,6 +73,11 @@ int			main(int argc, char **argv, char **envp)
 	{
 		signal(SIGQUIT, sigquit);
 		signal(SIGINT, sigint);
+	}
+	else if (com->fork > 2)
+	{
+		signal(SIGINT, sigint2);
+		signal(SIGQUIT, sigquit2);
 	}
 	while (1)
 	{

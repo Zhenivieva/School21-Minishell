@@ -1,18 +1,18 @@
-//
-// Created by Marleen Maryjane on 4/3/21.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_redirect.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 11:59:32 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 11:59:37 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <math.h>
-# include <pthread.h>
-# include <errno.h>
-# include <stdio.h>
-# include <sys/types.h>
 
-void ft_codeforexit(int status, t_com *com)
+void	ft_codeforexit(int status, t_com *com)
 {
 	if (status == 0)
 		com->exit = 0;
@@ -26,79 +26,73 @@ void ft_codeforexit(int status, t_com *com)
 		com->exit = status >> 8;
 }
 
-int ft_redir(t_com *com)
+int		ft_redir(t_com *com)
 {
-	t_list *temp;
-    int file;
-    int file2;
+	int	wstatus;
+	int pid;
+
 	dup2(0, com->def_fd0);
 	dup2(1, com->def_fd1);
-//    temp = com->redir;
-	int pid = fork();
+	pid = fork();
 	if (pid == -1)
 		ft_error(7);
 	if (pid == 0)
-	{
-		// dityatko
-		temp = com->redir;
-        while (com->redir)
-        {
-            if (com->redir->type == 1) {
-                file = open(com->redir->content, O_RDONLY);
-                file2 = dup2(file, 0);
-            }
-            else if (com->redir->type == 2)
-            {
-                file = open(com->redir->content, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-                file2 = dup2(file, 1);
-            }
-            else if (com->redir->type == 3)
-            {
-                file = open(com->redir->content, O_WRONLY | O_CREAT | O_APPEND, 0777);
-                file2 = dup2(file, 1);
-            }
-//            if (file == -1)
-//                ft_error(8);
-            close(file);
-			if (file == -1)
-			{
-				dup2(com->def_fd1, 1);
-				ft_error(8);
-			}
-            com->redir = com->redir->next;
-        }
-		com->redir = temp;
-        if (ft_builtin(com))
-        {
-            if (ft_slash(com->args[0]))
-                ft_relabsbin(com);
-            if (execve(com->args[0], com->args, com->envp) == -1)
-                ft_error(6);
-        }
-
-
-		com->exit = 15;
-		exit(com->exit);
-	}
+		ft_helpfork(com);
 	else
 	{
-		int wstatus;
 		wait(&wstatus);
-//		printf("status for exit in redirect:%d", wstatus);
-//		if (WIFEXITED(wstatus))
-			ft_codeforexit(wstatus, com);
-//		{
-//			int statusCode = WEXITSTATUS(wstatus);
-//			if (statusCode == 0)
-//			{
-//				printf("Success!\n");
-//			}
-//			else
-//				printf("Failure with status code %d!\n", statusCode);
-//		}
-//		printf("Succes!\n");
-//		printf("Some port processing goes here!\n");
+		ft_codeforexit(wstatus, com);
 	}
-//	com->redir = temp;
 	return (0);
+}
+
+void	ft_helpredir(t_com *com, int f, int f2)
+{
+	while (com->redir)
+	{
+		if (com->redir->type == 1)
+		{
+			f = open(com->redir->content, O_RDONLY);
+			f2 = dup2(f, 0);
+		}
+		else if (com->redir->type == 2)
+		{
+			f = open(com->redir->content, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			f2 = dup2(f, 1);
+		}
+		else if (com->redir->type == 3)
+		{
+			f = open(com->redir->content, O_WRONLY | O_CREAT | O_APPEND, 0777);
+			f2 = dup2(f, 1);
+		}
+		close(f);
+		if (f == -1)
+		{
+			dup2(com->def_fd1, 1);
+			ft_error(8);
+		}
+		com->redir = com->redir->next;
+	}
+}
+
+void	ft_helpfork(t_com *com)
+{
+	t_list	*temp;
+	int		file;
+	int		file2;
+
+	file = 0;
+	file2 = 0;
+	temp = com->redir;
+	ft_helpredir(com, file, file2);
+	com->redir = temp;
+	if (ft_builtin(com))
+	{
+		if (ft_slash(com->args[0]))
+			ft_relabsbin(com);
+		if (execve(com->args[0], com->args, com->envp) == -1)
+			ft_error(6);
+	}
+	com->exit = 15;
+	exit(com->exit);
 }

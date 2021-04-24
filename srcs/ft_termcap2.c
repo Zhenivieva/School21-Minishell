@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_termcap2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 12:00:09 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 12:00:12 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	ft_else2(t_com *com, char *str, int it, int it2)
@@ -74,8 +86,10 @@ void	ft_conds(t_com *com, char **line, char *str, int res)
 void	ft_cicle(t_com *com, char **line)
 {
 	int		res;
-	char	str[2000] = "";
+	char	str[2000];
 
+	str[0] = '\0';
+	com->flag = 0;
 	while (ft_strcmp(str, "\n"))
 	{
 		res = read(0, str, 100);

@@ -10,7 +10,7 @@ include_directories(./includes/)
 AUX_SOURCE_DIRECTORY (${PATH} MY_SRCS)
 
 # Add main.cpp file of project root directory as source file
-set(SOURCE_FILES ${MY_SRCS} includes/minishell.h srcs/ft_redirect.c srcs/ft_export.c unnecessary_files/wwwwy.c srcs/mini_utils.c)
+set(SOURCE_FILES ${MY_SRCS} includes/minishell.h srcs/ft_redirect.c srcs/ft_export.c unnecessary_files/wwwwy.c srcs/mini_utils.c srcs/ft_redirect1.c)
 set(CMAKE_C_FLAGS "-ltermcap")
 
 LINK_DIRECTORIES(./)

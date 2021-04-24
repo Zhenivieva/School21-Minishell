@@ -1,13 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 12:19:58 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 12:20:00 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
+int		ft_getdollar(char *dollar, t_com *com, t_indexes *inds)
 {
-	int t;
-	int c;
-	int ret;
-	int perem;
-	char *itoa;
-	t_env *temp;
+	int		c;
+	int		ret;
+	int		perem;
+	char	*itoa;
 
 	perem = 0;
 	if (*dollar == '?')
@@ -15,50 +25,28 @@ int ft_getdollar(char *dollar, t_com *com, int *b, int *a)
 		itoa = ft_itoa(com->exit);
 		while ((c = ft_strlen(itoa)) > 0)
 		{
-			com->args[*a][(*b)++] = *itoa++;
+			com->args[inds->a][inds->b++] = *itoa++;
 			c--;
 		}
 		return (2);
 	}
 	else
-	{
-		c = 0;
-		while (dollar[c] != '\0' && dollar[c] != '$'
-			   && dollar[c] != '\\' && dollar[c] != '\''
-			   && dollar[c] != '"' && dollar[c] != ' ')
-		{
-			c++;
-		}
-		ret = dollar[c] == '\\' ? c + 1 : c;
-		temp = com->env;
-		t = 0;
-		while (com->env)
-		{
-			if (!(ft_strncmp(com->env->key, dollar, (ft_strlen(com->env->key) > c ? (ft_strlen(com->env->key)): c))))
-			{
-				perem = 1;
-				while (com->env->content[t])
-					com->args[*a][(*b)++] = com->env->content[t++];
-			}
-			com->env = com->env->next;
-		}
-		com->env = temp;
-	}
+		perem = ft_findkey(com, dollar, inds, &ret);
 	if (perem == 0 && dollar[0] == ' ')
 	{
-		com->args[*a][(*b)++] = '$';
+		com->args[inds->a][inds->b++] = '$';
 		return (1);
 	}
 	return (ret + 1);
 }
 
-char *ft_getpath(t_com *com)
+char	*ft_getpath(t_com *com)
 {
-	char *path;
-	int t;
-	int c;
-	int a;
-	int count;
+	char	*path;
+	int		t;
+	int		c;
+	int		a;
+	int		count;
 
 	a = 0;
 	c = 4;
@@ -78,13 +66,13 @@ char *ft_getpath(t_com *com)
 	return (path);
 }
 
-int 	ft_relabsbin(t_com *com)
+int		ft_relabsbin(t_com *com)
 {
-	char **paths;
-	int t;
-	int flag;
-	char *temp;
-	char *temp2;
+	char	**paths;
+	int		t;
+	int		flag;
+	char	*temp;
+	char	*temp2;
 
 	flag = 0;
 	paths = ft_split(ft_getpath(com), ':');
@@ -127,7 +115,7 @@ char	*ft_forcontent(char *s, int *indk)
 	return (ret);
 }
 
-void parse_word(char *pipecom, t_com *com, t_indexes *inds)
+void	parse_word(char *pipecom, t_com *com, t_indexes *inds)
 {
 	while (pipecom[inds->k] != ' ' && pipecom[inds->k] != '\0')
 	{
@@ -139,7 +127,7 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds)
 			if (pipecom[inds->k + 1] != '\0')
 			{
 				inds->k = inds->k +
-						  ft_getdollar(pipecom + inds->k + 1, com, &inds->b, &inds->a);
+					ft_getdollar(pipecom + inds->k + 1, com, inds);
 				continue;
 			}
 			else
@@ -148,7 +136,7 @@ void parse_word(char *pipecom, t_com *com, t_indexes *inds)
 		else if (pipecom[inds->k] != '$')
 		{
 			if (ft_thirdelse(com, pipecom, inds))
-				break;
+				break ;
 			com->args[inds->a][inds->b++] = pipecom[inds->k++];
 		}
 		ft_thirdelse(com, pipecom, inds);

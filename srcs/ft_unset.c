@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 12:00:45 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 12:08:50 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int		ft_strcmp(const char *s1, const char *s2)
 {
 	if (s1 == NULL)
 		return (-1);
@@ -15,7 +27,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 void	ft_free_el(t_env *to_remove)
 {
 	if (!to_remove)
-		return;
+		return ;
 	if (to_remove->content)
 		free(to_remove->content);
 	if (to_remove->key)
@@ -24,12 +36,26 @@ void	ft_free_el(t_env *to_remove)
 	free(to_remove);
 }
 
+void	ft_whilecurr(t_env *curr, t_env *to_remove, t_com *com, int t)
+{
+	while (curr->next)
+	{
+		if (!ft_strcmp(curr->next->key, com->args[t]))
+		{
+			to_remove = curr->next;
+			curr->next = curr->next->next;
+			ft_free_el(to_remove);
+			continue;
+		}
+		curr = curr->next;
+	}
+}
+
 int		ft_unset(t_com *com)
 {
-	int t;
-	t_env *to_remove;
-	t_env  *curr;
-//	t_env  *temp;
+	int		t;
+	t_env	*to_remove;
+	t_env	*curr;
 
 	t = 0;
 	if (com->env == NULL)
@@ -44,17 +70,7 @@ int		ft_unset(t_com *com)
 			ft_free_el(to_remove);
 			continue;
 		}
-		while (curr->next)
-		{
-			if (!ft_strcmp(curr->next->key, com->args[t]))
-			{
-				to_remove = curr->next;
-				curr->next = curr->next->next;
-				ft_free_el(to_remove);
-				continue;
-			}
-			curr = curr->next;
-		}
+		ft_whilecurr(curr, to_remove, com, t);
 	}
 	ft_copyenvp(com);
 	return (0);

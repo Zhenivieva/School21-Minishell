@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_exam.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 12:30:51 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 12:30:56 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	sigint(int num)
@@ -68,20 +80,4 @@ void	get_next_line(char **line, t_com *com)
 	}
 	com->term.c_lflag = 0x00000188;
 	tcsetattr(0, TCSANOW, &com->term);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	cc;
-
-	cc = (char)c;
-	while (*s)
-	{
-		if (*s == cc)
-			return ((char*)s);
-		s++;
-	}
-	if (*s == cc)
-		return ((char*)s);
-	return ((char*)NULL);
 }

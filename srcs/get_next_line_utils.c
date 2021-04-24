@@ -6,33 +6,19 @@
 /*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 21:50:08 by mmaryjan          #+#    #+#             */
-/*   Updated: 2020/11/21 02:41:51 by mmaryjan         ###   ########.fr       */
+/*   Updated: 2021/04/24 12:05:37 by mmaryjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_strlen(const char *str)
-{
-	int	k;
-
-	if (str == NULL)
-		return (0);
-	k = 0;
-	while (str[k])
-	{
-		k++;
-	}
-	return (k);
-}
-
 char	*ft_strdup(const char *s1)
 {
 	char	*s2;
 	size_t	len;
+
 	if (!s1)
 		return (NULL);
-
 	len = ft_strlen(s1) + 1;
 	s2 = malloc(sizeof(char) * (len));
 	if (!s2)
@@ -82,15 +68,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_strjoin_f(char const *s1, char const *s2)
 {
-	size_t	l1;
-	size_t	l2;
-	char	*dest;
-	const char *temp;
+	size_t		l1;
+	size_t		l2;
+	char		*dest;
+	const char	*temp;
 
 	if (!s1)
-		return (ft_strdup(s2)); //to avoid segf
+		return (ft_strdup(s2));
 	if (!s2)
-		return (ft_strdup(s1)); //to avoid segf
+		return (ft_strdup(s1));
 	temp = s1;
 	l1 = ft_strlen(s1);
 	l2 = ft_strlen(s2);
@@ -101,8 +87,6 @@ char	*ft_strjoin_f(char const *s1, char const *s2)
 	(void)ft_memcpy(dest, s1, l1);
 	(void)ft_memcpy(&dest[l1], s2, l2);
 	dest[l1 + l2] = '\0';
-//	free(temp); //нужен
-//	free(s2);
 	return (dest);
 }
 

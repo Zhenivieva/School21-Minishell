@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_termcap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 12:00:15 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 12:00:17 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	ft_upconds(t_com *com)
@@ -26,10 +38,6 @@ void	ft_up(t_com *com, char **line)
 	tputs(tigetstr("ed"), 1, ft_putchar);
 	if (com->head)
 	{
-		if (com->buf)
-		{
-			ft_upconds(com);
-		}
 		if (com->head->next && com->flag == 1)
 			com->head = com->head->next;
 		*line = ft_strdup(com->head->content);
@@ -54,7 +62,10 @@ void	ft_down(t_com *com, char **line)
 			*line = ft_strdup(com->head->content);
 		}
 		else
+		{
 			*line = ft_strdup("");
+			com->flag = 0;
+		}
 	}
 }
 

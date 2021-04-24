@@ -1,10 +1,18 @@
-//
-// Created by Marleen Maryjane on 4/8/21.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaryjan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 03:17:39 by mmaryjan          #+#    #+#             */
+/*   Updated: 2021/04/24 03:17:50 by mmaryjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-int 	ft_poiskkey(t_env *env, char *find, char *content)
+int		ft_poiskkey(t_env *env, char *find, char *content)
 {
 	t_env *temp;
 
@@ -23,11 +31,11 @@ int 	ft_poiskkey(t_env *env, char *find, char *content)
 	return (1);
 }
 
-int 	ft_parsearg(char *key)
+int		ft_parsearg(char *key)
 {
 	if ((*key <= '9' && *key >= '0') || *key == '=')
 	{
-		write(1, "minishell: export: `",20);
+		write(1, "minishell: export: `", 20);
 		ft_putstr_fd(key, 1);
 		write(1, "' : not a valid identifier\n", 28);
 		return (0);
@@ -35,7 +43,7 @@ int 	ft_parsearg(char *key)
 	return (1);
 }
 
-void	ft_export2(t_com *com, t_env	*temp)
+void	ft_export2(t_com *com, t_env *temp)
 {
 	char	**envstring;
 	int		t;
@@ -48,7 +56,7 @@ void	ft_export2(t_com *com, t_env	*temp)
 			envstring = ft_split(com->args[t], '=');
 			if (ft_poiskkey(com->env, envstring[0], envstring[1]))
 				ft_putsorted(&com->env, ft_lstnew1(envstring[0],
-									   envstring[1]));
+		envstring[1]));
 			com->env = temp;
 		}
 	}
@@ -80,58 +88,5 @@ int		ft_export(t_com *com)
 	else
 		ft_export2(com, temp);
 	ft_copyenvp(com);
-	return (0);
-}
-
-void		ft_env2(t_com *com)
-{
-	if (!(ft_strcmp(com->args[1], "PWD")))
-			ft_pwd();
-	else if (!(ft_strcmp(com->args[1], "LOGNAME")))
-	{
-		while (com->env)
-		{
-			if (!(ft_strcmp(com->env->key, "LOGNAME")))
-			{
-				ft_putstr_fd(com->env->content, 1);
-				write(1, "\n", 1);
-			}
-			com->env = com->env->next;
-		}
-	}
-	else
-	{
-		write(1, "env: ", 5);
-		ft_putstr_fd(com->args[1], 1);
-		write(1, ": No such file or directory\n", 28);
-	}
-}
-
-int		ft_env(t_com *com)
-{
-	t_env	*temp;
-
-	temp = com->env;
-	if (!(com->args[1]))
-	{
-		while (com->env)
-		{
-			if (com->env->content)
-			{
-				ft_putstr_fd(com->env->key, 1);
-				write(1, "=", 1);
-				ft_putstr_fd(com->env->content, 1);
-				write(1, "\n", 1);
-			}
-			com->env = com->env->next;
-		}
-		com->env = temp;
-		write(1, "_=/usr/bin/env\n", 15);
-	}
-	else
-	{
-		ft_env2(com);
-		com->env = temp;
-	}
 	return (0);
 }
