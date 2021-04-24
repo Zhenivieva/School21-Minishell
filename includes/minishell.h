@@ -95,12 +95,19 @@ typedef struct s_com
 	t_tlist *tail;
 	t_tlist *head;
 	int	inited;
+	int count;
+	int max;
+	char *buf;
+	int flag;
+	t_tlist *thead;
+	t_tlist *thead2;
+	struct termios term;
 }				t_com;
 
 //int		g_p[2];
 t_list *g_mem;
 
-int		get_next_line(char **line, t_com *com);
+void	get_next_line(char **line, t_com *com);
 char	*ft_strchr(const char *s, int c);
 int 	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
@@ -124,7 +131,7 @@ int		ft_getdollar(char *dollar, t_com *com, int *b, int *a);
 char	*ft_getpath(t_com *com);
 int 	ft_relabsbin(t_com *com);
 //void	parse_word(char *pipecom, t_com *com, t_indexes *inds);
-void	parse_word(char *pipecom, t_com *com, t_indexes *inds, int *t);
+void	parse_word(char *pipecom, t_com *com, t_indexes *inds);
 void	double_quotes(char *pipecom, t_com *com, t_indexes *inds);
 int		ft_forexecve(t_com *com);
 int		ft_builtin(t_com *com);
@@ -159,4 +166,23 @@ int 	ft_errno(char *komand, int ex, t_com *com);
 void	ft_lstadd_front_m(t_list **lst, t_list *new);
 void	sigint2(int num);
 void	sigquit2(int num);
+void	ft_left(t_com *com);
+int		ft_putchar(int c);
+void	ft_up(t_com *com, char **line);
+void	ft_right(t_com *com);
+void	ft_delete(t_com *com, char **line);
+void	ft_home(t_com *com);
+void	ft_end(t_com *com);
+char	*ft_remove(char *buf, int count);
+void	ft_down(t_com *com, char **line);
+void	ft_ctrlc(t_com *com, char **line);
+void	ft_ctrld(t_com *com);
+void	ft_else(t_com *com, char *str, char **line, int res);
+void 	ft_cicle(t_com *com, char **line);
+int 	ft_fillredir(t_com *com, char *pipecom, int indsk, int type);
+int 	ft_thirdelse(t_com *com, char *pipecom, t_indexes *inds);
+void ft_firstelse(t_com *com, char *pipecom, t_indexes *inds);
+int	ft_kavredir(char *s, int t, int *indk, char *ret);
+void	ft_findkey(t_com *com, char *dollar, int c);
+
 #endif //MINISHELL_MINISHELL_H

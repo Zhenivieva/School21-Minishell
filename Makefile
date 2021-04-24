@@ -37,6 +37,10 @@ SRCS	=   srcs/ft_atoi.c \
             srcs/ft_itoa.c \
             srcs/ft_cd.c \
             srcs/ft_doublelist.c \
+            srcs/ft_termcap.c \
+            srcs/ft_termcap1.c \
+            srcs/ft_termcap2.c \
+            srcs/ft_parse_utils1.c \
 
 DIR_HEADERS	= ./includes/
 

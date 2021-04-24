@@ -240,7 +240,7 @@ void ft_parsecom(char *pipecom, t_com *com)
 			if (com->args[inds.a] == NULL)
 				ft_error(-3);
 			ft_lstadd_front_m(&g_mem, ft_lstnew(com->args[inds.a], 0));
-			parse_word(pipecom, com, &inds, &t);
+			parse_word(pipecom, com, &inds);
 			com->args[inds.a][inds.b] = '\0';
 //			printf("com->argc[%d]-%s\n", a, com->args[a]);
 			if (inds.b > 0)

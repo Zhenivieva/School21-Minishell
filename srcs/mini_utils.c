@@ -6,7 +6,7 @@
 /*   By: mflor <mflor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 23:52:41 by mflor             #+#    #+#             */
-/*   Updated: 2021/04/17 23:56:47 by mflor            ###   ########.fr       */
+/*   Updated: 2021/04/24 03:13:25 by mflor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,17 @@ void	ft_copyenvp(t_com *com)
 	{
 		temp2 = ft_strjoin("=", com->env->content);
 		com->envp[++t] = ft_strjoin_f(com->env->key, temp2);
-//		free (temp2); //to clean leak, but it segs with this srting
 		com->env = com->env->next;
 	}
 	com->envp[++t] = NULL;
 	com->env = temp;
 }
 
-//void	ft_forcat(char **args)
-//{
-//	if (!(ft_strcmp(args[0], "cat")))
-//		if (!(args[1]))
-//			g_p[0] = 1;
-//}
-
-int 	ft_errno(char *komand, int ex, t_com *com)
+int		ft_errno(char *komand, int ex, t_com *com)
 {
 	ft_putstr_fd("minishell: ", 1);
 	ft_putstr_fd(komand, 1);
 	ft_putstr_fd(": command not found\n", 1);
-//	write(1, "\n", 1);
 	com->exit = ex + 128;
-//	printf("exit in ft_errno:%d", com->exit);
 	exit(com->exit);
 }
