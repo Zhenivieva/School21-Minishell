@@ -1,70 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mflor <mflor@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/17 23:57:37 by mflor             #+#    #+#             */
+/*   Updated: 2021/04/24 03:36:29 by mflor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envp)
+static void	ft_incicle(t_com *com)
 {
+	char	**commands;
+	char	*line;
+	int		t;
 
-	t_main_struct	base;
-	char			*copyenvp;
-
-	copyenvp = *envp;
-
-	parse_main(&copyenvp);
-	/*
-	i = 1;
-	getcwd(dir, MAXDIR);
-	while (i > 0)
+	get_next_line(&line, com);
+	if (ft_forsplit(line, ';') > 0)
 	{
-		write(1, "success_minishell$", 18);
-		i = get_next_line(fd, &line);
-		if (!(ft_strncmp(line, "pwd", 4)))
+		commands = ft_split(line, 10);
+		t = -1;
+		while (commands[++t])
 		{
-			getcwd(dir, MAXDIR);
-			printf("%s\n", dir);
+			commands[t] = ft_strtrim(commands[t], " ");
+			ft_pipim(commands[t], com);
+			free(commands[t]);
+			commands[t] = NULL;
 		}
 	}
-	int t = -1;
-	while (envp[++t])
+	if (line)
 	{
-		printf("t-%s\n", envp[t]);
+		free(line);
+		line = NULL;
 	}
-	 */
-	printf("Success minishell in three weeks!\n");
-	return 0;
 }
-/*
-// версия 19.03.2021
-int main(int argc, char **argv, char **envp)
+
+static void	ft_cominit(t_com *com)
 {
-
-	t_main_struct	base;
-	char			*line;
-	int				fd;
-	int				i;
-	char			dir[MAXDIR];
-
-	fd = 0;
-	i = 1;
-	getcwd(dir, MAXDIR);
-
-	while (i > 0)
-	{
-		write(1, "success_minishell$ ", 19);
-		i = get_next_line(fd, &line);
-//		parsing(line, copyenvp);
-//		printf("%s\n", line);
-		if (!(ft_strncmp(line, "pwd", 4)))
-		{
-			getcwd(dir, MAXDIR);
-			printf("%s\n", dir);
-		}
-	}
-	int t = -1;
-	while (envp[++t])
-	{
-		printf("t-%s\n", envp[t]);
-	}
-	printf("Success minishell in three weeks!\n");
-	return 0;
+	com->inited = 0;
+	com->head = NULL;
+	com->tail = NULL;
+	com->buf = NULL;
+	com->envp = NULL;
+	com->args = NULL;
+	com->env = NULL;
+	com->thead2 = NULL;
+	com->thead = NULL;
+	com->tail = NULL;
+	com->head = NULL;
+	com->buf = NULL;
+	com->redir = NULL;
 }
-*/
 
+void		sigint2(int num)
+{
+	(void)num;
+}
+
+void		sigquit2(int num)
+{
+	(void)num;
+}
+
+int			main(int argc, char **argv, char **envp)
+{
+	t_com	*com;
+
+	com = malloc(sizeof(t_com));
+	ft_lstadd_front_m(&g_mem, ft_lstnew_m1(com, 0));
+	(void)argc;
+	(void)argv;
+	ft_cominit(com);
+	ft_forenv(com, envp);
+	if (com->fork == 2)
+	{
+		signal(SIGQUIT, sigquit);
+		signal(SIGINT, sigint);
+	}
+	else if (com->fork > 2)
+	{
+		signal(SIGINT, sigint2);
+		signal(SIGQUIT, sigquit2);
+	}
+	while (1)
+	{
+		ft_putstr_fd("minishell$", 1);
+		ft_incicle(com);
+	}
+	return (0);
+}

@@ -33,6 +33,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	dest = malloc(sizeof(char) * (ls1 - i + 1));
 	if (dest == NULL)
 		return (NULL);
+	ft_lstadd_front_m(&g_mem, ft_lstnew(dest, 0));
 	dest = ft_memcpy(dest, s1, ls1 - i);
 	dest[ls1 - i] = '\0';
 	return (dest);
