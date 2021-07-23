@@ -1,4 +1,4 @@
-## Minishell. 
+## Minishell 
 A team project, was made by two students of school 21.
 ## How to use it
 - Using make will create the minishell executable.
